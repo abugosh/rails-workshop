@@ -1,0 +1,989 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::Persistence</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::Persistence 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/persistence_rb.html">activerecord/lib/active_record/persistence.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <h1>Active Record <a href="Persistence.html">Persistence</a></h1>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>B</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004922">becomes</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004928">decrement</a>,</li>
+                
+                <li><a href="#M004929">decrement!</a>,</li>
+                
+                <li><a href="#M004920">delete</a>,</li>
+                
+                <li><a href="#M004921">destroy</a>,</li>
+                
+                <li><a href="#M004916">destroyed?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004926">increment</a>,</li>
+                
+                <li><a href="#M004927">increment!</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004915">new_record?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004917">persisted?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004932">reload</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004918">save</a>,</li>
+                
+                <li><a href="#M004919">save!</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>T</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004930">toggle</a>,</li>
+                
+                <li><a href="#M004931">toggle!</a>,</li>
+                
+                <li><a href="#M004933">touch</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>U</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004923">update_attribute</a>,</li>
+                
+                <li><a href="#M004924">update_attributes</a>,</li>
+                
+                <li><a href="#M004925">update_attributes!</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004922">
+                    
+                    <a name="M004922"></a><b>becomes</b>(klass)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns an instance of the specified <tt>klass</tt> with the attributes of
+the current record. This is mostly useful in relation to single-table
+inheritance structures where you want a subclass to appear as the
+superclass. This can be used along with record identification in Action
+Pack to allow, say, <tt>Client &lt; Company</tt> to do something like
+render <tt>:partial =&gt; @client.becomes(Company)</tt> to render that
+instance using the companies/company partial instead of clients/client.
+</p>
+<p>
+Note: The new instance will share a link to the same attributes as the
+original class. So any change to the attributes in either instance will
+affect the other.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004922_source')" id="l_M004922_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L100" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004922_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 100</span>
+100:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">becomes</span>(<span class="ruby-identifier">klass</span>)
+101:       <span class="ruby-identifier">became</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>
+102:       <span class="ruby-identifier">became</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value str">&quot;@attributes&quot;</span>, <span class="ruby-ivar">@attributes</span>)
+103:       <span class="ruby-identifier">became</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value str">&quot;@attributes_cache&quot;</span>, <span class="ruby-ivar">@attributes_cache</span>)
+104:       <span class="ruby-identifier">became</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value str">&quot;@new_record&quot;</span>, <span class="ruby-identifier">new_record?</span>)
+105:       <span class="ruby-identifier">became</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value str">&quot;@destroyed&quot;</span>, <span class="ruby-identifier">destroyed?</span>)
+106:       <span class="ruby-identifier">became</span>
+107:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004928">
+                    
+                    <a name="M004928"></a><b>decrement</b>(attribute, by = 1)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Initializes <tt>attribute</tt> to zero if <tt>nil</tt> and subtracts the
+value passed as <tt>by</tt> (default is 1). The decrement is performed
+directly on the underlying attribute, no setter is invoked. Only makes
+sense for number-based attributes. Returns <tt>self</tt>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004928_source')" id="l_M004928_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L167" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004928_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 167</span>
+167:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">decrement</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">by</span> = <span class="ruby-value">1</span>)
+168:       <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+169:       <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">-=</span> <span class="ruby-identifier">by</span>
+170:       <span class="ruby-keyword kw">self</span>
+171:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004929">
+                    
+                    <a name="M004929"></a><b>decrement!</b>(attribute, by = 1)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Wrapper around <tt>decrement</tt> that saves the record. This method
+differs from its non-bang version in that it passes through the attribute
+setter. Saving is not subjected to validation checks. Returns <tt>true</tt>
+if the record could be saved.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004929_source')" id="l_M004929_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L177" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004929_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 177</span>
+177:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">decrement!</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">by</span> = <span class="ruby-value">1</span>)
+178:       <span class="ruby-identifier">decrement</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">by</span>).<span class="ruby-identifier">update_attribute</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">attribute</span>])
+179:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004920">
+                    
+                    <a name="M004920"></a><b>delete</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Deletes the record in the database and freezes this instance to reflect
+that no changes should be made (since they can&#8217;t be persisted).
+Returns the frozen instance.
+</p>
+<p>
+The row is simply removed with an SQL <tt>DELETE</tt> statement on the
+record&#8217;s primary key, and no callbacks are executed.
+</p>
+<p>
+To enforce the object&#8217;s <tt>before_destroy</tt> and
+<tt>after_destroy</tt> callbacks, <a href="Observer.html">Observer</a>
+methods, or any <tt>:dependent</tt> association options, use <tt><a
+href="Persistence.html#M004921">destroy</a></tt>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004920_source')" id="l_M004920_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L73" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004920_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 73</span>
+73:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>
+74:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">id</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">persisted?</span>
+75:       <span class="ruby-ivar">@destroyed</span> = <span class="ruby-keyword kw">true</span>
+76:       <span class="ruby-identifier">freeze</span>
+77:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004921">
+                    
+                    <a name="M004921"></a><b>destroy</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Deletes the record in the database and freezes this instance to reflect
+that no changes should be made (since they can&#8217;t be persisted).
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004921_source')" id="l_M004921_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L81" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004921_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 81</span>
+81:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroy</span>
+82:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">persisted?</span>
+83:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">unscoped</span>.<span class="ruby-identifier">where</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">arel_table</span>[<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">primary_key</span>].<span class="ruby-identifier">eq</span>(<span class="ruby-identifier">id</span>)).<span class="ruby-identifier">delete_all</span>
+84:       <span class="ruby-keyword kw">end</span>
+85: 
+86:       <span class="ruby-ivar">@destroyed</span> = <span class="ruby-keyword kw">true</span>
+87:       <span class="ruby-identifier">freeze</span>
+88:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004916">
+                    
+                    <a name="M004916"></a><b>destroyed?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns true if this object has been destroyed, otherwise returns false.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004916_source')" id="l_M004916_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004916_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 11</span>
+11:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">destroyed?</span>
+12:       <span class="ruby-ivar">@destroyed</span>
+13:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004926">
+                    
+                    <a name="M004926"></a><b>increment</b>(attribute, by = 1)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Initializes <tt>attribute</tt> to zero if <tt>nil</tt> and adds the value
+passed as <tt>by</tt> (default is 1). The increment is performed directly
+on the underlying attribute, no setter is invoked. Only makes sense for
+number-based attributes. Returns <tt>self</tt>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004926_source')" id="l_M004926_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L150" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004926_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 150</span>
+150:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">increment</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">by</span> = <span class="ruby-value">1</span>)
+151:       <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+152:       <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">attribute</span>] <span class="ruby-operator">+=</span> <span class="ruby-identifier">by</span>
+153:       <span class="ruby-keyword kw">self</span>
+154:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004927">
+                    
+                    <a name="M004927"></a><b>increment!</b>(attribute, by = 1)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Wrapper around <tt>increment</tt> that saves the record. This method
+differs from its non-bang version in that it passes through the attribute
+setter. Saving is not subjected to validation checks. Returns <tt>true</tt>
+if the record could be saved.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004927_source')" id="l_M004927_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L160" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004927_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 160</span>
+160:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">increment!</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">by</span> = <span class="ruby-value">1</span>)
+161:       <span class="ruby-identifier">increment</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">by</span>).<span class="ruby-identifier">update_attribute</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">attribute</span>])
+162:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004915">
+                    
+                    <a name="M004915"></a><b>new_record?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns true if this object hasn&#8217;t been saved yet &#8212; that is, a
+record for the object doesn&#8217;t exist in the data store yet; otherwise,
+returns false.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004915_source')" id="l_M004915_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L6" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004915_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 6</span>
+6:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_record?</span>
+7:       <span class="ruby-ivar">@new_record</span>
+8:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004917">
+                    
+                    <a name="M004917"></a><b>persisted?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns if the record is persisted, i.e. it&#8217;s not a new record and it
+was not destroyed.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004917_source')" id="l_M004917_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L17" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004917_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 17</span>
+17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">persisted?</span>
+18:       <span class="ruby-operator">!</span>(<span class="ruby-identifier">new_record?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">destroyed?</span>)
+19:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004932">
+                    
+                    <a name="M004932"></a><b>reload</b>(options = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Reloads the attributes of this object from the database. The optional
+options argument is passed to find when reloading so you may do e.g.
+record.reload(:lock => true) to reload the same record with an exclusive
+row lock.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004932_source')" id="l_M004932_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L202" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004932_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 202</span>
+202:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reload</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>)
+203:       <span class="ruby-identifier">clear_aggregation_cache</span>
+204:       <span class="ruby-identifier">clear_association_cache</span>
+205:       <span class="ruby-ivar">@attributes</span>.<span class="ruby-identifier">update</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">unscoped</span> { <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">find</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">id</span>, <span class="ruby-identifier">options</span>) }.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-value str">'@attributes'</span>))
+206:       <span class="ruby-ivar">@attributes_cache</span> = {}
+207:       <span class="ruby-keyword kw">self</span>
+208:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004918">
+                    
+                    <a name="M004918"></a><b>save(options)
+</b>
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Saves the model.
+</p>
+<p>
+If the model is new a record gets created in the database, otherwise the
+existing record gets updated.
+</p>
+<p>
+By default, save always run validations. If any of them fail the action is
+cancelled and <tt>save</tt> returns <tt>false</tt>. However, if you supply
+:validate => false, validations are bypassed altogether. See <a
+href="Validations.html">ActiveRecord::Validations</a> for more information.
+</p>
+<p>
+There&#8217;s a series of callbacks associated with <tt>save</tt>. If any
+of the <tt>before_*</tt> callbacks return <tt>false</tt> the action is
+cancelled and <tt>save</tt> returns <tt>false</tt>. See <a
+href="Callbacks.html">ActiveRecord::Callbacks</a> for further details.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004918_source')" id="l_M004918_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L38" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004918_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 38</span>
+38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save</span>(<span class="ruby-operator">*</span>)
+39:       <span class="ruby-keyword kw">begin</span>
+40:         <span class="ruby-identifier">create_or_update</span>
+41:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">RecordInvalid</span>
+42:         <span class="ruby-keyword kw">false</span>
+43:       <span class="ruby-keyword kw">end</span>
+44:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004919">
+                    
+                    <a name="M004919"></a><b>save!</b>(*)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Saves the model.
+</p>
+<p>
+If the model is new a record gets created in the database, otherwise the
+existing record gets updated.
+</p>
+<p>
+With <tt>save!</tt> validations always run. If any of them fail <a
+href="RecordInvalid.html">ActiveRecord::RecordInvalid</a> gets raised. See
+<a href="Validations.html">ActiveRecord::Validations</a> for more
+information.
+</p>
+<p>
+There&#8217;s a series of callbacks associated with <tt>save!</tt>. If any
+of the <tt>before_*</tt> callbacks return <tt>false</tt> the action is
+cancelled and <tt>save!</tt> raises <a
+href="RecordNotSaved.html">ActiveRecord::RecordNotSaved</a>. See <a
+href="Callbacks.html">ActiveRecord::Callbacks</a> for further details.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004919_source')" id="l_M004919_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L59" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004919_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 59</span>
+59:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">save!</span>(<span class="ruby-operator">*</span>)
+60:       <span class="ruby-identifier">create_or_update</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">raise</span>(<span class="ruby-constant">RecordNotSaved</span>)
+61:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004930">
+                    
+                    <a name="M004930"></a><b>toggle</b>(attribute)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Assigns to <tt>attribute</tt> the boolean opposite of <tt>attribute?</tt>.
+So if the predicate returns <tt>true</tt> the attribute will become
+<tt>false</tt>. This method toggles directly the underlying value without
+calling any setter. Returns <tt>self</tt>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004930_source')" id="l_M004930_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L185" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004930_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 185</span>
+185:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">toggle</span>(<span class="ruby-identifier">attribute</span>)
+186:       <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">attribute</span>] = <span class="ruby-operator">!</span><span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{attribute}?&quot;</span>)
+187:       <span class="ruby-keyword kw">self</span>
+188:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004931">
+                    
+                    <a name="M004931"></a><b>toggle!</b>(attribute)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Wrapper around <tt>toggle</tt> that saves the record. This method differs
+from its non-bang version in that it passes through the attribute setter.
+Saving is not subjected to validation checks. Returns <tt>true</tt> if the
+record could be saved.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004931_source')" id="l_M004931_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L194" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004931_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 194</span>
+194:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">toggle!</span>(<span class="ruby-identifier">attribute</span>)
+195:       <span class="ruby-identifier">toggle</span>(<span class="ruby-identifier">attribute</span>).<span class="ruby-identifier">update_attribute</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">attribute</span>])
+196:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004933">
+                    
+                    <a name="M004933"></a><b>touch</b>(name = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Saves the record with the updated_at/on attributes set to the current time.
+Please note that no validation is performed and no callbacks are executed.
+If an attribute name is passed, that attribute is updated along with
+updated_at/on attributes.
+</p>
+<pre>
+  product.touch               # updates updated_at/on
+  product.touch(:designed_at) # updates the designed_at attribute and updated_at/on
+</pre>
+<p>
+If used along with <tt>belongs_to</tt> then <tt>touch</tt> will invoke
+<tt>touch</tt> method on associated object.
+</p>
+<pre>
+  class Brake &lt; ActiveRecord::Base
+    belongs_to :car, :touch =&gt; true
+  end
+
+  class Car &lt; ActiveRecord::Base
+    belongs_to :corporation, :touch =&gt; true
+  end
+
+  # triggers @brake.car.touch and @brake.car.corporation.touch
+  @brake.touch
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004933_source')" id="l_M004933_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L230" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004933_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 230</span>
+230:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">touch</span>(<span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+231:       <span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">timestamp_attributes_for_update_in_model</span>
+232:       <span class="ruby-identifier">attributes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">name</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span>
+233:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">empty?</span>
+234:         <span class="ruby-identifier">current_time</span> = <span class="ruby-identifier">current_time_from_proper_timezone</span>
+235:         <span class="ruby-identifier">changes</span> = {}
+236: 
+237:         <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">column</span><span class="ruby-operator">|</span>
+238:           <span class="ruby-identifier">changes</span>[<span class="ruby-identifier">column</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">write_attribute</span>(<span class="ruby-identifier">column</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">current_time</span>)
+239:         <span class="ruby-keyword kw">end</span>
+240: 
+241:         <span class="ruby-ivar">@changed_attributes</span>.<span class="ruby-identifier">except!</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">changes</span>.<span class="ruby-identifier">keys</span>)
+242:         <span class="ruby-identifier">primary_key</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">primary_key</span>
+243:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">update_all</span>(<span class="ruby-identifier">changes</span>, { <span class="ruby-identifier">primary_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">primary_key</span>] }) <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+244:       <span class="ruby-keyword kw">end</span>
+245:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004923">
+                    
+                    <a name="M004923"></a><b>update_attribute</b>(name, value)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Updates a single attribute and saves the record. This is especially useful
+for boolean flags on existing records. Also note that
+</p>
+<ul>
+<li>Validation is skipped.
+
+</li>
+<li><a href="Callbacks.html">Callbacks</a> are invoked.
+
+</li>
+<li>updated_at/updated_on column is updated if that column is available.
+
+</li>
+<li>Updates all the attributes that are dirty in this object.
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004923_source')" id="l_M004923_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L117" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004923_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 117</span>
+117:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_attribute</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span>)
+118:       <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>
+119:       <span class="ruby-identifier">raise</span> <span class="ruby-constant">ActiveRecordError</span>, <span class="ruby-node">&quot;#{name} is marked as readonly&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">readonly_attributes</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">name</span>)
+120:       <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{name}=&quot;</span>, <span class="ruby-identifier">value</span>)
+121:       <span class="ruby-identifier">save</span>(<span class="ruby-identifier">:validate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>)
+122:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004924">
+                    
+                    <a name="M004924"></a><b>update_attributes</b>(attributes)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Updates the attributes of the model from the passed-in hash and saves the
+record, all wrapped in a transaction. If the object is invalid, the saving
+will fail and false will be returned.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004924_source')" id="l_M004924_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L127" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004924_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 127</span>
+127:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_attributes</span>(<span class="ruby-identifier">attributes</span>)
+128:       <span class="ruby-comment cmt"># The following transaction covers any possible database side-effects of the</span>
+129:       <span class="ruby-comment cmt"># attributes assignment. For example, setting the IDs of a child collection.</span>
+130:       <span class="ruby-identifier">with_transaction_returning_status</span> <span class="ruby-keyword kw">do</span>
+131:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">attributes</span>
+132:         <span class="ruby-identifier">save</span>
+133:       <span class="ruby-keyword kw">end</span>
+134:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004925">
+                    
+                    <a name="M004925"></a><b>update_attributes!</b>(attributes)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Updates its receiver just like <tt><a
+href="Persistence.html#M004924">update_attributes</a></tt> but calls
+<tt>save!</tt> instead of <tt>save</tt>, so an exception is raised if the
+record is invalid.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004925_source')" id="l_M004925_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/79abb703e9c0d40e589e5d9014e3857a61c782d5/activerecord/lib/active_record/persistence.rb#L138" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004925_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/persistence.rb, line 138</span>
+138:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_attributes!</span>(<span class="ruby-identifier">attributes</span>)
+139:       <span class="ruby-comment cmt"># The following transaction covers any possible database side-effects of the</span>
+140:       <span class="ruby-comment cmt"># attributes assignment. For example, setting the IDs of a child collection.</span>
+141:       <span class="ruby-identifier">with_transaction_returning_status</span> <span class="ruby-keyword kw">do</span>
+142:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">attributes</span>
+143:         <span class="ruby-identifier">save!</span>
+144:       <span class="ruby-keyword kw">end</span>
+145:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

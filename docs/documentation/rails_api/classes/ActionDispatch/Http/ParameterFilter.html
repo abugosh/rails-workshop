@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Http::ParameterFilter</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActionDispatch::Http::ParameterFilter 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_dispatch/http/parameter_filter_rb.html">actionpack/lib/action_dispatch/http/parameter_filter.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005799">filter</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005798">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005798">
+                    
+                    <a name="M005798"></a><b>new</b>(filters)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005798_source')" id="l_M005798_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e466354edb31f243899051e2119f4ce72bafd5f3/actionpack/lib/action_dispatch/http/parameter_filter.rb#L5" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005798_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/parameter_filter.rb, line 5</span>
+5:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">filters</span>)
+6:         <span class="ruby-ivar">@filters</span> = <span class="ruby-identifier">filters</span>
+7:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005799">
+                    
+                    <a name="M005799"></a><b>filter</b>(params)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005799_source')" id="l_M005799_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e466354edb31f243899051e2119f4ce72bafd5f3/actionpack/lib/action_dispatch/http/parameter_filter.rb#L9" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005799_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/parameter_filter.rb, line 9</span>
+ 9:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">filter</span>(<span class="ruby-identifier">params</span>)
+10:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">enabled?</span>
+11:           <span class="ruby-identifier">compiled_filter</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">params</span>)
+12:         <span class="ruby-keyword kw">else</span>
+13:           <span class="ruby-identifier">params</span>.<span class="ruby-identifier">dup</span>
+14:         <span class="ruby-keyword kw">end</span>
+15:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

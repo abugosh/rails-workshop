@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Object</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+    <script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Object 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/activesupport/lib/active_support/json/encoding_rb.html">activesupport/lib/active_support/json/encoding.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/string/output_safety_rb.html">activesupport/lib/active_support/core_ext/string/output_safety.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/kernel/agnostics_rb.html">activesupport/lib/active_support/core_ext/kernel/agnostics.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/blank_rb.html">activesupport/lib/active_support/core_ext/object/blank.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/to_param_rb.html">activesupport/lib/active_support/core_ext/object/to_param.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/instance_variables_rb.html">activesupport/lib/active_support/core_ext/object/instance_variables.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/try_rb.html">activesupport/lib/active_support/core_ext/object/try.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/returning_rb.html">activesupport/lib/active_support/core_ext/object/returning.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/with_options_rb.html">activesupport/lib/active_support/core_ext/object/with_options.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/acts_like_rb.html">activesupport/lib/active_support/core_ext/object/acts_like.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/duplicable_rb.html">activesupport/lib/active_support/core_ext/object/duplicable.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/to_query_rb.html">activesupport/lib/active_support/core_ext/object/to_query.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+Most objects are cloneable, but not all. For example you can&#8217;t dup
+<tt>nil</tt>:
+</p>
+<pre>
+  nil.dup # =&gt; TypeError: can't dup NilClass
+</pre>
+<p>
+Classes may signal their instances are not duplicable removing
+<tt>dup</tt>/<tt>clone</tt> or raising exceptions from them. So, to dup an
+arbitrary object you normally use an optimistic approach and are ready to
+catch an exception, say:
+</p>
+<pre>
+  arbitrary_object.dup rescue object
+</pre>
+<p>
+<a href="Rails.html">Rails</a> dups objects in a few critical spots where
+they are not that arbitrary. That rescue is very expensive (like 40 times
+slower than a predicate), and it is often triggered.
+</p>
+<p>
+That&#8217;s why we hardcode the following cases and check duplicable?
+instead of using that rescue idiom.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007365">acts_like?</a>,</li>
+                
+                <li><a href="#M003996">app</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>B</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007350">blank?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M003995">controller</a>,</li>
+                
+                <li><a href="#M004287">create_fixtures</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007366">duplicable?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>H</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M003994">helper</a>,</li>
+                
+                <li><a href="#M007052">html_safe?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007360">instance_variable_names</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004003">new_session</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007358">presence</a>,</li>
+                
+                <li><a href="#M007351">present?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004004">reload!</a>,</li>
+                
+                <li><a href="#M007363">returning</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>T</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007352">to_param</a>,</li>
+                
+                <li><a href="#M007367">to_query</a>,</li>
+                
+                <li><a href="#M007362">try</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>U</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007151">unescape</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>W</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007364">with_options</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007365">
+                    
+                    <a name="M007365"></a><b>acts_like?</b>(duck)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+A duck-type assistant method. For example, Active Support extends Date to
+define an acts_like_date? method, and extends <a href="Time.html">Time</a>
+to define acts_like_time?. As a result, we can do
+&#8220;x.acts_like?(:time)&#8221; and &#8220;x.acts_like?(:date)&#8221; to
+do duck-type-safe comparisons, since classes that we want to act like <a
+href="Time.html">Time</a> simply need to define an acts_like_time? method.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007365_source')" id="l_M007365_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/609c1988d2e274b365c5299cc5933fb6855e4175/activesupport/lib/active_support/core_ext/object/acts_like.rb#L7" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007365_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/acts_like.rb, line 7</span>
+7:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">acts_like?</span>(<span class="ruby-identifier">duck</span>)
+8:     <span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:&quot;acts_like_#{duck}?&quot;</span>
+9:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M003996">
+                    
+                    <a name="M003996"></a><b>app</b>(create=false)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+reference the global &#8220;app&#8221; instance, created on demand. To
+recreate the instance, pass a non-false value as the parameter.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003996_source')" id="l_M003996_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/6682cce0386811ffe3e6d31fc025ede0936d86c3/railties/lib/rails/console/app.rb#L10" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003996_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/console/app.rb, line 10</span>
+10: <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">app</span>(<span class="ruby-identifier">create</span>=<span class="ruby-keyword kw">false</span>)
+11:   <span class="ruby-ivar">@app_integration_instance</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">create</span>
+12:   <span class="ruby-ivar">@app_integration_instance</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">new_session</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sess</span><span class="ruby-operator">|</span>
+13:     <span class="ruby-identifier">sess</span>.<span class="ruby-identifier">host!</span> <span class="ruby-value str">&quot;www.example.com&quot;</span>
+14:   <span class="ruby-keyword kw">end</span>
+15: <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007350">
+                    
+                    <a name="M007350"></a><b>blank?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+An object is blank if it&#8217;s false, empty, or a whitespace string. For
+example, &#8220;&#8221;, &#8220; &#8220;, <tt>nil</tt>, [], and {} are
+blank.
+</p>
+<p>
+This simplifies:
+</p>
+<pre>
+  if !address.nil? &amp;&amp; !address.empty?
+</pre>
+<p>
+&#8230;to:
+</p>
+<pre>
+  if !address.blank?
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007350_source')" id="l_M007350_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activesupport/lib/active_support/core_ext/object/blank.rb#L12" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007350_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/blank.rb, line 12</span>
+12:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">blank?</span>
+13:     <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:empty?</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">empty?</span> <span class="ruby-operator">:</span> <span class="ruby-operator">!</span><span class="ruby-keyword kw">self</span>
+14:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M003995">
+                    
+                    <a name="M003995"></a><b>controller</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003995_source')" id="l_M003995_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/39d6f9e112f2320d8c2006ee3bcc160cfa761d0a/railties/lib/rails/console/helpers.rb#L5" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003995_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File railties/lib/rails/console/helpers.rb, line 5</span>
+5: <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">controller</span>
+6:   <span class="ruby-ivar">@controller</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ApplicationController</span>.<span class="ruby-identifier">new</span>
+7: <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004287">
+                    
+                    <a name="M004287"></a><b>create_fixtures</b>(*table_names, &amp;block)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004287_source')" id="l_M004287_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0d055de8b621a3619888471fab96518e2c0c0c95/railties/lib/rails/test_help.rb#L26" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004287_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/test_help.rb, line 26</span>
+26:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_fixtures</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">table_names</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+27:     <span class="ruby-constant">Fixtures</span>.<span class="ruby-identifier">create_fixtures</span>(<span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCase</span>.<span class="ruby-identifier">fixture_path</span>, <span class="ruby-identifier">table_names</span>, {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+28:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007366">
+                    
+                    <a name="M007366"></a><b>duplicable?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Can you safely .dup this object? False for nil, false, true, symbols,
+numbers, class and module objects; true otherwise.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007366_source')" id="l_M007366_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2ddbef421cb877bc219ac2737bbba793c53edbde/activesupport/lib/active_support/core_ext/object/duplicable.rb#L20" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007366_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/duplicable.rb, line 20</span>
+20:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">duplicable?</span>
+21:     <span class="ruby-keyword kw">true</span>
+22:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M003994">
+                    
+                    <a name="M003994"></a><b>helper</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003994_source')" id="l_M003994_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/39d6f9e112f2320d8c2006ee3bcc160cfa761d0a/railties/lib/rails/console/helpers.rb#L1" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003994_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File railties/lib/rails/console/helpers.rb, line 1</span>
+1: <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">helper</span>
+2:   <span class="ruby-ivar">@helper</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ApplicationController</span>.<span class="ruby-identifier">helpers</span>
+3: <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007052">
+                    
+                    <a name="M007052"></a><b>html_safe?</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007052_source')" id="l_M007052_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/a7d322307d9bc326a56ffa9b953444d0cc3d7efc/activesupport/lib/active_support/core_ext/string/output_safety.rb#L63" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007052_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/string/output_safety.rb, line 63</span>
+63:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">html_safe?</span>
+64:     <span class="ruby-keyword kw">false</span>
+65:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007360">
+                    
+                    <a name="M007360"></a><b>instance_variable_names</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007360_source')" id="l_M007360_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activesupport/lib/active_support/core_ext/object/instance_variables.rb#L30" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007360_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/instance_variables.rb, line 30</span>
+30:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">instance_variable_names</span>
+31:       <span class="ruby-identifier">instance_variables</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">var</span><span class="ruby-operator">|</span> <span class="ruby-identifier">var</span>.<span class="ruby-identifier">to_s</span> }
+32:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004003">
+                    
+                    <a name="M004003"></a><b>new_session</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+create a new session. If a block is given, the new session will be yielded
+to the block before being returned.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004003_source')" id="l_M004003_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/6682cce0386811ffe3e6d31fc025ede0936d86c3/railties/lib/rails/console/app.rb#L19" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004003_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/console/app.rb, line 19</span>
+19: <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">new_session</span>
+20:   <span class="ruby-identifier">app</span> = <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">application</span>
+21:   <span class="ruby-identifier">session</span> = <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Integration</span><span class="ruby-operator">::</span><span class="ruby-constant">Session</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">app</span>)
+22:   <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">session</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+23:   <span class="ruby-identifier">session</span>
+24: <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007358">
+                    
+                    <a name="M007358"></a><b>presence</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns object if it&#8217;s <a href="Object.html#M007351">present?</a>
+otherwise returns nil. object.presence is equivalent to object.present? ?
+object : nil.
+</p>
+<p>
+This is handy for any representation of objects where blank is the same as
+not present at all. For example, this simplifies a common check for HTTP
+POST/query parameters:
+</p>
+<pre>
+  state   = params[:state]   if params[:state].present?
+  country = params[:country] if params[:country].present?
+  region  = state || country || 'US'
+</pre>
+<p>
+&#8230;becomes:
+</p>
+<pre>
+  region = params[:state].presence || params[:country].presence || 'US'
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007358_source')" id="l_M007358_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activesupport/lib/active_support/core_ext/object/blank.rb#L35" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007358_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/blank.rb, line 35</span>
+35:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">presence</span>
+36:     <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">present?</span>
+37:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007351">
+                    
+                    <a name="M007351"></a><b>present?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+An object is present if it&#8217;s not blank.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007351_source')" id="l_M007351_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activesupport/lib/active_support/core_ext/object/blank.rb#L17" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007351_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/blank.rb, line 17</span>
+17:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">present?</span>
+18:     <span class="ruby-operator">!</span><span class="ruby-identifier">blank?</span>
+19:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004004">
+                    
+                    <a name="M004004"></a><b>reload!</b>(print=true)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+reloads the environment
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004004_source')" id="l_M004004_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/6682cce0386811ffe3e6d31fc025ede0936d86c3/railties/lib/rails/console/app.rb#L27" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004004_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/console/app.rb, line 27</span>
+27: <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reload!</span>(<span class="ruby-identifier">print</span>=<span class="ruby-keyword kw">true</span>)
+28:   <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Reloading...&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">print</span>
+29:   <span class="ruby-comment cmt"># This triggers the to_prepare callbacks</span>
+30:   <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Callbacks</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Proc</span>.<span class="ruby-identifier">new</span> {}, <span class="ruby-keyword kw">false</span>).<span class="ruby-identifier">call</span>({})
+31:   <span class="ruby-keyword kw">true</span>
+32: <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007363">
+                    
+                    <a name="M007363"></a><b>returning</b>(value)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns <tt>value</tt> after yielding <tt>value</tt> to the block. This
+simplifies the process of constructing an object, performing work on the
+object, and then returning the object from a method. It is a Ruby-ized
+realization of the K combinator, courtesy of Mikael Brockman.
+</p>
+<h4>Examples</h4>
+<pre>
+ # Without returning
+ def foo
+   values = []
+   values &lt;&lt; &quot;bar&quot;
+   values &lt;&lt; &quot;baz&quot;
+   return values
+ end
+
+ foo # =&gt; ['bar', 'baz']
+
+ # returning with a local variable
+ def foo
+   returning values = [] do
+     values &lt;&lt; 'bar'
+     values &lt;&lt; 'baz'
+   end
+ end
+
+ foo # =&gt; ['bar', 'baz']
+
+ # returning with a block argument
+ def foo
+   returning [] do |values|
+     values &lt;&lt; 'bar'
+     values &lt;&lt; 'baz'
+   end
+ end
+
+ foo # =&gt; ['bar', 'baz']
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007363_source')" id="l_M007363_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activesupport/lib/active_support/core_ext/object/returning.rb#L38" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007363_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/returning.rb, line 38</span>
+38:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">returning</span>(<span class="ruby-identifier">value</span>)
+39:     <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-value str">'Object#returning has been deprecated in favor of Object#tap.'</span>, <span class="ruby-identifier">caller</span>)
+40:     <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">value</span>)
+41:     <span class="ruby-identifier">value</span>
+42:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007352">
+                    
+                    <a name="M007352"></a><b>to_param</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias of <tt>to_s</tt>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007352_source')" id="l_M007352_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/61e70bf6231e264a14e4f24ed2a97a8c7315b70e/activesupport/lib/active_support/core_ext/object/to_param.rb#L5" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007352_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/to_param.rb, line 5</span>
+5:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_param</span>
+6:     <span class="ruby-identifier">to_s</span>
+7:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007367">
+                    
+                    <a name="M007367"></a><b>to_query</b>(key)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Converts an object into a string suitable for use as a URL query string,
+using the given <tt>key</tt> as the param name.
+</p>
+<p>
+Note: This method is defined as a default implementation for all Objects
+for Hash#to_query to work.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007367_source')" id="l_M007367_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/856d2fd874d72dd9f83204affff4edfef3308361/activesupport/lib/active_support/core_ext/object/to_query.rb#L8" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007367_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/to_query.rb, line 8</span>
+ 8:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_query</span>(<span class="ruby-identifier">key</span>)
+ 9:     <span class="ruby-identifier">require</span> <span class="ruby-value str">'cgi'</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">CGI</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">CGI</span><span class="ruby-operator">::</span><span class="ruby-identifier">escape</span>)
+10:     <span class="ruby-node">&quot;#{CGI.escape(key.to_s).gsub(/%(5B|5D)/n) { [$1].pack('H*') }}=#{CGI.escape(to_param.to_s)}&quot;</span>
+11:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007362">
+                    
+                    <a name="M007362"></a><b>try</b>(method, *args, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Invokes the method identified by the symbol <tt>method</tt>, passing it any
+arguments and/or the block specified, just like the regular Ruby
+<tt>Object#send</tt> does.
+</p>
+<p>
+<b>Unlike</b> that method however, a <tt>NoMethodError</tt> exception will
+<b>not</b> be raised and <tt>nil</tt> will be returned instead, if the
+receiving object is a <tt>nil</tt> object or NilClass.
+</p>
+<h4>Examples</h4>
+<p>
+Without try
+</p>
+<pre>
+  @person &amp;&amp; @person.name
+</pre>
+<p>
+or
+</p>
+<pre>
+  @person ? @person.name : nil
+</pre>
+<p>
+With try
+</p>
+<pre>
+  @person.try(:name)
+</pre>
+<p>
+<tt>try</tt> also accepts arguments and/or a block, for the method it is
+trying
+</p>
+<pre>
+  Person.try(:find, 1)
+  @people.try(:collect) {|p| p.name}
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007362_source')" id="l_M007362_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/bca510cec23aff4c147f2ab5c30de930f120d84b/activesupport/lib/active_support/core_ext/object/try.rb#L25" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007362_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/try.rb, line 25</span>
+25:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">try</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+26:     <span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+27:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007151">
+                    
+                    <a name="M007151"></a><b>unescape</b>(str, escaped = /%[a-fA-F\d]{2}/)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007151_source')" id="l_M007151_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/16ee4b4d1b125bd3edb5c191d58c7afdf6d3232e/activesupport/lib/active_support/core_ext/uri.rb#L13" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007151_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/uri.rb, line 13</span>
+13:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unescape</span>(<span class="ruby-identifier">str</span>, <span class="ruby-identifier">escaped</span> = <span class="ruby-regexp re">/%[a-fA-F\d]{2}/</span>)
+14:         <span class="ruby-comment cmt"># TODO: Are we actually sure that ASCII == UTF-8?</span>
+15:         <span class="ruby-comment cmt"># YK: My initial experiments say yes, but let's be sure please</span>
+16:         <span class="ruby-identifier">enc</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">encoding</span>
+17:         <span class="ruby-identifier">enc</span> = <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">UTF_8</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">enc</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Encoding</span><span class="ruby-operator">::</span><span class="ruby-constant">US_ASCII</span>
+18:         <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-identifier">escaped</span>) { [<span class="ruby-identifier">$&amp;</span>[<span class="ruby-value">1</span>, <span class="ruby-value">2</span>].<span class="ruby-identifier">hex</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'C'</span>) }.<span class="ruby-identifier">force_encoding</span>(<span class="ruby-identifier">enc</span>)
+19:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007364">
+                    
+                    <a name="M007364"></a><b>with_options</b>(options)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+An elegant way to factor duplication out of options passed to a series of
+method calls. Each method called in the block, with the block variable as
+the receiver, will have its options merged with the default
+<tt>options</tt> hash provided. Each method called on the block variable
+must take an options hash as its final argument.
+</p>
+<pre>
+  with_options :order =&gt; 'created_at', :class_name =&gt; 'Comment' do |post|
+    post.has_many :comments, :conditions =&gt; ['approved = ?', true], :dependent =&gt; :delete_all
+    post.has_many :unapproved_comments, :conditions =&gt; ['approved = ?', false]
+    post.has_many :all_comments
+  end
+</pre>
+<p>
+Can also be used with an explicit receiver:
+</p>
+<pre>
+  map.with_options :controller =&gt; &quot;people&quot; do |people|
+    people.connect &quot;/people&quot;,     :action =&gt; &quot;index&quot;
+    people.connect &quot;/people/:id&quot;, :action =&gt; &quot;show&quot;
+  end
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007364_source')" id="l_M007364_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/c77794a924938360bf4e61c9a13cdbe5b58fdf62/activesupport/lib/active_support/core_ext/object/with_options.rb#L23" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007364_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/core_ext/object/with_options.rb, line 23</span>
+23:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">with_options</span>(<span class="ruby-identifier">options</span>)
+24:     <span class="ruby-keyword kw">yield</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">OptionMerger</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">options</span>)
+25:   <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

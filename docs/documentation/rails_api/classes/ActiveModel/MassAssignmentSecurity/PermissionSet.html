@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::MassAssignmentSecurity::PermissionSet</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::MassAssignmentSecurity::PermissionSet 
+            
+                <span class="parent">&lt; 
+                    
+                    Set
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/mass_assignment_security/permission_set_rb.html">activemodel/lib/active_model/mass_assignment_security/permission_set.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>#</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007722">+</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007723">include?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007724">remove_multiparameter_id</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>logger</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007722">
+                    
+                    <a name="M007722"></a><b>+</b>(values)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007722_source')" id="l_M007722_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/060ca6abce737b1c2ad53f2427ccaee7142d7cf9/activemodel/lib/active_model/mass_assignment_security/permission_set.rb#L9" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007722_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/mass_assignment_security/permission_set.rb, line 9</span>
+ 9:       <span class="ruby-keyword kw">def</span> <span class="ruby-operator">+</span>(<span class="ruby-identifier">values</span>)
+10:         <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">values</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_s</span>))
+11:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007723">
+                    
+                    <a name="M007723"></a><b>include?</b>(key)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007723_source')" id="l_M007723_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/060ca6abce737b1c2ad53f2427ccaee7142d7cf9/activemodel/lib/active_model/mass_assignment_security/permission_set.rb#L13" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007723_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/mass_assignment_security/permission_set.rb, line 13</span>
+13:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>)
+14:         <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">remove_multiparameter_id</span>(<span class="ruby-identifier">key</span>))
+15:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007724">
+                    
+                    <a name="M007724"></a><b>remove_multiparameter_id</b>(key)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007724_source')" id="l_M007724_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/060ca6abce737b1c2ad53f2427ccaee7142d7cf9/activemodel/lib/active_model/mass_assignment_security/permission_set.rb#L19" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007724_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/mass_assignment_security/permission_set.rb, line 19</span>
+19:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_multiparameter_id</span>(<span class="ruby-identifier">key</span>)
+20:         <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/\(.+/</span>, <span class="ruby-value str">''</span>)
+21:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

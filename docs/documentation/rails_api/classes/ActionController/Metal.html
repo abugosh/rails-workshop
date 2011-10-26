@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::Metal</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActionController::Metal 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../AbstractController/Base.html">AbstractController::Base</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_controller/metal_rb.html">actionpack/lib/action_controller/metal.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+<a href="Metal.html">ActionController::Metal</a> provides a way to get a
+valid Rack application from a controller.
+</p>
+<p>
+In <a href="../AbstractController.html">AbstractController</a>, dispatching
+is triggered directly by calling process on a new controller. <a
+href="Metal.html">ActionController::Metal</a> provides an <a
+href="Metal.html#M005644">action</a> method that returns a valid Rack
+application for a given action. Other rack builders, such as Rack::Builder,
+Rack::URLMap, and the <a href="../Rails.html">Rails</a> router, can
+dispatch directly to the action returned by FooController.action(:index).
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005644">action</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005643">call</a>,</li>
+                
+                <li><a href="#M005629">content_type</a>,</li>
+                
+                <li><a href="#M005628">content_type=</a>,</li>
+                
+                <li><a href="#M005624">controller_name</a>,</li>
+                
+                <li><a href="#M005623">controller_name</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005638">dispatch</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005640">inherited</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>L</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005630">location</a>,</li>
+                
+                <li><a href="#M005631">location=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005642">middleware</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005625">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005626">params</a>,</li>
+                
+                <li><a href="#M005627">params=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005635">response_body=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005633">status</a>,</li>
+                
+                <li><a href="#M005634">status=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>T</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005639">to_a</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>U</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005632">url_for</a>,</li>
+                
+                <li><a href="#M005641">use</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005644">
+                    
+                    <a name="M005644"></a><b>action</b>(name, klass = ActionDispatch::Request)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Return a rack endpoint for the given action. Memoize the endpoint, so
+multiple calls into MyController.action will return the same object for the
+same action.
+</p>
+<h4>Parameters</h4>
+<table>
+<tr><td valign="top">action<to_s>:</td><td>An action name
+
+</td></tr>
+</table>
+<h4>Returns</h4>
+<table>
+<tr><td valign="top">Proc:</td><td>A rack application
+
+</td></tr>
+</table>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005644_source')" id="l_M005644_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L176" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005644_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 176</span>
+176:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">action</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">klass</span> = <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Request</span>)
+177:       <span class="ruby-identifier">middleware_stack</span>.<span class="ruby-identifier">build</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">env</span><span class="ruby-operator">|</span>
+178:         <span class="ruby-identifier">new</span>.<span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">env</span>))
+179:       <span class="ruby-keyword kw">end</span>
+180:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005643">
+                    
+                    <a name="M005643"></a><b>call</b>(env)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005643_source')" id="l_M005643_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L163" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005643_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 163</span>
+163:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+164:       <span class="ruby-identifier">action</span>(<span class="ruby-identifier">env</span>[<span class="ruby-value str">'action_dispatch.request.path_parameters'</span>][<span class="ruby-identifier">:action</span>]).<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+165:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005623">
+                    
+                    <a name="M005623"></a><b>controller_name</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns the last part of the controller&#8217;s name, underscored, without
+the ending &#8220;Controller&#8221;. For instance, MyApp::MyPostsController
+would return &#8220;my_posts&#8220; for <a
+href="Metal.html#M005623">controller_name</a>
+</p>
+<h4>Returns</h4>
+<p>
+String
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005623_source')" id="l_M005623_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L63" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005623_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 63</span>
+63:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">controller_name</span>
+64:       <span class="ruby-ivar">@controller_name</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">demodulize</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/Controller$/</span>, <span class="ruby-value str">''</span>).<span class="ruby-identifier">underscore</span>
+65:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005640">
+                    
+                    <a name="M005640"></a><b>inherited</b>(base)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005640_source')" id="l_M005640_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L150" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005640_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 150</span>
+150:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">inherited</span>(<span class="ruby-identifier">base</span>)
+151:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">middleware_stack</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">middleware_stack</span>.<span class="ruby-identifier">dup</span>
+152:       <span class="ruby-keyword kw">super</span>
+153:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005642">
+                    
+                    <a name="M005642"></a><b>middleware</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005642_source')" id="l_M005642_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L159" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005642_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 159</span>
+159:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">middleware</span>
+160:       <span class="ruby-identifier">middleware_stack</span>
+161:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005625">
+                    
+                    <a name="M005625"></a><b>new</b>(*)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005625_source')" id="l_M005625_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L81" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005625_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 81</span>
+81:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">*</span>)
+82:       <span class="ruby-ivar">@_headers</span> = {<span class="ruby-value str">&quot;Content-Type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;text/html&quot;</span>}
+83:       <span class="ruby-ivar">@_status</span> = <span class="ruby-value">200</span>
+84:       <span class="ruby-keyword kw">super</span>
+85:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005641">
+                    
+                    <a name="M005641"></a><b>use</b>(*args, &amp;block)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005641_source')" id="l_M005641_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L155" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005641_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 155</span>
+155:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">use</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+156:       <span class="ruby-identifier">middleware_stack</span>.<span class="ruby-identifier">use</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+157:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005629">
+                    
+                    <a name="M005629"></a><b>content_type</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005629_source')" id="l_M005629_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L103" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005629_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 103</span>
+103:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">content_type</span>
+104:       <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;Content-Type&quot;</span>]
+105:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005628">
+                    
+                    <a name="M005628"></a><b>content_type=</b>(type)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Basic implementations for <a href="Metal.html#M005629">content_type</a>=,
+location=, and headers are provided to reduce the dependency on the <a
+href="RackDelegation.html">RackDelegation</a> module in Renderer and
+Redirector.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005628_source')" id="l_M005628_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L99" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005628_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 99</span>
+ 99:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">content_type=</span>(<span class="ruby-identifier">type</span>)
+100:       <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;Content-Type&quot;</span>] = <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span>
+101:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005624">
+                    
+                    <a name="M005624"></a><b>controller_name</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Delegates to the class&#8217; <a
+href="Metal.html#M005623">controller_name</a>
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005624_source')" id="l_M005624_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L68" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005624_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 68</span>
+68:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">controller_name</span>
+69:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">controller_name</span>
+70:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005638">
+                    
+                    <a name="M005638"></a><b>dispatch</b>(name, request)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+:api: private
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005638_source')" id="l_M005638_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L134" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005638_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 134</span>
+134:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">request</span>)
+135:       <span class="ruby-ivar">@_request</span> = <span class="ruby-identifier">request</span>
+136:       <span class="ruby-ivar">@_env</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">env</span>
+137:       <span class="ruby-ivar">@_env</span>[<span class="ruby-value str">'action_controller.instance'</span>] = <span class="ruby-keyword kw">self</span>
+138:       <span class="ruby-identifier">process</span>(<span class="ruby-identifier">name</span>)
+139:       <span class="ruby-identifier">to_a</span>
+140:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005630">
+                    
+                    <a name="M005630"></a><b>location</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005630_source')" id="l_M005630_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L107" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005630_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 107</span>
+107:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">location</span>
+108:       <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;Location&quot;</span>]
+109:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005631">
+                    
+                    <a name="M005631"></a><b>location=</b>(url)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005631_source')" id="l_M005631_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L111" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005631_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 111</span>
+111:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">location=</span>(<span class="ruby-identifier">url</span>)
+112:       <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;Location&quot;</span>] = <span class="ruby-identifier">url</span>
+113:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005626">
+                    
+                    <a name="M005626"></a><b>params</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005626_source')" id="l_M005626_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L87" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005626_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 87</span>
+87:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">params</span>
+88:       <span class="ruby-ivar">@_params</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">parameters</span>
+89:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005627">
+                    
+                    <a name="M005627"></a><b>params=</b>(val)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005627_source')" id="l_M005627_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L91" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005627_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 91</span>
+91:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">params=</span>(<span class="ruby-identifier">val</span>)
+92:       <span class="ruby-ivar">@_params</span> = <span class="ruby-identifier">val</span>
+93:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005635">
+                    
+                    <a name="M005635"></a><b>response_body=</b>(val)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005635_source')" id="l_M005635_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L128" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005635_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 128</span>
+128:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">response_body=</span>(<span class="ruby-identifier">val</span>)
+129:       <span class="ruby-identifier">body</span> = <span class="ruby-identifier">val</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:each</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">:</span> [<span class="ruby-identifier">val</span>]
+130:       <span class="ruby-keyword kw">super</span> <span class="ruby-identifier">body</span>
+131:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005633">
+                    
+                    <a name="M005633"></a><b>status</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005633_source')" id="l_M005633_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L120" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005633_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 120</span>
+120:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">status</span>
+121:       <span class="ruby-ivar">@_status</span>
+122:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005634">
+                    
+                    <a name="M005634"></a><b>status=</b>(status)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005634_source')" id="l_M005634_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L124" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005634_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 124</span>
+124:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">status=</span>(<span class="ruby-identifier">status</span>)
+125:       <span class="ruby-ivar">@_status</span> = <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span>.<span class="ruby-identifier">status_code</span>(<span class="ruby-identifier">status</span>)
+126:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005639">
+                    
+                    <a name="M005639"></a><b>to_a</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+:api: private
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005639_source')" id="l_M005639_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L143" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005639_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 143</span>
+143:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_a</span>
+144:       <span class="ruby-identifier">response</span> <span class="ruby-value">? </span><span class="ruby-identifier">response</span>.<span class="ruby-identifier">to_a</span> <span class="ruby-operator">:</span> [<span class="ruby-identifier">status</span>, <span class="ruby-identifier">headers</span>, <span class="ruby-identifier">response_body</span>]
+145:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005632">
+                    
+                    <a name="M005632"></a><b>url_for</b>(string)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+basic <a href="Metal.html#M005632">url_for</a> that can be overridden for
+more robust functionality
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005632_source')" id="l_M005632_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4b4a2aa28d316941c729572b106535aa144f2da/actionpack/lib/action_controller/metal.rb#L116" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005632_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal.rb, line 116</span>
+116:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">url_for</span>(<span class="ruby-identifier">string</span>)
+117:       <span class="ruby-identifier">string</span>
+118:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

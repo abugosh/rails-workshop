@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Testing::Isolation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Testing::Isolation 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/testing/isolation_rb.html">activesupport/lib/active_support/testing/isolation.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>#</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007475">_run_class_setup</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007473">forking_env?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007474">included</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="Isolation/Forking.html">ActiveSupport::Testing::Isolation::Forking</a></li>
+        
+        <li><span class="type">MODULE</span> <a href="Isolation/MiniTest.html">ActiveSupport::Testing::Isolation::MiniTest</a></li>
+        
+        <li><span class="type">MODULE</span> <a href="Isolation/Subprocess.html">ActiveSupport::Testing::Isolation::Subprocess</a></li>
+        
+        <li><span class="type">MODULE</span> <a href="Isolation/TestUnit.html">ActiveSupport::Testing::Isolation::TestUnit</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007473">
+                    
+                    <a name="M007473"></a><b>forking_env?</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007473_source')" id="l_M007473_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/c8b84a1c8c0308edfb143ecf52a6a034b37b42fb/activesupport/lib/active_support/testing/isolation.rb#L36" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007473_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/testing/isolation.rb, line 36</span>
+36:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">forking_env?</span>
+37:         <span class="ruby-operator">!</span><span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;NO_FORK&quot;</span>] <span class="ruby-operator">&amp;&amp;</span> ((<span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-value str">'host_os'</span>] <span class="ruby-operator">!~</span> <span class="ruby-regexp re">/mswin|mingw/</span>) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-constant">RUBY_PLATFORM</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp re">/java/</span>))
+38:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007474">
+                    
+                    <a name="M007474"></a><b>included</b>(base)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007474_source')" id="l_M007474_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/c8b84a1c8c0308edfb143ecf52a6a034b37b42fb/activesupport/lib/active_support/testing/isolation.rb#L40" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007474_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/testing/isolation.rb, line 40</span>
+40:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span>)
+41:         <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">MiniTest</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">base</span> <span class="ruby-operator">&lt;</span> <span class="ruby-operator">::</span><span class="ruby-constant">MiniTest</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span><span class="ruby-operator">::</span><span class="ruby-constant">TestCase</span>
+42:           <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:include</span>, <span class="ruby-constant">MiniTest</span>
+43:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">Test</span><span class="ruby-operator">::</span><span class="ruby-constant">Unit</span>)
+44:           <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:include</span>, <span class="ruby-constant">TestUnit</span>
+45:         <span class="ruby-keyword kw">end</span>
+46:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007475">
+                    
+                    <a name="M007475"></a><b>_run_class_setup</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007475_source')" id="l_M007475_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/c8b84a1c8c0308edfb143ecf52a6a034b37b42fb/activesupport/lib/active_support/testing/isolation.rb#L48" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007475_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/testing/isolation.rb, line 48</span>
+48:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_run_class_setup</span>      <span class="ruby-comment cmt"># class setup method should only happen in parent</span>
+49:         <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-ivar">@@ran_class_setup</span>) <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'ISOLATION_TEST'</span>]
+50:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">setup</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:setup</span>)
+51:           <span class="ruby-ivar">@@ran_class_setup</span> = <span class="ruby-keyword kw">true</span>
+52:         <span class="ruby-keyword kw">end</span>
+53:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

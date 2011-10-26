@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionView::Layouts</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionView::Layouts 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_view/render/layouts_rb.html">actionpack/lib/action_view/render/layouts.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <h1>Action View <a href="Layouts.html">Layouts</a></h1>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006285">find_layout</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006285">
+                    
+                    <a name="M006285"></a><b>find_layout</b>(layout)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+This is the method which actually finds the layout using details in the
+lookup context object. If no layout is found, it checks if at least a
+layout with the given name exists across all details before raising the
+error.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006285_source')" id="l_M006285_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1fbcd5f5fca165135ff773e94cdad00ee97b8aa9/actionpack/lib/action_view/render/layouts.rb#L65" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006285_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_view/render/layouts.rb, line 65</span>
+65:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_layout</span>(<span class="ruby-identifier">layout</span>)
+66:       <span class="ruby-keyword kw">begin</span>
+67:         <span class="ruby-identifier">with_layout_format</span> <span class="ruby-keyword kw">do</span>
+68:           <span class="ruby-identifier">layout</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^\//</span> <span class="ruby-operator">?</span>
+69:             <span class="ruby-identifier">with_fallbacks</span> { <span class="ruby-identifier">find_template</span>(<span class="ruby-identifier">layout</span>) } <span class="ruby-operator">:</span> <span class="ruby-identifier">find_template</span>(<span class="ruby-identifier">layout</span>)
+70:         <span class="ruby-keyword kw">end</span>
+71:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActionView</span><span class="ruby-operator">::</span><span class="ruby-constant">MissingTemplate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+72:         <span class="ruby-identifier">update_details</span>(<span class="ruby-identifier">:formats</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>) <span class="ruby-keyword kw">do</span>
+73:           <span class="ruby-identifier">raise</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">template_exists?</span>(<span class="ruby-identifier">layout</span>)
+74:         <span class="ruby-keyword kw">end</span>
+75:       <span class="ruby-keyword kw">end</span>
+76:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

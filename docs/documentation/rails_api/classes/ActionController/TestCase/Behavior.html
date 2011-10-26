@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::TestCase::Behavior</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::TestCase::Behavior 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_controller/test_case_rb.html">actionpack/lib/action_controller/test_case.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005615">delete</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>G</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005612">get</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>H</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005616">head</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005613">post</a>,</li>
+                
+                <li><a href="#M005619">process</a>,</li>
+                
+                <li><a href="#M005614">put</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005621">rescue_action_in_public!</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005620">setup_controller_request_and_response</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>X</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005618">xhr</a>,</li>
+                
+                <li><a href="#M005617">xml_http_request</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <a href="../../Rails.html">Rails</a>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="../../ActiveSupport.html">ActiveSupport</a>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="../../Rails.html">Rails</a>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="../../Rails.html">Rails</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="Behavior/ClassMethods.html">ActionController::TestCase::Behavior::ClassMethods</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>response</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>request</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005615">
+                    
+                    <a name="M005615"></a><b>delete</b>(action, parameters = nil, session = nil, flash = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Executes a request simulating DELETE HTTP method and set/volley the
+response
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005615_source')" id="l_M005615_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ba117b2b43a00c282bb4905fb003dd169a5312df/actionpack/lib/action_controller/test_case.rb#L364" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005615_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/test_case.rb, line 364</span>
+364:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">flash</span> = <span class="ruby-keyword kw">nil</span>)
+365:         <span class="ruby-identifier">process</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">flash</span>, <span class="ruby-value str">&quot;DELETE&quot;</span>)
+366:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005612">
+                    
+                    <a name="M005612"></a><b>get</b>(action, parameters = nil, session = nil, flash = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Executes a request simulating GET HTTP method and set/volley the response
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005612_source')" id="l_M005612_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ba117b2b43a00c282bb4905fb003dd169a5312df/actionpack/lib/action_controller/test_case.rb#L349" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005612_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/test_case.rb, line 349</span>
+349:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">flash</span> = <span class="ruby-keyword kw">nil</span>)
+350:         <span class="ruby-identifier">process</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">flash</span>, <span class="ruby-value str">&quot;GET&quot;</span>)
+351:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005616">
+                    
+                    <a name="M005616"></a><b>head</b>(action, parameters = nil, session = nil, flash = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Executes a request simulating HEAD HTTP method and set/volley the response
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005616_source')" id="l_M005616_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ba117b2b43a00c282bb4905fb003dd169a5312df/actionpack/lib/action_controller/test_case.rb#L369" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005616_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/test_case.rb, line 369</span>
+369:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">head</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">flash</span> = <span class="ruby-keyword kw">nil</span>)
+370:         <span class="ruby-identifier">process</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">flash</span>, <span class="ruby-value str">&quot;HEAD&quot;</span>)
+371:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005613">
+                    
+                    <a name="M005613"></a><b>post</b>(action, parameters = nil, session = nil, flash = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Executes a request simulating POST HTTP method and set/volley the response
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005613_source')" id="l_M005613_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ba117b2b43a00c282bb4905fb003dd169a5312df/actionpack/lib/action_controller/test_case.rb#L354" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005613_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/test_case.rb, line 354</span>
+354:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">flash</span> = <span class="ruby-keyword kw">nil</span>)
+355:         <span class="ruby-identifier">process</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">flash</span>, <span class="ruby-value str">&quot;POST&quot;</span>)
+356:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005619">
+                    
+                    <a name="M005619"></a><b>process</b>(action, parameters = nil, session = nil, flash = nil, http_method = 'GET')
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005619_source')" id="l_M005619_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ba117b2b43a00c282bb4905fb003dd169a5312df/actionpack/lib/action_controller/test_case.rb#L383" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005619_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/test_case.rb, line 383</span>
+383:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">flash</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">http_method</span> = <span class="ruby-value str">'GET'</span>)
+384:         <span class="ruby-comment cmt"># Sanity check for required instance variables so we can give an</span>
+385:         <span class="ruby-comment cmt"># understandable error message.</span>
+386:         <span class="ruby-node">%w(@routes @controller @request @response)</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">iv_name</span><span class="ruby-operator">|</span>
+387:           <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span>(<span class="ruby-identifier">instance_variable_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">iv_name</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">instance_variable_names</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">iv_name</span>.<span class="ruby-identifier">to_sym</span>)) <span class="ruby-operator">||</span> <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">iv_name</span>).<span class="ruby-identifier">nil?</span>
+388:             <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;#{iv_name} is nil: make sure you set it in your test's setup method.&quot;</span>
+389:           <span class="ruby-keyword kw">end</span>
+390:         <span class="ruby-keyword kw">end</span>
+391: 
+392:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">recycle!</span>
+393:         <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">recycle!</span>
+394:         <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">response_body</span> = <span class="ruby-keyword kw">nil</span>
+395:         <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">formats</span> = <span class="ruby-keyword kw">nil</span>
+396:         <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = <span class="ruby-keyword kw">nil</span>
+397: 
+398:         <span class="ruby-ivar">@html_document</span> = <span class="ruby-keyword kw">nil</span>
+399:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'REQUEST_METHOD'</span>] = <span class="ruby-identifier">http_method</span>
+400: 
+401:         <span class="ruby-identifier">parameters</span> <span class="ruby-operator">||=</span> {}
+402:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">assign_parameters</span>(<span class="ruby-ivar">@routes</span>, <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">underscore</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/_controller$/</span>, <span class="ruby-value str">''</span>), <span class="ruby-identifier">action</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">parameters</span>)
+403: 
+404:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">session</span> = <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">TestSession</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">session</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">nil?</span>
+405:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">session</span>[<span class="ruby-value str">&quot;flash&quot;</span>] = <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">flash</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">flash</span> <span class="ruby-operator">||</span> {})
+406:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">session</span>[<span class="ruby-value str">&quot;flash&quot;</span>].<span class="ruby-identifier">sweep</span>
+407: 
+408:         <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">request</span> = <span class="ruby-ivar">@request</span>
+409:         <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">parameters</span>)
+410:         <span class="ruby-identifier">build_request_uri</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span>)
+411:         <span class="ruby-constant">Base</span>.<span class="ruby-identifier">class_eval</span> { <span class="ruby-identifier">include</span> <span class="ruby-constant">Testing</span> }
+412:         <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">process_with_new_base_test</span>(<span class="ruby-ivar">@request</span>, <span class="ruby-ivar">@response</span>)
+413:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">session</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'flash'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">session</span>[<span class="ruby-value str">'flash'</span>].<span class="ruby-identifier">blank?</span>
+414:         <span class="ruby-ivar">@response</span>
+415:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005614">
+                    
+                    <a name="M005614"></a><b>put</b>(action, parameters = nil, session = nil, flash = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Executes a request simulating PUT HTTP method and set/volley the response
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005614_source')" id="l_M005614_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ba117b2b43a00c282bb4905fb003dd169a5312df/actionpack/lib/action_controller/test_case.rb#L359" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005614_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/test_case.rb, line 359</span>
+359:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">put</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">flash</span> = <span class="ruby-keyword kw">nil</span>)
+360:         <span class="ruby-identifier">process</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">flash</span>, <span class="ruby-value str">&quot;PUT&quot;</span>)
+361:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005621">
+                    
+                    <a name="M005621"></a><b>rescue_action_in_public!</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Cause the action to be rescued according to the regular rules for
+rescue_action when the visitor is not local
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005621_source')" id="l_M005621_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ba117b2b43a00c282bb4905fb003dd169a5312df/actionpack/lib/action_controller/test_case.rb#L434" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005621_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/test_case.rb, line 434</span>
+434:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rescue_action_in_public!</span>
+435:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">remote_addr</span> = <span class="ruby-value str">'208.77.188.166'</span> <span class="ruby-comment cmt"># example.com</span>
+436:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005620">
+                    
+                    <a name="M005620"></a><b>setup_controller_request_and_response</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005620_source')" id="l_M005620_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ba117b2b43a00c282bb4905fb003dd169a5312df/actionpack/lib/action_controller/test_case.rb#L417" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005620_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/test_case.rb, line 417</span>
+417:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup_controller_request_and_response</span>
+418:         <span class="ruby-ivar">@request</span> = <span class="ruby-constant">TestRequest</span>.<span class="ruby-identifier">new</span>
+419:         <span class="ruby-ivar">@response</span> = <span class="ruby-constant">TestResponse</span>.<span class="ruby-identifier">new</span>
+420: 
+421:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">klass</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">controller_class</span>
+422:           <span class="ruby-ivar">@controller</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+423:         <span class="ruby-keyword kw">end</span>
+424: 
+425:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'PATH_INFO'</span>)
+426: 
+427:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@controller</span>
+428:           <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">request</span> = <span class="ruby-ivar">@request</span>
+429:           <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">params</span> = {}
+430:         <span class="ruby-keyword kw">end</span>
+431:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005618">
+                    
+                    <a name="M005618"></a><b>xhr</b>(request_method, action, parameters = nil, session = nil, flash = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="Behavior.html#M005617">xml_http_request</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005617">
+                    
+                    <a name="M005617"></a><b>xml_http_request</b>(request_method, action, parameters = nil, session = nil, flash = nil)
+                    
+                </div>
+                
+                
+                <div class="aka">
+                    This method is also aliased as
+                    
+                    <a href="Behavior.html#M005618">xhr</a>
+                    
+                </div>
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005617_source')" id="l_M005617_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ba117b2b43a00c282bb4905fb003dd169a5312df/actionpack/lib/action_controller/test_case.rb#L373" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005617_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/test_case.rb, line 373</span>
+373:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">xml_http_request</span>(<span class="ruby-identifier">request_method</span>, <span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">session</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">flash</span> = <span class="ruby-keyword kw">nil</span>)
+374:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_X_REQUESTED_WITH'</span>] = <span class="ruby-value str">'XMLHttpRequest'</span>
+375:         <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">env</span>[<span class="ruby-value str">'HTTP_ACCEPT'</span>] <span class="ruby-operator">||=</span>  [<span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">JS</span>, <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">HTML</span>, <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>, <span class="ruby-value str">'text/xml'</span>, <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">', '</span>)
+376:         <span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">request_method</span>, <span class="ruby-identifier">action</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">session</span>, <span class="ruby-identifier">flash</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword kw">do</span>
+377:           <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value str">'HTTP_X_REQUESTED_WITH'</span>
+378:           <span class="ruby-ivar">@request</span>.<span class="ruby-identifier">env</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value str">'HTTP_ACCEPT'</span>
+379:         <span class="ruby-keyword kw">end</span>
+380:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,533 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Configuration::Deprecated</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            Rails::Configuration::Deprecated 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/railties/lib/rails/configuration_rb.html">railties/lib/rails/configuration.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004332">controller_paths</a>,</li>
+                
+                <li><a href="#M004331">controller_paths=</a>,</li>
+                
+                <li><a href="#M004334">cookie_secret</a>,</li>
+                
+                <li><a href="#M004333">cookie_secret=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004328">database_configuration_file</a>,</li>
+                
+                <li><a href="#M004327">database_configuration_file=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004321">frameworks</a>,</li>
+                
+                <li><a href="#M004322">frameworks=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>L</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004330">log_path</a>,</li>
+                
+                <li><a href="#M004329">log_path=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004326">routes_configuration_file</a>,</li>
+                
+                <li><a href="#M004325">routes_configuration_file=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>V</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004324">view_path</a>,</li>
+                
+                <li><a href="#M004323">view_path=</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004332">
+                    
+                    <a name="M004332"></a><b>controller_paths</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004332_source')" id="l_M004332_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L137" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004332_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 137</span>
+137:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">controller_paths</span>
+138:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.controller_paths is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+139:           <span class="ruby-value str">&quot;please do paths.app.controllers instead&quot;</span>, <span class="ruby-identifier">caller</span>
+140:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>.<span class="ruby-identifier">controllers</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">uniq</span>
+141:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004331">
+                    
+                    <a name="M004331"></a><b>controller_paths=</b>(value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004331_source')" id="l_M004331_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L131" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004331_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 131</span>
+131:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">controller_paths=</span>(<span class="ruby-identifier">value</span>)
+132:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.controller_paths= is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+133:           <span class="ruby-value str">&quot;please do paths.app.controllers= instead&quot;</span>, <span class="ruby-identifier">caller</span>
+134:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>.<span class="ruby-identifier">controllers</span> = <span class="ruby-identifier">value</span>
+135:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004334">
+                    
+                    <a name="M004334"></a><b>cookie_secret</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004334_source')" id="l_M004334_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L149" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004334_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 149</span>
+149:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cookie_secret</span>
+150:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.cookie_secret is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+151:           <span class="ruby-value str">&quot;please use config.secret_token instead&quot;</span>, <span class="ruby-identifier">caller</span>
+152:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">secret_token</span>
+153:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004333">
+                    
+                    <a name="M004333"></a><b>cookie_secret=</b>(value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004333_source')" id="l_M004333_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L143" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004333_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 143</span>
+143:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cookie_secret=</span>(<span class="ruby-identifier">value</span>)
+144:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.cookie_secret= is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+145:           <span class="ruby-value str">&quot;please use config.secret_token= instead&quot;</span>, <span class="ruby-identifier">caller</span>
+146:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">secret_token</span> = <span class="ruby-identifier">value</span>
+147:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004328">
+                    
+                    <a name="M004328"></a><b>database_configuration_file</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004328_source')" id="l_M004328_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L113" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004328_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 113</span>
+113:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">database_configuration_file</span>
+114:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.database_configuration_file is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+115:           <span class="ruby-value str">&quot;please do paths.config.database instead&quot;</span>, <span class="ruby-identifier">caller</span>
+116:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">database</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">first</span>
+117:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004327">
+                    
+                    <a name="M004327"></a><b>database_configuration_file=</b>(value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004327_source')" id="l_M004327_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L107" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004327_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 107</span>
+107:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">database_configuration_file=</span>(<span class="ruby-identifier">value</span>)
+108:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.database_configuration_file= is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+109:           <span class="ruby-value str">&quot;please do paths.config.database= instead&quot;</span>, <span class="ruby-identifier">caller</span>
+110:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">database</span> = <span class="ruby-identifier">value</span>
+111:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004321">
+                    
+                    <a name="M004321"></a><b>frameworks</b>(*args)
+                    
+                </div>
+                
+                
+                <div class="aka">
+                    This method is also aliased as
+                    
+                    <a href="Deprecated.html#M004322">frameworks=</a>
+                    
+                </div>
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004321_source')" id="l_M004321_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L76" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004321_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 76</span>
+76:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">frameworks</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+77:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;config.frameworks in no longer supported. See the generated &quot;</span> \
+78:               <span class="ruby-value str">&quot;config/boot.rb for steps on how to limit the frameworks that &quot;</span> \
+79:               <span class="ruby-value str">&quot;will be loaded&quot;</span>
+80:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004322">
+                    
+                    <a name="M004322"></a><b>frameworks=</b>(*args)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="Deprecated.html#M004321">frameworks</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004330">
+                    
+                    <a name="M004330"></a><b>log_path</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004330_source')" id="l_M004330_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L125" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004330_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 125</span>
+125:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_path</span>
+126:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.log_path is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+127:           <span class="ruby-value str">&quot;please do paths.log instead&quot;</span>, <span class="ruby-identifier">caller</span>
+128:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">log</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">first</span>
+129:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004329">
+                    
+                    <a name="M004329"></a><b>log_path=</b>(value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004329_source')" id="l_M004329_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L119" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004329_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 119</span>
+119:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_path=</span>(<span class="ruby-identifier">value</span>)
+120:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.log_path= is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+121:           <span class="ruby-value str">&quot;please do paths.log= instead&quot;</span>, <span class="ruby-identifier">caller</span>
+122:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">log</span> = <span class="ruby-identifier">value</span>
+123:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004326">
+                    
+                    <a name="M004326"></a><b>routes_configuration_file</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004326_source')" id="l_M004326_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L101" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004326_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 101</span>
+101:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">routes_configuration_file</span>
+102:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.routes_configuration_file is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+103:           <span class="ruby-value str">&quot;please do paths.config.routes instead&quot;</span>, <span class="ruby-identifier">caller</span>
+104:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">first</span>
+105:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004325">
+                    
+                    <a name="M004325"></a><b>routes_configuration_file=</b>(value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004325_source')" id="l_M004325_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L95" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004325_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 95</span>
+95:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">routes_configuration_file=</span>(<span class="ruby-identifier">value</span>)
+96:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.routes_configuration_file= is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+97:           <span class="ruby-value str">&quot;please do paths.config.routes= instead&quot;</span>, <span class="ruby-identifier">caller</span>
+98:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">routes</span> = <span class="ruby-identifier">value</span>
+99:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004324">
+                    
+                    <a name="M004324"></a><b>view_path</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004324_source')" id="l_M004324_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L89" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004324_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 89</span>
+89:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">view_path</span>
+90:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.view_path is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+91:           <span class="ruby-value str">&quot;please do paths.app.views instead&quot;</span>, <span class="ruby-identifier">caller</span>
+92:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>.<span class="ruby-identifier">views</span>.<span class="ruby-identifier">to_a</span>.<span class="ruby-identifier">first</span>
+93:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004323">
+                    
+                    <a name="M004323"></a><b>view_path=</b>(value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004323_source')" id="l_M004323_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e107c208f0422b83df473666e30256f837c263eb/railties/lib/rails/configuration.rb#L83" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004323_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/configuration.rb, line 83</span>
+83:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">view_path=</span>(<span class="ruby-identifier">value</span>)
+84:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.view_path= is deprecated, &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+85:           <span class="ruby-value str">&quot;please do paths.app.views= instead&quot;</span>, <span class="ruby-identifier">caller</span>
+86:         <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>.<span class="ruby-identifier">views</span> = <span class="ruby-identifier">value</span>
+87:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

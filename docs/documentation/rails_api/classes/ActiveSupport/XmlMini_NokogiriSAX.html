@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::XmlMini_NokogiriSAX</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::XmlMini_NokogiriSAX 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activesupport/lib/active_support/xml_mini/nokogirisax_rb.html">activesupport/lib/active_support/xml_mini/nokogirisax.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006667">parse</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">CLASS</span> <a href="XmlMini_NokogiriSAX/HashBuilder.html">ActiveSupport::XmlMini_NokogiriSAX::HashBuilder</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>document_class</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006667">
+                    
+                    <a name="M006667"></a><b>parse</b>(data)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006667_source')" id="l_M006667_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/c9b273627a296aa70245a851a7ccd95df36d3b94/activesupport/lib/active_support/xml_mini/nokogirisax.rb#L70" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006667_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/xml_mini/nokogirisax.rb, line 70</span>
+70:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span>(<span class="ruby-identifier">data</span>)
+71:       <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">data</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:read</span>)
+72:         <span class="ruby-identifier">data</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">data</span> <span class="ruby-operator">||</span> <span class="ruby-value str">''</span>)
+73:       <span class="ruby-keyword kw">end</span>
+74: 
+75:       <span class="ruby-identifier">char</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">getc</span>
+76:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">char</span>.<span class="ruby-identifier">nil?</span>
+77:         {}
+78:       <span class="ruby-keyword kw">else</span>
+79:         <span class="ruby-identifier">data</span>.<span class="ruby-identifier">ungetc</span>(<span class="ruby-identifier">char</span>)
+80:         <span class="ruby-identifier">document</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">document_class</span>.<span class="ruby-identifier">new</span>
+81:         <span class="ruby-identifier">parser</span> = <span class="ruby-constant">Nokogiri</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span><span class="ruby-operator">::</span><span class="ruby-constant">SAX</span><span class="ruby-operator">::</span><span class="ruby-constant">Parser</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">document</span>)
+82:         <span class="ruby-identifier">parser</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">data</span>)
+83:         <span class="ruby-identifier">document</span>.<span class="ruby-identifier">hash</span>
+84:       <span class="ruby-keyword kw">end</span>
+85:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

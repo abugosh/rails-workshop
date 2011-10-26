@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Testing::Pending</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Testing::Pending 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/testing/pending_rb.html">activesupport/lib/active_support/testing/pending.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007467">pending</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007467">
+                    
+                    <a name="M007467"></a><b>pending</b>(description = &quot;&quot;, &amp;block)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007467_source')" id="l_M007467_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activesupport/lib/active_support/testing/pending.rb#L13" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007467_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/testing/pending.rb, line 13</span>
+13:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pending</span>(<span class="ruby-identifier">description</span> = <span class="ruby-value str">&quot;&quot;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+14:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">description</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+15:             <span class="ruby-identifier">is_pending</span> = <span class="ruby-identifier">$tags</span>[<span class="ruby-identifier">description</span>]
+16:             <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">is_pending</span>
+17:           <span class="ruby-keyword kw">end</span>
+18: 
+19:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+20:             <span class="ruby-identifier">failed</span> = <span class="ruby-keyword kw">false</span>
+21: 
+22:             <span class="ruby-keyword kw">begin</span>
+23:               <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>
+24:             <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+25:               <span class="ruby-identifier">failed</span> = <span class="ruby-keyword kw">true</span>
+26:             <span class="ruby-keyword kw">end</span>
+27: 
+28:             <span class="ruby-identifier">flunk</span>(<span class="ruby-node">&quot;&lt;#{description}&gt; did not fail.&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">failed</span>
+29:           <span class="ruby-keyword kw">end</span>
+30: 
+31:           <span class="ruby-identifier">caller</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> (<span class="ruby-regexp re">/(.*):(.*):in `(.*)'/</span>)
+32:           <span class="ruby-ivar">@@pending_cases</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{$3} at #{$1}, line #{$2}&quot;</span>
+33:           <span class="ruby-identifier">print</span> <span class="ruby-value str">&quot;P&quot;</span>
+34: 
+35:           <span class="ruby-ivar">@@at_exit</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">begin</span>
+36:             <span class="ruby-identifier">at_exit</span> <span class="ruby-keyword kw">do</span>
+37:               <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nPending Cases:&quot;</span>
+38:               <span class="ruby-ivar">@@pending_cases</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">test_case</span><span class="ruby-operator">|</span>
+39:                 <span class="ruby-identifier">puts</span> <span class="ruby-identifier">test_case</span>
+40:               <span class="ruby-keyword kw">end</span>
+41:             <span class="ruby-keyword kw">end</span>
+42:           <span class="ruby-keyword kw">end</span>
+43:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

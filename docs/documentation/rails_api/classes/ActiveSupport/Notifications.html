@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Notifications</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Notifications 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activesupport/lib/active_support/notifications/fanout_rb.html">activesupport/lib/active_support/notifications/fanout.rb</a></li>
+            
+            <li><a href="../../files/activesupport/lib/active_support/notifications/instrumenter_rb.html">activesupport/lib/active_support/notifications/instrumenter.rb</a></li>
+            
+            <li><a href="../../files/activesupport/lib/active_support/notifications_rb.html">activesupport/lib/active_support/notifications.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+<a href="Notifications.html">Notifications</a> provides an instrumentation
+API for Ruby. To instrument an action in Ruby you just need to do:
+</p>
+<pre>
+  ActiveSupport::Notifications.instrument(:render, :extra =&gt; :information) do
+    render :text =&gt; &quot;Foo&quot;
+  end
+</pre>
+<p>
+You can consume those events and the information they provide by
+registering a log subscriber. For instance, let&#8217;s store all
+instrumented events in an array:
+</p>
+<pre>
+  @events = []
+
+  ActiveSupport::Notifications.subscribe do |*args|
+    @events &lt;&lt; ActiveSupport::Notifications::Event.new(*args)
+  end
+
+  ActiveSupport::Notifications.instrument(:render, :extra =&gt; :information) do
+    render :text =&gt; &quot;Foo&quot;
+  end
+
+  event = @events.first
+  event.name      # =&gt; :render
+  event.duration  # =&gt; 10 (in milliseconds)
+  event.payload   # =&gt; { :extra =&gt; :information }
+</pre>
+<p>
+When subscribing to <a href="Notifications.html">Notifications</a>, you can
+pass a pattern, to only consume events that match the pattern:
+</p>
+<pre>
+  ActiveSupport::Notifications.subscribe(/render/) do |event|
+    @render_events &lt;&lt; event
+  end
+</pre>
+<p>
+<a href="Notifications.html">Notifications</a> ships with a queue
+implementation that consumes and publish events to log subscribers in a
+thread. You can use any queue implementation you want.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007426">instrument</a>,</li>
+                
+                <li><a href="#M007430">instrumenter</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007429">notifier</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007427">subscribe</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>U</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007428">unsubscribe</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">CLASS</span> <a href="Notifications/Event.html">ActiveSupport::Notifications::Event</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Notifications/Fanout.html">ActiveSupport::Notifications::Fanout</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Notifications/Instrumenter.html">ActiveSupport::Notifications::Instrumenter</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [W]
+            </td>
+            <td class='attr-name'>notifier</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007426">
+                    
+                    <a name="M007426"></a><b>instrument</b>(name, payload = {})
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007426_source')" id="l_M007426_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/755af497555fde16db86f7e51f6462b0aca79b49/activesupport/lib/active_support/notifications.rb#L50" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007426_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/notifications.rb, line 50</span>
+50:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">instrument</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span> = {})
+51:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@instrumenters</span>[<span class="ruby-identifier">name</span>]
+52:           <span class="ruby-identifier">instrumenter</span>.<span class="ruby-identifier">instrument</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">payload</span>) { <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">payload</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span> }
+53:         <span class="ruby-keyword kw">else</span>
+54:           <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">payload</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+55:         <span class="ruby-keyword kw">end</span>
+56:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007430">
+                    
+                    <a name="M007430"></a><b>instrumenter</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007430_source')" id="l_M007430_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/755af497555fde16db86f7e51f6462b0aca79b49/activesupport/lib/active_support/notifications.rb#L73" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007430_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/notifications.rb, line 73</span>
+73:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">instrumenter</span>
+74:         <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-identifier">:&quot;instrumentation_#{notifier.object_id}&quot;</span>] <span class="ruby-operator">||=</span> <span class="ruby-constant">Instrumenter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">notifier</span>)
+75:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007429">
+                    
+                    <a name="M007429"></a><b>notifier</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007429_source')" id="l_M007429_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/755af497555fde16db86f7e51f6462b0aca79b49/activesupport/lib/active_support/notifications.rb#L69" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007429_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/notifications.rb, line 69</span>
+69:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">notifier</span>
+70:         <span class="ruby-ivar">@notifier</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Fanout</span>.<span class="ruby-identifier">new</span>
+71:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007427">
+                    
+                    <a name="M007427"></a><b>subscribe</b>(*args, &amp;block)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007427_source')" id="l_M007427_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/755af497555fde16db86f7e51f6462b0aca79b49/activesupport/lib/active_support/notifications.rb#L58" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007427_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/notifications.rb, line 58</span>
+58:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">subscribe</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+59:         <span class="ruby-identifier">notifier</span>.<span class="ruby-identifier">subscribe</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>).<span class="ruby-identifier">tap</span> <span class="ruby-keyword kw">do</span>
+60:           <span class="ruby-ivar">@instrumenters</span>.<span class="ruby-identifier">clear</span>
+61:         <span class="ruby-keyword kw">end</span>
+62:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007428">
+                    
+                    <a name="M007428"></a><b>unsubscribe</b>(*args)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007428_source')" id="l_M007428_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/755af497555fde16db86f7e51f6462b0aca79b49/activesupport/lib/active_support/notifications.rb#L64" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007428_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/notifications.rb, line 64</span>
+64:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unsubscribe</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+65:         <span class="ruby-identifier">notifier</span>.<span class="ruby-identifier">unsubscribe</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+66:         <span class="ruby-ivar">@instrumenters</span>.<span class="ruby-identifier">clear</span>
+67:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

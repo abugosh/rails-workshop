@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::HttpAuthentication::Basic::ControllerMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::HttpAuthentication::Basic::ControllerMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/actionpack/lib/action_controller/metal/http_authentication_rb.html">actionpack/lib/action_controller/metal/http_authentication.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005707">authenticate_or_request_with_http_basic</a>,</li>
+                
+                <li><a href="#M005708">authenticate_with_http_basic</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005709">request_http_basic_authentication</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005707">
+                    
+                    <a name="M005707"></a><b>authenticate_or_request_with_http_basic</b>(realm = &quot;Application&quot;, &amp;login_procedure)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005707_source')" id="l_M005707_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/49d54b4fb66672ba0c4ad68b760f4413cd80da4a/actionpack/lib/action_controller/metal/http_authentication.rb#L113" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005707_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/http_authentication.rb, line 113</span>
+113:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authenticate_or_request_with_http_basic</span>(<span class="ruby-identifier">realm</span> = <span class="ruby-value str">&quot;Application&quot;</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">login_procedure</span>)
+114:           <span class="ruby-identifier">authenticate_with_http_basic</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">login_procedure</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">request_http_basic_authentication</span>(<span class="ruby-identifier">realm</span>)
+115:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005708">
+                    
+                    <a name="M005708"></a><b>authenticate_with_http_basic</b>(&amp;login_procedure)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005708_source')" id="l_M005708_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/49d54b4fb66672ba0c4ad68b760f4413cd80da4a/actionpack/lib/action_controller/metal/http_authentication.rb#L117" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005708_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/http_authentication.rb, line 117</span>
+117:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">authenticate_with_http_basic</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">login_procedure</span>)
+118:           <span class="ruby-constant">HttpAuthentication</span><span class="ruby-operator">::</span><span class="ruby-constant">Basic</span>.<span class="ruby-identifier">authenticate</span>(<span class="ruby-identifier">request</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">login_procedure</span>)
+119:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005709">
+                    
+                    <a name="M005709"></a><b>request_http_basic_authentication</b>(realm = &quot;Application&quot;)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005709_source')" id="l_M005709_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/49d54b4fb66672ba0c4ad68b760f4413cd80da4a/actionpack/lib/action_controller/metal/http_authentication.rb#L121" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005709_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/http_authentication.rb, line 121</span>
+121:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request_http_basic_authentication</span>(<span class="ruby-identifier">realm</span> = <span class="ruby-value str">&quot;Application&quot;</span>)
+122:           <span class="ruby-constant">HttpAuthentication</span><span class="ruby-operator">::</span><span class="ruby-constant">Basic</span>.<span class="ruby-identifier">authentication_request</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">realm</span>)
+123:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

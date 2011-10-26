@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Validations::NumericalityValidator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::Validations::NumericalityValidator 
+            
+                <span class="parent">&lt; 
+                    
+                    EachValidator
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/numericality_rb.html">activemodel/lib/active_model/validations/numericality.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007666">check_validity!</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007670">filtered_options</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007665">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007668">parse_raw_value_as_a_number</a>,</li>
+                
+                <li><a href="#M007669">parse_raw_value_as_an_integer</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>V</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007667">validate_each</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">CHECKS</td>
+            <td>=</td>
+            <td class="attr-value">{ :greater_than =&gt; :&gt;, :greater_than_or_equal_to =&gt; :&gt;=,                  :equal_to =&gt; :==, :less_than =&gt; :&lt;, :less_than_or_equal_to =&gt; :&lt;=,                  :odd =&gt; :odd?, :even =&gt; :even? }.freeze</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">RESERVED_OPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">CHECKS.keys + [:only_integer]</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007665">
+                    
+                    <a name="M007665"></a><b>new</b>(options)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007665_source')" id="l_M007665_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/numericality.rb#L12" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007665_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/numericality.rb, line 12</span>
+12:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span>)
+13:         <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-identifier">:only_integer</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">:allow_nil</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>))
+14:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007666">
+                    
+                    <a name="M007666"></a><b>check_validity!</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007666_source')" id="l_M007666_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/numericality.rb#L16" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007666_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/numericality.rb, line 16</span>
+16:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">check_validity!</span>
+17:         <span class="ruby-identifier">keys</span> = <span class="ruby-constant">CHECKS</span>.<span class="ruby-identifier">keys</span> <span class="ruby-operator">-</span> [<span class="ruby-identifier">:odd</span>, <span class="ruby-identifier">:even</span>]
+18:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">keys</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+19:           <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Numeric</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Proc</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+20:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;:#{option} must be a number, a symbol or a proc&quot;</span>
+21:         <span class="ruby-keyword kw">end</span>
+22:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007667">
+                    
+                    <a name="M007667"></a><b>validate_each</b>(record, attr_name, value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007667_source')" id="l_M007667_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/numericality.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007667_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/numericality.rb, line 24</span>
+24:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attr_name</span>, <span class="ruby-identifier">value</span>)
+25:         <span class="ruby-identifier">before_type_cast</span> = <span class="ruby-node">&quot;#{attr_name}_before_type_cast&quot;</span>
+26: 
+27:         <span class="ruby-identifier">raw_value</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{attr_name}_before_type_cast&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">before_type_cast</span>.<span class="ruby-identifier">to_sym</span>)
+28:         <span class="ruby-identifier">raw_value</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">value</span>
+29: 
+30:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:allow_nil</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">raw_value</span>.<span class="ruby-identifier">nil?</span>
+31: 
+32:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span> = <span class="ruby-identifier">parse_raw_value_as_a_number</span>(<span class="ruby-identifier">raw_value</span>)
+33:           <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attr_name</span>, <span class="ruby-identifier">:not_a_number</span>, <span class="ruby-identifier">filtered_options</span>(<span class="ruby-identifier">raw_value</span>))
+34:           <span class="ruby-keyword kw">return</span>
+35:         <span class="ruby-keyword kw">end</span>
+36: 
+37:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:only_integer</span>]
+38:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span> = <span class="ruby-identifier">parse_raw_value_as_an_integer</span>(<span class="ruby-identifier">raw_value</span>)
+39:             <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attr_name</span>, <span class="ruby-identifier">:not_an_integer</span>, <span class="ruby-identifier">filtered_options</span>(<span class="ruby-identifier">raw_value</span>))
+40:             <span class="ruby-keyword kw">return</span>
+41:           <span class="ruby-keyword kw">end</span>
+42:         <span class="ruby-keyword kw">end</span>
+43: 
+44:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">slice</span>(<span class="ruby-operator">*</span><span class="ruby-constant">CHECKS</span>.<span class="ruby-identifier">keys</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span>, <span class="ruby-identifier">option_value</span><span class="ruby-operator">|</span>
+45:           <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">option</span>
+46:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:odd</span>, <span class="ruby-identifier">:even</span>
+47:             <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">send</span>(<span class="ruby-constant">CHECKS</span>[<span class="ruby-identifier">option</span>])
+48:               <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attr_name</span>, <span class="ruby-identifier">option</span>, <span class="ruby-identifier">filtered_options</span>(<span class="ruby-identifier">value</span>))
+49:             <span class="ruby-keyword kw">end</span>
+50:           <span class="ruby-keyword kw">else</span>
+51:             <span class="ruby-identifier">option_value</span> = <span class="ruby-identifier">option_value</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">record</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">option_value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Proc</span>)
+52:             <span class="ruby-identifier">option_value</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">option_value</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">option_value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+53: 
+54:             <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">send</span>(<span class="ruby-constant">CHECKS</span>[<span class="ruby-identifier">option</span>], <span class="ruby-identifier">option_value</span>)
+55:               <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attr_name</span>, <span class="ruby-identifier">option</span>, <span class="ruby-identifier">filtered_options</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">option_value</span>))
+56:             <span class="ruby-keyword kw">end</span>
+57:           <span class="ruby-keyword kw">end</span>
+58:         <span class="ruby-keyword kw">end</span>
+59:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007670">
+                    
+                    <a name="M007670"></a><b>filtered_options</b>(value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007670_source')" id="l_M007670_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/numericality.rb#L80" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007670_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/numericality.rb, line 80</span>
+80:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">filtered_options</span>(<span class="ruby-identifier">value</span>)
+81:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">except</span>(<span class="ruby-operator">*</span><span class="ruby-constant">RESERVED_OPTIONS</span>).<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>)
+82:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007668">
+                    
+                    <a name="M007668"></a><b>parse_raw_value_as_a_number</b>(raw_value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007668_source')" id="l_M007668_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/numericality.rb#L63" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007668_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/numericality.rb, line 63</span>
+63:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_raw_value_as_a_number</span>(<span class="ruby-identifier">raw_value</span>)
+64:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">raw_value</span>
+65:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/\A0[xX]/</span>
+66:           <span class="ruby-keyword kw">nil</span>
+67:         <span class="ruby-keyword kw">else</span>
+68:           <span class="ruby-keyword kw">begin</span>
+69:             <span class="ruby-constant">Kernel</span>.<span class="ruby-constant">Float</span>(<span class="ruby-identifier">raw_value</span>)
+70:           <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-constant">TypeError</span>
+71:             <span class="ruby-keyword kw">nil</span>
+72:           <span class="ruby-keyword kw">end</span>
+73:         <span class="ruby-keyword kw">end</span>
+74:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007669">
+                    
+                    <a name="M007669"></a><b>parse_raw_value_as_an_integer</b>(raw_value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007669_source')" id="l_M007669_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/numericality.rb#L76" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007669_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/numericality.rb, line 76</span>
+76:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_raw_value_as_an_integer</span>(<span class="ruby-identifier">raw_value</span>)
+77:         <span class="ruby-identifier">raw_value</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">raw_value</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\A[+-]?\d+\Z/</span>
+78:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

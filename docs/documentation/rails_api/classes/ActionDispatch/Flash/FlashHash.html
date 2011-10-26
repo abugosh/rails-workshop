@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Flash::FlashHash</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActionDispatch::Flash::FlashHash 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Hash.html">Hash</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_dispatch/middleware/flash_rb.html">actionpack/lib/action_dispatch/middleware/flash.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006017">alert</a>,</li>
+                
+                <li><a href="#M006018">alert=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006015">discard</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>K</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006014">keep</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006019">notice</a>,</li>
+                
+                <li><a href="#M006020">notice=</a>,</li>
+                
+                <li><a href="#M006013">now</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006017">
+                    
+                    <a name="M006017"></a><b>alert</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Convenience accessor for flash[:alert]
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006017_source')" id="l_M006017_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0c878734558bde940c4b49b115e6aaee673a2360/actionpack/lib/action_dispatch/middleware/flash.rb#L140" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006017_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/middleware/flash.rb, line 140</span>
+140:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">alert</span>
+141:         <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">:alert</span>]
+142:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006018">
+                    
+                    <a name="M006018"></a><b>alert=</b>(message)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Convenience accessor for flash[:alert]=
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006018_source')" id="l_M006018_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0c878734558bde940c4b49b115e6aaee673a2360/actionpack/lib/action_dispatch/middleware/flash.rb#L145" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006018_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/middleware/flash.rb, line 145</span>
+145:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">alert=</span>(<span class="ruby-identifier">message</span>)
+146:         <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">:alert</span>] = <span class="ruby-identifier">message</span>
+147:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006015">
+                    
+                    <a name="M006015"></a><b>discard</b>(k = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Marks the entire flash or a single flash entry to be discarded by the end
+of the current action:
+</p>
+<pre>
+    flash.discard              # discard the entire flash at the end of the current action
+    flash.discard(:warning)    # discard only the &quot;warning&quot; entry at the end of the current action
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006015_source')" id="l_M006015_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0c878734558bde940c4b49b115e6aaee673a2360/actionpack/lib/action_dispatch/middleware/flash.rb#L118" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006015_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/middleware/flash.rb, line 118</span>
+118:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">discard</span>(<span class="ruby-identifier">k</span> = <span class="ruby-keyword kw">nil</span>)
+119:         <span class="ruby-identifier">use</span>(<span class="ruby-identifier">k</span>)
+120:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006014">
+                    
+                    <a name="M006014"></a><b>keep</b>(k = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Keeps either the entire current flash or a specific flash entry available
+for the next action:
+</p>
+<pre>
+   flash.keep            # keeps the entire flash
+   flash.keep(:notice)   # keeps only the &quot;notice&quot; entry, the rest of the flash is discarded
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006014_source')" id="l_M006014_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0c878734558bde940c4b49b115e6aaee673a2360/actionpack/lib/action_dispatch/middleware/flash.rb#L110" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006014_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/middleware/flash.rb, line 110</span>
+110:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">keep</span>(<span class="ruby-identifier">k</span> = <span class="ruby-keyword kw">nil</span>)
+111:         <span class="ruby-identifier">use</span>(<span class="ruby-identifier">k</span>, <span class="ruby-keyword kw">false</span>)
+112:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006019">
+                    
+                    <a name="M006019"></a><b>notice</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Convenience accessor for flash[:notice]
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006019_source')" id="l_M006019_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0c878734558bde940c4b49b115e6aaee673a2360/actionpack/lib/action_dispatch/middleware/flash.rb#L150" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006019_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/middleware/flash.rb, line 150</span>
+150:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">notice</span>
+151:         <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">:notice</span>]
+152:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006020">
+                    
+                    <a name="M006020"></a><b>notice=</b>(message)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Convenience accessor for flash[:notice]=
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006020_source')" id="l_M006020_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0c878734558bde940c4b49b115e6aaee673a2360/actionpack/lib/action_dispatch/middleware/flash.rb#L155" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006020_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/middleware/flash.rb, line 155</span>
+155:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">notice=</span>(<span class="ruby-identifier">message</span>)
+156:         <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">:notice</span>] = <span class="ruby-identifier">message</span>
+157:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006013">
+                    
+                    <a name="M006013"></a><b>now</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Sets a flash that will not be available to the next action, only to the
+current.
+</p>
+<pre>
+    flash.now[:message] = &quot;Hello current action&quot;
+</pre>
+<p>
+This method enables you to use the flash as a central messaging system in
+your app. When you need to pass an object to the next action, you use the
+standard flash assign (<tt>[]=</tt>). When you need to pass an object to
+the current action, you use <tt>now</tt>, and your object will vanish when
+the current action is done.
+</p>
+<p>
+Entries set via <tt>now</tt> are accessed the same way as standard entries:
+<tt>flash['my-key']</tt>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006013_source')" id="l_M006013_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0c878734558bde940c4b49b115e6aaee673a2360/actionpack/lib/action_dispatch/middleware/flash.rb#L102" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006013_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/middleware/flash.rb, line 102</span>
+102:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">now</span>
+103:         <span class="ruby-constant">FlashNow</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+104:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

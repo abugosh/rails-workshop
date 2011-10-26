@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveResource::Formats</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveResource::Formats 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activeresource/lib/active_resource/formats_rb.html">activeresource/lib/active_resource/formats.rb</a></li>
+            
+            <li><a href="../../files/activeresource/lib/active_resource/formats/xml_format_rb.html">activeresource/lib/active_resource/formats/xml_format.rb</a></li>
+            
+            <li><a href="../../files/activeresource/lib/active_resource/formats/json_format_rb.html">activeresource/lib/active_resource/formats/json_format.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>#</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005449">[]</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="Formats/JsonFormat.html">ActiveResource::Formats::JsonFormat</a></li>
+        
+        <li><span class="type">MODULE</span> <a href="Formats/XmlFormat.html">ActiveResource::Formats::XmlFormat</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005449">
+                    
+                    <a name="M005449"></a><b>[]</b>(mime_type_reference)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Lookup the format class from a mime type reference symbol. Example:
+</p>
+<pre>
+  ActiveResource::Formats[:xml]  # =&gt; ActiveResource::Formats::XmlFormat
+  ActiveResource::Formats[:json] # =&gt; ActiveResource::Formats::JsonFormat
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005449_source')" id="l_M005449_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/6d4a4fabbbb04c20cee51c4e374045cc75e2ec16/activeresource/lib/active_resource/formats.rb#L10" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005449_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activeresource/lib/active_resource/formats.rb, line 10</span>
+10:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-operator">[]</span>(<span class="ruby-identifier">mime_type_reference</span>)
+11:       <span class="ruby-constant">ActiveResource</span><span class="ruby-operator">::</span><span class="ruby-constant">Formats</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflector</span>.<span class="ruby-identifier">camelize</span>(<span class="ruby-identifier">mime_type_reference</span>.<span class="ruby-identifier">to_s</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;Format&quot;</span>)
+12:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>AbstractController::Helpers::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            AbstractController::Helpers::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/abstract_controller/helpers_rb.html">actionpack/lib/abstract_controller/helpers.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005555">clear_helpers</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>H</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005554">helper</a>,</li>
+                
+                <li><a href="#M005553">helper_method</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005552">inherited</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005555">
+                    
+                    <a name="M005555"></a><b>clear_helpers</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Clears up all existing helpers in this class, only keeping the helper with
+the same name as this class.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005555_source')" id="l_M005555_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ef01f8840b31971fe53881fe41cc24a9ba05e4f1/actionpack/lib/abstract_controller/helpers.rb#L107" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005555_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/abstract_controller/helpers.rb, line 107</span>
+107:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear_helpers</span>
+108:         <span class="ruby-identifier">inherited_helper_methods</span> = <span class="ruby-identifier">_helper_methods</span>
+109:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">_helpers</span> = <span class="ruby-constant">Module</span>.<span class="ruby-identifier">new</span>
+110:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">_helper_methods</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>
+111: 
+112:         <span class="ruby-identifier">inherited_helper_methods</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">meth</span><span class="ruby-operator">|</span> <span class="ruby-identifier">helper_method</span> <span class="ruby-identifier">meth</span> }
+113:         <span class="ruby-identifier">default_helper_module!</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">anonymous?</span>
+114:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005554">
+                    
+                    <a name="M005554"></a><b>helper</b>(*args, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+The <tt>helper</tt> class method can take a series of helper module names,
+a block, or both.
+</p>
+<h4>Parameters</h4>
+<ul>
+<li><tt>*args</tt> - Module, Symbol, String, :all
+
+</li>
+<li><tt>block</tt> - A block defining helper methods
+
+</li>
+</ul>
+<h4>Examples</h4>
+<p>
+When the argument is a module it will be included directly in the template
+class.
+</p>
+<pre>
+  helper FooHelper # =&gt; includes FooHelper
+</pre>
+<p>
+When the argument is a string or symbol, the method will provide the
+&#8220;_helper&#8221; suffix, require the file and include the module in
+the template class. The second form illustrates how to include custom
+helpers when working with namespaced controllers, or other cases where the
+file containing the helper definition is not in one of Rails&#8217;
+standard load paths:
+</p>
+<pre>
+  helper :foo             # =&gt; requires 'foo_helper' and includes FooHelper
+  helper 'resources/foo'  # =&gt; requires 'resources/foo_helper' and includes Resources::FooHelper
+</pre>
+<p>
+Additionally, the <tt>helper</tt> class method can receive and evaluate a
+block, making the methods defined available to the template.
+</p>
+<pre>
+  # One line
+  helper { def hello() &quot;Hello, world!&quot; end }
+
+  # Multi-line
+  helper do
+    def foo(bar)
+      &quot;#{bar} is the very best&quot;
+    end
+  end
+</pre>
+<p>
+Finally, all the above styles can be mixed together, and the
+<tt>helper</tt> method can be invoked with a mix of <tt>symbols</tt>,
+<tt>strings</tt>, <tt>modules</tt> and blocks.
+</p>
+<pre>
+  helper(:three, BlindHelper) { def mice() 'mice' end }
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005554_source')" id="l_M005554_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ef01f8840b31971fe53881fe41cc24a9ba05e4f1/actionpack/lib/abstract_controller/helpers.rb#L97" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005554_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/abstract_controller/helpers.rb, line 97</span>
+ 97:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">helper</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+ 98:         <span class="ruby-identifier">modules_for_helpers</span>(<span class="ruby-identifier">args</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mod</span><span class="ruby-operator">|</span>
+ 99:           <span class="ruby-identifier">add_template_helper</span>(<span class="ruby-identifier">mod</span>)
+100:         <span class="ruby-keyword kw">end</span>
+101: 
+102:         <span class="ruby-identifier">_helpers</span>.<span class="ruby-identifier">module_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+103:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005553">
+                    
+                    <a name="M005553"></a><b>helper_method</b>(*meths)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Declare a controller method as a helper. For example, the following makes
+the <tt>current_user</tt> controller method available to the view:
+</p>
+<pre>
+  class ApplicationController &lt; ActionController::Base
+    helper_method :current_user, :logged_in?
+
+    def current_user
+      @current_user ||= User.find_by_id(session[:user])
+    end
+
+     def logged_in?
+       current_user != nil
+     end
+  end
+</pre>
+<p>
+In a view:
+</p>
+<pre>
+ &lt;% if logged_in? -%&gt;Welcome, &lt;%= current_user.name %&gt;&lt;% end -%&gt;
+</pre>
+<h4>Parameters</h4>
+<ul>
+<li><tt>method[, method]</tt> - A name or names of a method on the controller
+to be made available on the view.
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005553_source')" id="l_M005553_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ef01f8840b31971fe53881fe41cc24a9ba05e4f1/actionpack/lib/abstract_controller/helpers.rb#L48" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005553_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/abstract_controller/helpers.rb, line 48</span>
+48:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">helper_method</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">meths</span>)
+49:         <span class="ruby-identifier">meths</span>.<span class="ruby-identifier">flatten!</span>
+50:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">_helper_methods</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">meths</span>
+51: 
+52:         <span class="ruby-identifier">meths</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">meth</span><span class="ruby-operator">|</span>
+53:           <span class="ruby-identifier">_helpers</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-value str">&quot;def \#{meth}(*args, &amp;blk)\ncontroller.send(%(\#{meth}), *args, &amp;blk)\nend\n&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+54:         <span class="ruby-keyword kw">end</span>
+55:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005552">
+                    
+                    <a name="M005552"></a><b>inherited</b>(klass)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+When a class is inherited, wrap its helper module in a new module. This
+ensures that the parent class&#8217;s module can be changed independently
+of the child class&#8217;s.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005552_source')" id="l_M005552_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ef01f8840b31971fe53881fe41cc24a9ba05e4f1/actionpack/lib/abstract_controller/helpers.rb#L21" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005552_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/abstract_controller/helpers.rb, line 21</span>
+21:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inherited</span>(<span class="ruby-identifier">klass</span>)
+22:         <span class="ruby-identifier">helpers</span> = <span class="ruby-identifier">_helpers</span>
+23:         <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">_helpers</span> = <span class="ruby-constant">Module</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">include</span> <span class="ruby-identifier">helpers</span> }
+24:         <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">class_eval</span> { <span class="ruby-identifier">default_helper_module!</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">anonymous?</span> }
+25:         <span class="ruby-keyword kw">super</span>
+26:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

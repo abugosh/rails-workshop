@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::OrderedOptions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::OrderedOptions 
+            
+                <span class="parent">&lt; 
+                    
+                    OrderedHash
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activesupport/lib/active_support/ordered_options_rb.html">activesupport/lib/active_support/ordered_options.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>#</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006809">[]</a>,</li>
+                
+                <li><a href="#M006808">[]=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006810">method_missing</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006809">
+                    
+                    <a name="M006809"></a><b>[]</b>(key)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006809_source')" id="l_M006809_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/664090348154ccbf1274a13bbc3d3c37ba35bc7d/activesupport/lib/active_support/ordered_options.rb#L9" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006809_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/ordered_options.rb, line 9</span>
+ 9:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]</span>(<span class="ruby-identifier">key</span>)
+10:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>)
+11:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006808">
+                    
+                    <a name="M006808"></a><b>[]=</b>(key, value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006808_source')" id="l_M006808_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/664090348154ccbf1274a13bbc3d3c37ba35bc7d/activesupport/lib/active_support/ordered_options.rb#L5" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006808_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File activesupport/lib/active_support/ordered_options.rb, line 5</span>
+5:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)
+6:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">value</span>)
+7:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006810">
+                    
+                    <a name="M006810"></a><b>method_missing</b>(name, *args)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006810_source')" id="l_M006810_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/664090348154ccbf1274a13bbc3d3c37ba35bc7d/activesupport/lib/active_support/ordered_options.rb#L13" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006810_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/ordered_options.rb, line 13</span>
+13:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+14:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/(.*)=$/</span>
+15:         <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>
+16:       <span class="ruby-keyword kw">else</span>
+17:         <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">name</span>]
+18:       <span class="ruby-keyword kw">end</span>
+19:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

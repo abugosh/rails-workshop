@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Notifications::Event</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::Notifications::Event 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/notifications/instrumenter_rb.html">activesupport/lib/active_support/notifications/instrumenter.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006913">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006915">parent_of?</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>name</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>time</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>end</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>transaction_id</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>payload</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>duration</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006913">
+                    
+                    <a name="M006913"></a><b>new</b>(name, start, ending, transaction_id, payload)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006913_source')" id="l_M006913_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ff0d842454571d78addd1fe9d4f232b600881b1a/activesupport/lib/active_support/notifications/instrumenter.rb#L39" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006913_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/notifications/instrumenter.rb, line 39</span>
+39:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">start</span>, <span class="ruby-identifier">ending</span>, <span class="ruby-identifier">transaction_id</span>, <span class="ruby-identifier">payload</span>)
+40:         <span class="ruby-ivar">@name</span>           = <span class="ruby-identifier">name</span>
+41:         <span class="ruby-ivar">@payload</span>        = <span class="ruby-identifier">payload</span>.<span class="ruby-identifier">dup</span>
+42:         <span class="ruby-ivar">@time</span>           = <span class="ruby-identifier">start</span>
+43:         <span class="ruby-ivar">@transaction_id</span> = <span class="ruby-identifier">transaction_id</span>
+44:         <span class="ruby-ivar">@end</span>            = <span class="ruby-identifier">ending</span>
+45:         <span class="ruby-ivar">@duration</span>       = <span class="ruby-value">1000.0</span> <span class="ruby-operator">*</span> (<span class="ruby-ivar">@end</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@time</span>)
+46:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006915">
+                    
+                    <a name="M006915"></a><b>parent_of?</b>(event)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006915_source')" id="l_M006915_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ff0d842454571d78addd1fe9d4f232b600881b1a/activesupport/lib/active_support/notifications/instrumenter.rb#L48" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006915_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/notifications/instrumenter.rb, line 48</span>
+48:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parent_of?</span>(<span class="ruby-identifier">event</span>)
+49:         <span class="ruby-identifier">start</span> = (<span class="ruby-identifier">time</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">event</span>.<span class="ruby-identifier">time</span>) <span class="ruby-operator">*</span> <span class="ruby-value">1000</span>
+50:         <span class="ruby-identifier">start</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">start</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">duration</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">event</span>.<span class="ruby-identifier">duration</span>)
+51:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

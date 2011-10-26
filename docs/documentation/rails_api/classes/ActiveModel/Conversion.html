@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Conversion</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::Conversion 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activemodel/lib/active_model/conversion_rb.html">activemodel/lib/active_model/conversion.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <h2>Active Model Conversions</h2>
+<p>
+Handles default conversions: <a
+href="Conversion.html#M007614">to_model</a>, <a
+href="Conversion.html#M007615">to_key</a> and to_param.
+</p>
+<h2>Example</h2>
+<p>
+Let&#8217;s take for example this non persisted object.
+</p>
+<pre>
+  class ContactMessage
+    include ActiveModel::Conversion
+
+    # ContactMessage are never persisted in the DB
+    def persisted?
+      false
+    end
+  end
+
+  cm = ContactMessage.new
+  cm.to_model == self # =&gt; true
+  cm.to_key           # =&gt; nil
+  cm.to_param         # =&gt; nil
+</pre>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>T</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007615">to_key</a>,</li>
+                
+                <li><a href="#M007614">to_model</a>,</li>
+                
+                <li><a href="#M007616">to_param</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007615">
+                    
+                    <a name="M007615"></a><b>to_key</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns an <a href="../Enumerable.html">Enumerable</a> of all key
+attributes if any is set, regardless if the object is persisted or not.
+</p>
+<p>
+Note the default implementation uses persisted? just because all objects in
+Ruby 1.8.x responds to :id.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007615_source')" id="l_M007615_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/f224c66a91ad093c6e80ff52b22aa2c7f5f3ce9a/activemodel/lib/active_model/conversion.rb#L41" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007615_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/conversion.rb, line 41</span>
+41:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_key</span>
+42:       <span class="ruby-identifier">persisted?</span> <span class="ruby-value">? </span>[<span class="ruby-identifier">id</span>] <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+43:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007614">
+                    
+                    <a name="M007614"></a><b>to_model</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+If your object is already designed to implement all of the Active Model you
+can use the default <a href="Conversion.html#M007614">to_model</a>
+implementation, which simply returns self.
+</p>
+<p>
+If your model does not act like an Active Model object, then you should
+define <tt>:<a href="Conversion.html#M007614">to_model</a></tt> yourself
+returning a proxy object that wraps your object with Active Model compliant
+methods.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007614_source')" id="l_M007614_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/f224c66a91ad093c6e80ff52b22aa2c7f5f3ce9a/activemodel/lib/active_model/conversion.rb#L32" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007614_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/conversion.rb, line 32</span>
+32:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_model</span>
+33:       <span class="ruby-keyword kw">self</span>
+34:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007616">
+                    
+                    <a name="M007616"></a><b>to_param</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns a string representing the object&#8217;s key suitable for use in
+URLs, or nil if persisted? is false
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007616_source')" id="l_M007616_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/f224c66a91ad093c6e80ff52b22aa2c7f5f3ce9a/activemodel/lib/active_model/conversion.rb#L47" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007616_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/conversion.rb, line 47</span>
+47:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_param</span>
+48:       <span class="ruby-identifier">persisted?</span> <span class="ruby-value">? </span><span class="ruby-identifier">to_key</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'-'</span>) <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+49:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

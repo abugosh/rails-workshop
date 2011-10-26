@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Serializers::Xml</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::Serializers::Xml 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/serializers/xml_rb.html">activemodel/lib/active_model/serializers/xml.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007618">from_xml</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>T</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007617">to_xml</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <a href="../../Rails.html">Rails</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">CLASS</span> <a href="Xml/Serializer.html">ActiveModel::Serializers::Xml::Serializer</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007618">
+                    
+                    <a name="M007618"></a><b>from_xml</b>(xml)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007618_source')" id="l_M007618_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/6dcde27f3aeb499b0776b447cde82c5e50fc8ede/activemodel/lib/active_model/serializers/xml.rb#L142" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007618_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/serializers/xml.rb, line 142</span>
+142:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">from_xml</span>(<span class="ruby-identifier">xml</span>)
+143:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">from_xml</span>(<span class="ruby-identifier">xml</span>).<span class="ruby-identifier">values</span>.<span class="ruby-identifier">first</span>
+144:         <span class="ruby-keyword kw">self</span>
+145:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007617">
+                    
+                    <a name="M007617"></a><b>to_xml</b>(options = {}, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns XML representing the model. Configuration can be passed through
+<tt>options</tt>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007617_source')" id="l_M007617_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/6dcde27f3aeb499b0776b447cde82c5e50fc8ede/activemodel/lib/active_model/serializers/xml.rb#L138" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007617_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/serializers/xml.rb, line 138</span>
+138:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_xml</span>(<span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+139:         <span class="ruby-constant">Serializer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">options</span>).<span class="ruby-identifier">serialize</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+140:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

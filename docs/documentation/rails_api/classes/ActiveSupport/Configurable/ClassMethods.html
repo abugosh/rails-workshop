@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Configurable::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Configurable::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/configurable_rb.html">activesupport/lib/active_support/configurable.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007542">config</a>,</li>
+                
+                <li><a href="#M007544">config_accessor</a>,</li>
+                
+                <li><a href="#M007543">configure</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007542">
+                    
+                    <a name="M007542"></a><b>config</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007542_source')" id="l_M007542_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/30d7a71bf0700c3a53ba59fa23893d0b843954e5/activesupport/lib/active_support/configurable.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007542_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/configurable.rb, line 11</span>
+11:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">config</span>
+12:         <span class="ruby-ivar">@_config</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">InheritableOptions</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:config</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">superclass</span>.<span class="ruby-identifier">config</span> <span class="ruby-operator">:</span> {})
+13:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007544">
+                    
+                    <a name="M007544"></a><b>config_accessor</b>(*names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Allows you to add shortcut so that you don&#8217;t have to refer to
+attribute through config. Also look at the example for config to contrast.
+</p>
+<pre>
+  class User
+    include ActiveSupport::Configurable
+    config_accessor :allowed_access
+  end
+
+  user = User.new
+  user.allowed_access = true
+  user.allowed_access # =&gt; true
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007544_source')" id="l_M007544_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/30d7a71bf0700c3a53ba59fa23893d0b843954e5/activesupport/lib/active_support/configurable.rb#L31" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007544_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/configurable.rb, line 31</span>
+31:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">config_accessor</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">names</span>)
+32:         <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+33:           <span class="ruby-identifier">code</span>, <span class="ruby-identifier">line</span> = <span class="ruby-value str">&quot;def \#{name}; config.\#{name}; end\ndef \#{name}=(value); config.\#{name} = value; end\n&quot;</span>, <span class="ruby-keyword kw">__LINE__</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+34: 
+35:           <span class="ruby-identifier">singleton_class</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-identifier">code</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-identifier">line</span>
+36:           <span class="ruby-identifier">class_eval</span> <span class="ruby-identifier">code</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-identifier">line</span>
+37:         <span class="ruby-keyword kw">end</span>
+38:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007543">
+                    
+                    <a name="M007543"></a><b>configure</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007543_source')" id="l_M007543_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/30d7a71bf0700c3a53ba59fa23893d0b843954e5/activesupport/lib/active_support/configurable.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007543_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/configurable.rb, line 15</span>
+15:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>
+16:         <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">config</span>
+17:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

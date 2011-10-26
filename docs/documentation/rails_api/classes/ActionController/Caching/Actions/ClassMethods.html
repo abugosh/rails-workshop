@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::Caching::Actions::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::Caching::Actions::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/actionpack/lib/action_controller/caching/actions_rb.html">actionpack/lib/action_controller/caching/actions.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005576">caches_action</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005576">
+                    
+                    <a name="M005576"></a><b>caches_action</b>(*actions)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Declares that <tt>actions</tt> should be cached. See <a
+href="../Actions.html">ActionController::Caching::Actions</a> for details.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005576_source')" id="l_M005576_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/beec6c8b2abfd3286bd7c0a1c7ecb04686af6448/actionpack/lib/action_controller/caching/actions.rb#L94" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005576_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/caching/actions.rb, line 94</span>
+ 94:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">caches_action</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">actions</span>)
+ 95:           <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">cache_configured?</span>
+ 96:           <span class="ruby-identifier">options</span> = <span class="ruby-identifier">actions</span>.<span class="ruby-identifier">extract_options!</span>
+ 97:           <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:layout</span>] = <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:layout</span>)
+ 98:           <span class="ruby-identifier">filter_options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">extract!</span>(<span class="ruby-identifier">:if</span>, <span class="ruby-identifier">:unless</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:only</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">actions</span>)
+ 99:           <span class="ruby-identifier">cache_options</span>  = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">extract!</span>(<span class="ruby-identifier">:layout</span>, <span class="ruby-identifier">:cache_path</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:store_options</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>)
+100: 
+101:           <span class="ruby-identifier">around_filter</span> <span class="ruby-constant">ActionCacheFilter</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">cache_options</span>), <span class="ruby-identifier">filter_options</span>
+102:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

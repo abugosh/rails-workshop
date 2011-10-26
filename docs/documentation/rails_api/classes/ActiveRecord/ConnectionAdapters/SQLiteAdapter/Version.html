@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::ConnectionAdapters::SQLiteAdapter::Version</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveRecord::ConnectionAdapters::SQLiteAdapter::Version 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activerecord/lib/active_record/connection_adapters/sqlite_adapter_rb.html">activerecord/lib/active_record/connection_adapters/sqlite_adapter.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>#</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004409"><=></a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004408">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <span>Comparable</span>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004408">
+                    
+                    <a name="M004408"></a><b>new</b>(version_string)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004408_source')" id="l_M004408_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ede0466d13a04a9ee609e09a54ae55c06228875c/activerecord/lib/active_record/connection_adapters/sqlite_adapter.rb#L42" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004408_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/connection_adapters/sqlite_adapter.rb, line 42</span>
+42:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">version_string</span>)
+43:           <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">version_string</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_i</span> }
+44:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004409">
+                    
+                    <a name="M004409"></a><b>&lt;=&gt;</b>(version_string)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004409_source')" id="l_M004409_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ede0466d13a04a9ee609e09a54ae55c06228875c/activerecord/lib/active_record/connection_adapters/sqlite_adapter.rb#L46" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004409_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/connection_adapters/sqlite_adapter.rb, line 46</span>
+46:         <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&lt;=&gt;</span>(<span class="ruby-identifier">version_string</span>)
+47:           <span class="ruby-ivar">@version</span> <span class="ruby-operator">&lt;=&gt;</span> <span class="ruby-identifier">version_string</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_i</span> }
+48:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

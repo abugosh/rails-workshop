@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Cache::Entry</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::Cache::Entry 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/cache_rb.html">activesupport/lib/active_support/cache.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+<a href="Entry.html">Entry</a> that is put into caches. It supports
+expiration time on entries and can compress values to save space in the
+cache.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007577">compressed?</a>,</li>
+                
+                <li><a href="#M007573">create</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007578">expired?</a>,</li>
+                
+                <li><a href="#M007580">expires_at</a>,</li>
+                
+                <li><a href="#M007579">expires_at=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007574">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007575">raw_value</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007581">size</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>V</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007576">value</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">DEFAULT_COMPRESS_LIMIT</td>
+            <td>=</td>
+            <td class="attr-value">16.kilobytes</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>created_at</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>expires_in</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007573">
+                    
+                    <a name="M007573"></a><b>create</b>(raw_value, created_at, options = {})
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Create an entry with internal attributes set. This method is intended to be
+used by implementations that store cache entries in a native format instead
+of as serialized Ruby objects.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007573_source')" id="l_M007573_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L540" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007573_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 540</span>
+540:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span> (<span class="ruby-identifier">raw_value</span>, <span class="ruby-identifier">created_at</span>, <span class="ruby-identifier">options</span> = {})
+541:           <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>)
+542:           <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@value</span>, <span class="ruby-identifier">raw_value</span>)
+543:           <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@created_at</span>, <span class="ruby-identifier">created_at</span>.<span class="ruby-identifier">to_f</span>)
+544:           <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@compressed</span>, <span class="ruby-operator">!</span><span class="ruby-operator">!</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:compressed</span>])
+545:           <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">:@expires_in</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:expires_in</span>])
+546:           <span class="ruby-identifier">entry</span>
+547:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007574">
+                    
+                    <a name="M007574"></a><b>new</b>(value, options = {})
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Create a new cache entry for the specified value. Options supported are
+<tt>:compress</tt>, <tt>:compress_threshold</tt>, and <tt>:<a
+href="Entry.html#expires_in">expires_in</a></tt>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007574_source')" id="l_M007574_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L552" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007574_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 552</span>
+552:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span> = {})
+553:         <span class="ruby-ivar">@compressed</span> = <span class="ruby-keyword kw">false</span>
+554:         <span class="ruby-ivar">@expires_in</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:expires_in</span>]
+555:         <span class="ruby-ivar">@expires_in</span> = <span class="ruby-ivar">@expires_in</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@expires_in</span>
+556:         <span class="ruby-ivar">@created_at</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_f</span>
+557:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>
+558:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">should_compress?</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">options</span>)
+559:             <span class="ruby-ivar">@value</span> = <span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">Deflate</span>.<span class="ruby-identifier">deflate</span>(<span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-identifier">value</span>))
+560:             <span class="ruby-ivar">@compressed</span> = <span class="ruby-keyword kw">true</span>
+561:           <span class="ruby-keyword kw">else</span>
+562:             <span class="ruby-ivar">@value</span> = <span class="ruby-identifier">value</span>
+563:           <span class="ruby-keyword kw">end</span>
+564:         <span class="ruby-keyword kw">else</span>
+565:           <span class="ruby-ivar">@value</span> = <span class="ruby-keyword kw">nil</span>
+566:         <span class="ruby-keyword kw">end</span>
+567:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007577">
+                    
+                    <a name="M007577"></a><b>compressed?</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007577_source')" id="l_M007577_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L585" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007577_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 585</span>
+585:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">compressed?</span>
+586:         <span class="ruby-ivar">@compressed</span>
+587:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007578">
+                    
+                    <a name="M007578"></a><b>expired?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Check if the entry is expired. The <tt><a
+href="Entry.html#expires_in">expires_in</a></tt> parameter can override the
+value set when the entry was created.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007578_source')" id="l_M007578_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L591" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007578_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 591</span>
+591:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">expired?</span>
+592:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@expires_in</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@created_at</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@expires_in</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">to_f</span>
+593:           <span class="ruby-keyword kw">true</span>
+594:         <span class="ruby-keyword kw">else</span>
+595:           <span class="ruby-keyword kw">false</span>
+596:         <span class="ruby-keyword kw">end</span>
+597:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007580">
+                    
+                    <a name="M007580"></a><b>expires_at</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Seconds since the epoch when the entry will expire.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007580_source')" id="l_M007580_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L609" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007580_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 609</span>
+609:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">expires_at</span>
+610:         <span class="ruby-ivar">@expires_in</span> <span class="ruby-operator">?</span> <span class="ruby-ivar">@created_at</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@expires_in</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+611:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007579">
+                    
+                    <a name="M007579"></a><b>expires_at=</b>(time)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Set a new time when the entry will expire.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007579_source')" id="l_M007579_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L600" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007579_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 600</span>
+600:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">expires_at=</span>(<span class="ruby-identifier">time</span>)
+601:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">time</span>
+602:           <span class="ruby-ivar">@expires_in</span> = <span class="ruby-identifier">time</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@created_at</span>
+603:         <span class="ruby-keyword kw">else</span>
+604:           <span class="ruby-ivar">@expires_in</span> = <span class="ruby-keyword kw">nil</span>
+605:         <span class="ruby-keyword kw">end</span>
+606:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007575">
+                    
+                    <a name="M007575"></a><b>raw_value</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Get the raw value. This value may be serialized and compressed.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007575_source')" id="l_M007575_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L570" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007575_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 570</span>
+570:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">raw_value</span>
+571:         <span class="ruby-ivar">@value</span>
+572:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007581">
+                    
+                    <a name="M007581"></a><b>size</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns the size of the cached value. This could be less than value.size if
+the data is compressed.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007581_source')" id="l_M007581_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L615" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007581_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 615</span>
+615:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">size</span>
+616:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@value</span>.<span class="ruby-identifier">nil?</span>
+617:           <span class="ruby-value">0</span>
+618:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@value</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:bytesize</span>)
+619:           <span class="ruby-ivar">@value</span>.<span class="ruby-identifier">bytesize</span>
+620:         <span class="ruby-keyword kw">else</span>
+621:           <span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">dump</span>(<span class="ruby-ivar">@value</span>).<span class="ruby-identifier">bytesize</span>
+622:         <span class="ruby-keyword kw">end</span>
+623:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007576">
+                    
+                    <a name="M007576"></a><b>value</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Get the value stored in the cache.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007576_source')" id="l_M007576_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L575" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007576_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 575</span>
+575:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">value</span>
+576:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@value</span>
+577:           <span class="ruby-identifier">val</span> = <span class="ruby-identifier">compressed?</span> <span class="ruby-value">? </span><span class="ruby-constant">Marshal</span>.<span class="ruby-identifier">load</span>(<span class="ruby-constant">Zlib</span><span class="ruby-operator">::</span><span class="ruby-constant">Inflate</span>.<span class="ruby-identifier">inflate</span>(<span class="ruby-ivar">@value</span>)) <span class="ruby-operator">:</span> <span class="ruby-ivar">@value</span>
+578:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">frozen?</span>
+579:             <span class="ruby-identifier">val</span>.<span class="ruby-identifier">freeze</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+580:           <span class="ruby-keyword kw">end</span>
+581:           <span class="ruby-identifier">val</span>
+582:         <span class="ruby-keyword kw">end</span>
+583:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

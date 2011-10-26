@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Engine::Configuration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Rails::Engine::Configuration 
+            
+                <span class="parent">&lt; 
+                    
+                    ::Rails::Railtie::Configuration
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/railties/lib/rails/engine/configuration_rb.html">railties/lib/rails/engine/configuration.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004060">autoload_once_paths</a>,</li>
+                
+                <li><a href="#M004061">autoload_paths</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004059">eager_load_paths</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>G</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004064">gem</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>L</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004062">load_paths</a>,</li>
+                
+                <li><a href="#M004063">load_paths=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004055">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004056">paths</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004058">root=</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>root</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [W]
+            </td>
+            <td class='attr-name'>eager_load_paths</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [W]
+            </td>
+            <td class='attr-name'>autoload_once_paths</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [W]
+            </td>
+            <td class='attr-name'>autoload_paths</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004055">
+                    
+                    <a name="M004055"></a><b>new</b>(root=nil)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004055_source')" id="l_M004055_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/fef42738d735f4b76c7826576aeddad153e67eaf/railties/lib/rails/engine/configuration.rb#L9" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004055_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/engine/configuration.rb, line 9</span>
+ 9:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">root</span>=<span class="ruby-keyword kw">nil</span>)
+10:         <span class="ruby-keyword kw">super</span>()
+11:         <span class="ruby-ivar">@root</span> = <span class="ruby-identifier">root</span>
+12:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004060">
+                    
+                    <a name="M004060"></a><b>autoload_once_paths</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004060_source')" id="l_M004060_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/fef42738d735f4b76c7826576aeddad153e67eaf/railties/lib/rails/engine/configuration.rb#L50" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004060_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/engine/configuration.rb, line 50</span>
+50:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">autoload_once_paths</span>
+51:         <span class="ruby-ivar">@autoload_once_paths</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">autoload_once</span>
+52:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004061">
+                    
+                    <a name="M004061"></a><b>autoload_paths</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004061_source')" id="l_M004061_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/fef42738d735f4b76c7826576aeddad153e67eaf/railties/lib/rails/engine/configuration.rb#L54" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004061_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/engine/configuration.rb, line 54</span>
+54:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">autoload_paths</span>
+55:         <span class="ruby-ivar">@autoload_paths</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">autoload_paths</span>
+56:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004059">
+                    
+                    <a name="M004059"></a><b>eager_load_paths</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004059_source')" id="l_M004059_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/fef42738d735f4b76c7826576aeddad153e67eaf/railties/lib/rails/engine/configuration.rb#L46" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004059_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/engine/configuration.rb, line 46</span>
+46:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">eager_load_paths</span>
+47:         <span class="ruby-ivar">@eager_load_paths</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">eager_load</span>
+48:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004064">
+                    
+                    <a name="M004064"></a><b>gem</b>(name, options = {})
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+<a href="../../Rails.html">Rails</a> 3, by default, uses bundler, which
+shims the Kernel#gem method so that it should behave correctly for this
+deprecation.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004064_source')" id="l_M004064_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/fef42738d735f4b76c7826576aeddad153e67eaf/railties/lib/rails/engine/configuration.rb#L70" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004064_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/engine/configuration.rb, line 70</span>
+70:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gem</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {})
+71:         <span class="ruby-keyword kw">super</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:version</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&gt;= 0&quot;</span>
+72:         <span class="ruby-identifier">require</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:lib</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">name</span>
+73:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">LoadError</span>
+74:         <span class="ruby-identifier">msg</span> = <span class="ruby-node">&quot;config.gem is deprecated, and you tried to activate the '#{name}' gem (#{options.inspect}) using it.\n&quot;</span>
+75: 
+76:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exist?</span>(<span class="ruby-node">&quot;#{Rails.root}/Gemfile&quot;</span>)
+77:           <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;Please add '#{name}' to your Gemfile.&quot;</span>
+78:         <span class="ruby-keyword kw">else</span>
+79:           <span class="ruby-identifier">msg</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Please update your application to use bundler.&quot;</span>
+80:         <span class="ruby-keyword kw">end</span>
+81:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-identifier">msg</span>, <span class="ruby-identifier">caller</span>)
+82:         <span class="ruby-identifier">exit</span>
+83:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004062">
+                    
+                    <a name="M004062"></a><b>load_paths</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004062_source')" id="l_M004062_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/fef42738d735f4b76c7826576aeddad153e67eaf/railties/lib/rails/engine/configuration.rb#L58" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004062_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/engine/configuration.rb, line 58</span>
+58:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_paths</span>
+59:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.load_paths is deprecated. Please use config.autoload_paths instead.&quot;</span>
+60:         <span class="ruby-identifier">autoload_paths</span>
+61:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004063">
+                    
+                    <a name="M004063"></a><b>load_paths=</b>(paths)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004063_source')" id="l_M004063_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/fef42738d735f4b76c7826576aeddad153e67eaf/railties/lib/rails/engine/configuration.rb#L63" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004063_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/engine/configuration.rb, line 63</span>
+63:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_paths=</span>(<span class="ruby-identifier">paths</span>)
+64:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;config.load_paths= is deprecated. Please use config.autoload_paths instead.&quot;</span>
+65:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">autoload_paths</span> = <span class="ruby-identifier">paths</span>
+66:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004056">
+                    
+                    <a name="M004056"></a><b>paths</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004056_source')" id="l_M004056_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/fef42738d735f4b76c7826576aeddad153e67eaf/railties/lib/rails/engine/configuration.rb#L14" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004056_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/engine/configuration.rb, line 14</span>
+14:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">paths</span>
+15:         <span class="ruby-ivar">@paths</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">begin</span>
+16:           <span class="ruby-identifier">paths</span> = <span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Paths</span><span class="ruby-operator">::</span><span class="ruby-constant">Root</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@root</span>)
+17:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>                 <span class="ruby-value str">&quot;app&quot;</span>,                 <span class="ruby-identifier">:eager_load</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">:glob</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;*&quot;</span>
+18:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>.<span class="ruby-identifier">controllers</span>     <span class="ruby-value str">&quot;app/controllers&quot;</span>,     <span class="ruby-identifier">:eager_load</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+19:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>.<span class="ruby-identifier">helpers</span>         <span class="ruby-value str">&quot;app/helpers&quot;</span>,         <span class="ruby-identifier">:eager_load</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+20:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>.<span class="ruby-identifier">models</span>          <span class="ruby-value str">&quot;app/models&quot;</span>,          <span class="ruby-identifier">:eager_load</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+21:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>.<span class="ruby-identifier">mailers</span>         <span class="ruby-value str">&quot;app/mailers&quot;</span>,         <span class="ruby-identifier">:eager_load</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+22:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">app</span>.<span class="ruby-identifier">views</span>           <span class="ruby-value str">&quot;app/views&quot;</span>
+23:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">lib</span>                 <span class="ruby-value str">&quot;lib&quot;</span>,                 <span class="ruby-identifier">:load_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+24:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">lib</span>.<span class="ruby-identifier">tasks</span>           <span class="ruby-value str">&quot;lib/tasks&quot;</span>,           <span class="ruby-identifier">:glob</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;**/*.rake&quot;</span>
+25:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>              <span class="ruby-value str">&quot;config&quot;</span>
+26:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">initializers</span> <span class="ruby-value str">&quot;config/initializers&quot;</span>, <span class="ruby-identifier">:glob</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;**/*.rb&quot;</span>
+27:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">locales</span>      <span class="ruby-value str">&quot;config/locales&quot;</span>,      <span class="ruby-identifier">:glob</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;*.{rb,yml}&quot;</span>
+28:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">config</span>.<span class="ruby-identifier">routes</span>       <span class="ruby-value str">&quot;config/routes.rb&quot;</span>
+29:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">public</span>              <span class="ruby-value str">&quot;public&quot;</span>
+30:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">public</span>.<span class="ruby-identifier">javascripts</span>  <span class="ruby-value str">&quot;public/javascripts&quot;</span>
+31:           <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">public</span>.<span class="ruby-identifier">stylesheets</span>  <span class="ruby-value str">&quot;public/stylesheets&quot;</span>
+32:           <span class="ruby-identifier">paths</span>
+33:         <span class="ruby-keyword kw">end</span>
+34:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004058">
+                    
+                    <a name="M004058"></a><b>root=</b>(value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004058_source')" id="l_M004058_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/fef42738d735f4b76c7826576aeddad153e67eaf/railties/lib/rails/engine/configuration.rb#L42" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004058_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/engine/configuration.rb, line 42</span>
+42:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">root=</span>(<span class="ruby-identifier">value</span>)
+43:         <span class="ruby-ivar">@root</span> = <span class="ruby-identifier">paths</span>.<span class="ruby-identifier">path</span> = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span>).<span class="ruby-identifier">expand_path</span>
+44:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

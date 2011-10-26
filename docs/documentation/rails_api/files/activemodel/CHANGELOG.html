@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>CHANGELOG</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            CHANGELOG
+        </h1>
+        <ul class="files">
+            <li>activemodel/CHANGELOG</li>
+            <li>Last modified: 2011-05-26 23:43:53 +0000</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+*<a href="../../classes/Rails.html">Rails</a> 3.0.7 (April 18, 2011)*
+</p>
+<p>
+*No changes.
+</p>
+<p>
+*<a href="../../classes/Rails.html">Rails</a> 3.0.6 (April 5, 2011)
+</p>
+<ul>
+<li>Fix when database column name has some symbolic characters (e.g. Oracle
+CASE# VARCHAR2(20)) 5818 6850 [Robert Pankowecki, Santiago Pastorino]
+
+</li>
+<li>Fix length validation for fixnums 6556 [Andriy Tyurnikov]
+
+</li>
+<li>Fix i18n key collision with namespaced models 6448 [yves.senn]
+
+</li>
+</ul>
+<p>
+*<a href="../../classes/Rails.html">Rails</a> 3.0.5 (February 26, 2011)*
+</p>
+<ul>
+<li>No changes.
+
+</li>
+</ul>
+<p>
+*<a href="../../classes/Rails.html">Rails</a> 3.0.4 (February 8, 2011)*
+</p>
+<ul>
+<li>No changes.
+
+</li>
+</ul>
+<p>
+*<a href="../../classes/Rails.html">Rails</a> 3.0.3 (November 16, 2010)*
+</p>
+<ul>
+<li>No changes.
+
+</li>
+</ul>
+<p>
+*<a href="../../classes/Rails.html">Rails</a> 3.0.2 (November 15, 2010)*
+</p>
+<ul>
+<li>No changes.
+
+</li>
+</ul>
+<p>
+*<a href="../../classes/Rails.html">Rails</a> 3.0.1 (October 15, 2010)*
+</p>
+<ul>
+<li>No changes.
+
+</li>
+</ul>
+<p>
+*<a href="../../classes/Rails.html">Rails</a> 3.0.0 (August 29, 2010)*
+</p>
+<ul>
+<li>Added <a
+href="../../classes/ActiveModel/MassAssignmentSecurity.html">ActiveModel::MassAssignmentSecurity</a>
+[Eric Chapweske, Josh Kalderimis]
+
+</li>
+<li>JSON supports a custom root option: to_json(:root => &#8216;custom&#8217;)
+4515 [Jatinder Singh]
+
+</li>
+<li>new_record? and destroyed? were removed from <a
+href="../../classes/ActiveModel/Lint.html">ActiveModel::Lint</a>. Use
+persisted? instead. A model is persisted if it&#8217;s not a new_record?
+and it was not destroyed? [MG]
+
+</li>
+<li>Added validations reflection in <a
+href="../../classes/ActiveModel/Validations.html">ActiveModel::Validations</a>
+[JV]
+
+<pre>
+  Model.validators
+  Model.validators_on(:field)
+</pre>
+</li>
+<li>to_key was added to <a
+href="../../classes/ActiveModel/Lint.html">ActiveModel::Lint</a> so we can
+generate DOM IDs for AMo objects with composite keys [MG]
+
+</li>
+<li>ActiveModel::Observer#add_observer!
+
+<p>
+It has a custom hook to define after_find that should really be in a <a
+href="../../classes/ActiveRecord/Observer.html">ActiveRecord::Observer</a>
+subclass:
+</p>
+<pre>
+        def add_observer!(klass)
+          klass.add_observer(self)
+          klass.class_eval 'def after_find() end' unless
+                              klass.respond_to?(:after_find)
+        end
+</pre>
+</li>
+<li>Change the ActiveModel::Base.include_root_in_json default to true for <a
+href="../../classes/Rails.html">Rails</a> 3 [DHH]
+
+</li>
+<li>Add validates_format_of :without => /regexp/ option. 430 [Elliot Winkler,
+Peer Allan]
+
+<p>
+Example :
+</p>
+<pre>
+    validates_format_of :subdomain, :without =&gt; /www|admin|mail/
+</pre>
+</li>
+<li>Introduce validates_with to encapsulate attribute validations in a class.
+2630 [Jeff Dean]
+
+</li>
+<li>Extracted from Active Record and Active Resource.
+
+</li>
+</ul>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+    </div>
+  </body>
+</html>

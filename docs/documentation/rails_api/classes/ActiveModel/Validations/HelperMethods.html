@@ -1,0 +1,882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Validations::HelperMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::Validations::HelperMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/numericality_rb.html">activemodel/lib/active_model/validations/numericality.rb</a></li>
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/exclusion_rb.html">activemodel/lib/active_model/validations/exclusion.rb</a></li>
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/inclusion_rb.html">activemodel/lib/active_model/validations/inclusion.rb</a></li>
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/length_rb.html">activemodel/lib/active_model/validations/length.rb</a></li>
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/with_rb.html">activemodel/lib/active_model/validations/with.rb</a></li>
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/format_rb.html">activemodel/lib/active_model/validations/format.rb</a></li>
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/presence_rb.html">activemodel/lib/active_model/validations/presence.rb</a></li>
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/confirmation_rb.html">activemodel/lib/active_model/validations/confirmation.rb</a></li>
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/acceptance_rb.html">activemodel/lib/active_model/validations/acceptance.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>V</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007708">validates_acceptance_of</a>,</li>
+                
+                <li><a href="#M007704">validates_confirmation_of</a>,</li>
+                
+                <li><a href="#M007679">validates_exclusion_of</a>,</li>
+                
+                <li><a href="#M007699">validates_format_of</a>,</li>
+                
+                <li><a href="#M007685">validates_inclusion_of</a>,</li>
+                
+                <li><a href="#M007689">validates_length_of</a>,</li>
+                
+                <li><a href="#M007671">validates_numericality_of</a>,</li>
+                
+                <li><a href="#M007701">validates_presence_of</a>,</li>
+                
+                <li><a href="#M007690">validates_size_of</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007708">
+                    
+                    <a name="M007708"></a><b>validates_acceptance_of</b>(*attr_names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Encapsulates the pattern of wanting to validate the acceptance of a terms
+of service check box (or similar agreement). Example:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_acceptance_of :terms_of_service
+    validates_acceptance_of :eula, :message =&gt; &quot;must be abided&quot;
+  end
+</pre>
+<p>
+If the database column does not exist, the <tt>terms_of_service</tt>
+attribute is entirely virtual. This check is performed only if
+<tt>terms_of_service</tt> is not <tt>nil</tt> and by default on save.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - A custom error message (default is: &#8220;must be
+accepted&#8221;).
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options are <tt>:create</tt> and <tt>:update</tt>).
+
+</li>
+<li><tt>:allow_nil</tt> - Skip validation if attribute is <tt>nil</tt> (default
+is true).
+
+</li>
+<li><tt>:accept</tt> - Specifies value that is considered accepted. The default
+value is a string &#8220;1&#8221;, which makes it easy to relate to an HTML
+checkbox. This should be set to <tt>true</tt> if you are validating a
+database column, since the attribute is typecast from &#8220;1&#8221; to
+<tt>true</tt> before validation.
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (for example, <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007708_source')" id="l_M007708_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activemodel/lib/active_model/validations/acceptance.rb#L63" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007708_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/acceptance.rb, line 63</span>
+63:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_acceptance_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+64:         <span class="ruby-identifier">validates_with</span> <span class="ruby-constant">AcceptanceValidator</span>, <span class="ruby-identifier">_merge_attributes</span>(<span class="ruby-identifier">attr_names</span>)
+65:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007704">
+                    
+                    <a name="M007704"></a><b>validates_confirmation_of</b>(*attr_names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Encapsulates the pattern of wanting to validate a password or email address
+field with a confirmation. For example:
+</p>
+<pre>
+  Model:
+    class Person &lt; ActiveRecord::Base
+      validates_confirmation_of :user_name, :password
+      validates_confirmation_of :email_address,
+                                :message =&gt; &quot;should match confirmation&quot;
+    end
+
+  View:
+    &lt;%= password_field &quot;person&quot;, &quot;password&quot; %&gt;
+    &lt;%= password_field &quot;person&quot;, &quot;password_confirmation&quot; %&gt;
+</pre>
+<p>
+The added <tt>password_confirmation</tt> attribute is virtual; it exists
+only as an in-memory attribute for validating the password. To achieve
+this, the validation adds accessors to the model for the confirmation
+attribute.
+</p>
+<p>
+NOTE: This check is performed only if <tt>password_confirmation</tt> is not
+<tt>nil</tt>, and by default only on save. To require confirmation, make
+sure to add a presence check for the confirmation attribute:
+</p>
+<pre>
+  validates_presence_of :password_confirmation, :if =&gt; :password_changed?
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - A custom error message (default is:
+&#8220;doesn&#8217;t match confirmation&#8221;).
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007704_source')" id="l_M007704_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activemodel/lib/active_model/validations/confirmation.rb#L58" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007704_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/confirmation.rb, line 58</span>
+58:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_confirmation_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+59:         <span class="ruby-identifier">validates_with</span> <span class="ruby-constant">ConfirmationValidator</span>, <span class="ruby-identifier">_merge_attributes</span>(<span class="ruby-identifier">attr_names</span>)
+60:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007679">
+                    
+                    <a name="M007679"></a><b>validates_exclusion_of</b>(*attr_names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Validates that the value of the specified attribute is not in a particular
+enumerable object.
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_exclusion_of :username, :in =&gt; %w( admin superuser ), :message =&gt; &quot;You don't belong here&quot;
+    validates_exclusion_of :age, :in =&gt; 30..60, :message =&gt; &quot;This site is only for under 30 and over 60&quot;
+    validates_exclusion_of :format, :in =&gt; %w( mov avi ), :message =&gt; &quot;extension %{value} is not allowed&quot;
+  end
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:in</tt> - An enumerable object of items that the value shouldn&#8217;t
+be part of.
+
+</li>
+<li><tt>:message</tt> - Specifies a custom error message (default is: &#8220;is
+reserved&#8221;).
+
+</li>
+<li><tt>:allow_nil</tt> - If set to true, skips this validation if the
+attribute is <tt>nil</tt> (default is <tt>false</tt>).
+
+</li>
+<li><tt>:allow_blank</tt> - If set to true, skips this validation if the
+attribute is blank (default is <tt>false</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007679_source')" id="l_M007679_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/exclusion.rb#L38" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007679_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/exclusion.rb, line 38</span>
+38:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_exclusion_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+39:         <span class="ruby-identifier">validates_with</span> <span class="ruby-constant">ExclusionValidator</span>, <span class="ruby-identifier">_merge_attributes</span>(<span class="ruby-identifier">attr_names</span>)
+40:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007699">
+                    
+                    <a name="M007699"></a><b>validates_format_of</b>(*attr_names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Validates whether the value of the specified attribute is of the correct
+form, going by the regular expression provided. You can require that the
+attribute matches the regular expression:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_format_of :email, :with =&gt; /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on =&gt; :create
+  end
+</pre>
+<p>
+Alternatively, you can require that the specified attribute does
+<em>not</em> match the regular expression:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_format_of :email, :without =&gt; /NOSPAM/
+  end
+</pre>
+<p>
+Note: use <tt>A</tt> and <tt>Z</tt> to match the start and end of the
+string, <tt>^</tt> and <tt>$</tt> match the start/end of a line.
+</p>
+<p>
+You must pass either <tt>:with</tt> or <tt>:without</tt> as an option. In
+addition, both must be a regular expression, or else an exception will be
+raised.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - A custom error message (default is: &#8220;is
+invalid&#8221;).
+
+</li>
+<li><tt>:allow_nil</tt> - If set to true, skips this validation if the
+attribute is <tt>nil</tt> (default is <tt>false</tt>).
+
+</li>
+<li><tt>:allow_blank</tt> - If set to true, skips this validation if the
+attribute is blank (default is <tt>false</tt>).
+
+</li>
+<li><tt>:with</tt> - Regular expression that if the attribute matches will
+result in a successful validation.
+
+</li>
+<li><tt>:without</tt> - Regular expression that if the attribute does not match
+will result in a successful validation.
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007699_source')" id="l_M007699_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/format.rb#L61" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007699_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/format.rb, line 61</span>
+61:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_format_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+62:         <span class="ruby-identifier">validates_with</span> <span class="ruby-constant">FormatValidator</span>, <span class="ruby-identifier">_merge_attributes</span>(<span class="ruby-identifier">attr_names</span>)
+63:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007685">
+                    
+                    <a name="M007685"></a><b>validates_inclusion_of</b>(*attr_names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Validates whether the value of the specified attribute is available in a
+particular enumerable object.
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_inclusion_of :gender, :in =&gt; %w( m f )
+    validates_inclusion_of :age, :in =&gt; 0..99
+    validates_inclusion_of :format, :in =&gt; %w( jpg gif png ), :message =&gt; &quot;extension %{value} is not included in the list&quot;
+  end
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:in</tt> - An enumerable object of available items.
+
+</li>
+<li><tt>:message</tt> - Specifies a custom error message (default is: &#8220;is
+not included in the list&#8221;).
+
+</li>
+<li><tt>:allow_nil</tt> - If set to true, skips this validation if the
+attribute is <tt>nil</tt> (default is <tt>false</tt>).
+
+</li>
+<li><tt>:allow_blank</tt> - If set to true, skips this validation if the
+attribute is blank (default is <tt>false</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007685_source')" id="l_M007685_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/d7b539aae2dec5835d59d9d7373c96d2ec8f662d/activemodel/lib/active_model/validations/inclusion.rb#L55" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007685_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/inclusion.rb, line 55</span>
+55:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_inclusion_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+56:         <span class="ruby-identifier">validates_with</span> <span class="ruby-constant">InclusionValidator</span>, <span class="ruby-identifier">_merge_attributes</span>(<span class="ruby-identifier">attr_names</span>)
+57:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007689">
+                    
+                    <a name="M007689"></a><b>validates_length_of</b>(*attr_names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Validates that the specified attribute matches the length restrictions
+supplied. Only one option can be used at a time:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_length_of :first_name, :maximum=&gt;30
+    validates_length_of :last_name, :maximum=&gt;30, :message=&gt;&quot;less than 30 if you don't mind&quot;
+    validates_length_of :fax, :in =&gt; 7..32, :allow_nil =&gt; true
+    validates_length_of :phone, :in =&gt; 7..32, :allow_blank =&gt; true
+    validates_length_of :user_name, :within =&gt; 6..20, :too_long =&gt; &quot;pick a shorter name&quot;, :too_short =&gt; &quot;pick a longer name&quot;
+    validates_length_of :zip_code, :minimum =&gt; 5, :too_short =&gt; &quot;please enter at least 5 characters&quot;
+    validates_length_of :smurf_leader, :is =&gt; 4, :message =&gt; &quot;papa is spelled with 4 characters... don't play me.&quot;
+    validates_length_of :essay, :minimum =&gt; 100, :too_short =&gt; &quot;Your essay must be at least 100 words.&quot;), :tokenizer =&gt; lambda {|str| str.scan(/\w+/) }
+  end
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:minimum</tt> - The minimum size of the attribute.
+
+</li>
+<li><tt>:maximum</tt> - The maximum size of the attribute.
+
+</li>
+<li><tt>:is</tt> - The exact size of the attribute.
+
+</li>
+<li><tt>:within</tt> - A range specifying the minimum and maximum size of the
+attribute.
+
+</li>
+<li><tt>:in</tt> - A synonym(or alias) for <tt>:within</tt>.
+
+</li>
+<li><tt>:allow_nil</tt> - Attribute may be <tt>nil</tt>; skip validation.
+
+</li>
+<li><tt>:allow_blank</tt> - Attribute may be blank; skip validation.
+
+</li>
+<li><tt>:too_long</tt> - The error message if the attribute goes over the
+maximum (default is: &#8220;is too long (maximum is %{count}
+characters)&#8221;).
+
+</li>
+<li><tt>:too_short</tt> - The error message if the attribute goes under the
+minimum (default is: &#8220;is too short (min is %{count}
+characters)&#8221;).
+
+</li>
+<li><tt>:wrong_length</tt> - The error message if using the <tt>:is</tt> method
+and the attribute is the wrong size (default is: &#8220;is the wrong length
+(should be %{count} characters)&#8221;).
+
+</li>
+<li><tt>:message</tt> - The error message to use for a <tt>:minimum</tt>,
+<tt>:maximum</tt>, or <tt>:is</tt> violation. An alias of the appropriate
+<tt>too_long</tt>/<tt>too_short</tt>/<tt>wrong_length</tt> message.
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+<li><tt>:tokenizer</tt> - Specifies how to split up the attribute string. (e.g.
+<tt>:tokenizer =&gt; lambda {|str| str.scan(/w+/)}</tt> to count words as
+in above example.) Defaults to <tt>lambda{ |value| value.split(//) }</tt>
+which counts individual characters.
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                <div class="aka">
+                    This method is also aliased as
+                    
+                    <a href="HelperMethods.html#M007690">validates_size_of</a>
+                    
+                </div>
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007689_source')" id="l_M007689_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1cbade35f9697342c513299d5284043778499eb4/activemodel/lib/active_model/validations/length.rb#L97" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007689_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/length.rb, line 97</span>
+97:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_length_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+98:         <span class="ruby-identifier">validates_with</span> <span class="ruby-constant">LengthValidator</span>, <span class="ruby-identifier">_merge_attributes</span>(<span class="ruby-identifier">attr_names</span>)
+99:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007671">
+                    
+                    <a name="M007671"></a><b>validates_numericality_of</b>(*attr_names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Validates whether the value of the specified attribute is numeric by trying
+to convert it to a float with <a href="../../Float.html">Kernel.Float</a>
+(if <tt>only_integer</tt> is false) or applying it to the regular
+expression <tt>/A[+-]?d+Z/</tt> (if <tt>only_integer</tt> is set to true).
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_numericality_of :value, :on =&gt; :create
+  end
+</pre>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>:message</tt> - A custom error message (default is: &#8220;is not a
+number&#8221;).
+
+</li>
+<li><tt>:on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>:only_integer</tt> - Specifies whether the value has to be an integer,
+e.g. an integral value (default is <tt>false</tt>).
+
+</li>
+<li><tt>:allow_nil</tt> - Skip validation if attribute is <tt>nil</tt> (default
+is <tt>false</tt>). Notice that for fixnum and float columns empty strings
+are converted to <tt>nil</tt>.
+
+</li>
+<li><tt>:greater_than</tt> - Specifies the value must be greater than the
+supplied value.
+
+</li>
+<li><tt>:greater_than_or_equal_to</tt> - Specifies the value must be greater
+than or equal the supplied value.
+
+</li>
+<li><tt>:equal_to</tt> - Specifies the value must be equal to the supplied
+value.
+
+</li>
+<li><tt>:less_than</tt> - Specifies the value must be less than the supplied
+value.
+
+</li>
+<li><tt>:less_than_or_equal_to</tt> - Specifies the value must be less than or
+equal the supplied value.
+
+</li>
+<li><tt>:odd</tt> - Specifies the value must be an odd number.
+
+</li>
+<li><tt>:even</tt> - Specifies the value must be an even number.
+
+</li>
+<li><tt>:if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>:unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+<p>
+The following checks can also be supplied with a proc or a symbol which
+corresponds to a method:
+</p>
+<ul>
+<li><tt>:greater_than</tt>
+
+</li>
+<li><tt>:greater_than_or_equal_to</tt>
+
+</li>
+<li><tt>:equal_to</tt>
+
+</li>
+<li><tt>:less_than</tt>
+
+</li>
+<li><tt>:less_than_or_equal_to</tt>
+
+<p>
+class Person < <a
+href="../../ActiveRecord/Base.html">ActiveRecord::Base</a>
+</p>
+<pre>
+  validates_numericality_of :width, :less_than =&gt; Proc.new { |person| person.height }
+  validates_numericality_of :width, :greater_than =&gt; :minimum_weight
+</pre>
+<p>
+end
+</p>
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007671_source')" id="l_M007671_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/numericality.rb#L125" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007671_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/numericality.rb, line 125</span>
+125:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_numericality_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+126:         <span class="ruby-identifier">validates_with</span> <span class="ruby-constant">NumericalityValidator</span>, <span class="ruby-identifier">_merge_attributes</span>(<span class="ruby-identifier">attr_names</span>)
+127:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007701">
+                    
+                    <a name="M007701"></a><b>validates_presence_of</b>(*attr_names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Validates that the specified attributes are not blank (as defined by <a
+href="../../Object.html#M007350">Object#blank?</a>). Happens by default on
+save. Example:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    validates_presence_of :first_name
+  end
+</pre>
+<p>
+The first_name attribute must be in the object and it cannot be blank.
+</p>
+<p>
+If you want to validate the presence of a boolean field (where the real
+values are true and false), you will want to use <tt><a
+href="HelperMethods.html#M007685">validates_inclusion_of</a> :field_name,
+:in =&gt; [true, false]</tt>.
+</p>
+<p>
+This is due to the way <a
+href="../../Object.html#M007350">Object#blank?</a> handles boolean values:
+<tt>false.blank? # =&gt; true</tt>.
+</p>
+<p>
+Configuration options:
+</p>
+<ul>
+<li><tt>message</tt> - A custom error message (default is: &#8220;can&#8217;t
+be blank&#8221;).
+
+</li>
+<li><tt>on</tt> - Specifies when this validation is active (default is
+<tt>:save</tt>, other options <tt>:create</tt>, <tt>:update</tt>).
+
+</li>
+<li><tt>if</tt> - Specifies a method, proc or string to call to determine if
+the validation should occur (e.g. <tt>:if =&gt; :allow_validation</tt>, or
+<tt>:if =&gt; Proc.new { |user| user.signup_step &gt; 2 }</tt>). The
+method, proc or string should return or evaluate to a true or false value.
+
+</li>
+<li><tt>unless</tt> - Specifies a method, proc or string to call to determine
+if the validation should not occur (e.g. <tt>:unless =&gt;
+:skip_validation</tt>, or <tt>:unless =&gt; Proc.new { |user|
+user.signup_step &lt;= 2 }</tt>). The method, proc or string should return
+or evaluate to a true or false value.
+
+</li>
+</ul>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007701_source')" id="l_M007701_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/26392c4ac57e27c63984d47c6326c13f502d5786/activemodel/lib/active_model/validations/presence.rb#L38" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007701_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/presence.rb, line 38</span>
+38:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_presence_of</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">attr_names</span>)
+39:         <span class="ruby-identifier">validates_with</span> <span class="ruby-constant">PresenceValidator</span>, <span class="ruby-identifier">_merge_attributes</span>(<span class="ruby-identifier">attr_names</span>)
+40:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007690">
+                    
+                    <a name="M007690"></a><b>validates_size_of</b>(*attr_names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="HelperMethods.html#M007689">validates_length_of</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

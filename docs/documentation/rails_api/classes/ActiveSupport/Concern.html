@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Concern</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Concern 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activesupport/lib/active_support/concern_rb.html">activesupport/lib/active_support/concern.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006978">append_features</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006977">extended</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006979">included</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006977">
+                    
+                    <a name="M006977"></a><b>extended</b>(base)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006977_source')" id="l_M006977_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2005f8234a8001585b484e43727f20317ca958c6/activesupport/lib/active_support/concern.rb#L38" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006977_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/concern.rb, line 38</span>
+38:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">extended</span>(<span class="ruby-identifier">base</span>)
+39:       <span class="ruby-identifier">base</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-value str">&quot;@_dependencies&quot;</span>, [])
+40:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006978">
+                    
+                    <a name="M006978"></a><b>append_features</b>(base)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006978_source')" id="l_M006978_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2005f8234a8001585b484e43727f20317ca958c6/activesupport/lib/active_support/concern.rb#L42" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006978_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/concern.rb, line 42</span>
+42:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">append_features</span>(<span class="ruby-identifier">base</span>)
+43:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-value str">&quot;@_dependencies&quot;</span>)
+44:         <span class="ruby-identifier">base</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-value str">&quot;@_dependencies&quot;</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">self</span>
+45:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+46:       <span class="ruby-keyword kw">else</span>
+47:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">base</span> <span class="ruby-operator">&lt;</span> <span class="ruby-keyword kw">self</span>
+48:         <span class="ruby-ivar">@_dependencies</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">dep</span><span class="ruby-operator">|</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:include</span>, <span class="ruby-identifier">dep</span>) }
+49:         <span class="ruby-keyword kw">super</span>
+50:         <span class="ruby-identifier">base</span>.<span class="ruby-identifier">extend</span> <span class="ruby-identifier">const_get</span>(<span class="ruby-value str">&quot;ClassMethods&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">const_defined?</span>(<span class="ruby-value str">&quot;ClassMethods&quot;</span>)
+51:         <span class="ruby-identifier">base</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:include</span>, <span class="ruby-identifier">const_get</span>(<span class="ruby-value str">&quot;InstanceMethods&quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">const_defined?</span>(<span class="ruby-value str">&quot;InstanceMethods&quot;</span>)
+52:         <span class="ruby-identifier">base</span>.<span class="ruby-identifier">class_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-ivar">@_included_block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">instance_variable_defined?</span>(<span class="ruby-value str">&quot;@_included_block&quot;</span>)
+53:       <span class="ruby-keyword kw">end</span>
+54:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006979">
+                    
+                    <a name="M006979"></a><b>included</b>(base = nil, &amp;block)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006979_source')" id="l_M006979_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2005f8234a8001585b484e43727f20317ca958c6/activesupport/lib/active_support/concern.rb#L56" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006979_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/concern.rb, line 56</span>
+56:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">included</span>(<span class="ruby-identifier">base</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+57:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">base</span>.<span class="ruby-identifier">nil?</span>
+58:         <span class="ruby-ivar">@_included_block</span> = <span class="ruby-identifier">block</span>
+59:       <span class="ruby-keyword kw">else</span>
+60:         <span class="ruby-keyword kw">super</span>
+61:       <span class="ruby-keyword kw">end</span>
+62:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

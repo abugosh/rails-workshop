@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Application::Railties</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Rails::Application::Railties 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/railties/lib/rails/application/railties_rb.html">railties/lib/rails/application/railties.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004360">all</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004362">engines</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004359">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004363">plugins</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004361">railties</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004359">
+                    
+                    <a name="M004359"></a><b>new</b>(config)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+TODO Write tests for this behavior extracted from <a
+href="../Application.html">Application</a>
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004359_source')" id="l_M004359_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2fde9d774b322fc708990675671231c64c691a33/railties/lib/rails/application/railties.rb#L5" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004359_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File railties/lib/rails/application/railties.rb, line 5</span>
+5:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">config</span>)
+6:         <span class="ruby-ivar">@config</span> = <span class="ruby-identifier">config</span>
+7:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004360">
+                    
+                    <a name="M004360"></a><b>all</b>(&amp;block)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004360_source')" id="l_M004360_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2fde9d774b322fc708990675671231c64c691a33/railties/lib/rails/application/railties.rb#L9" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004360_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/application/railties.rb, line 9</span>
+ 9:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+10:         <span class="ruby-ivar">@all</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">railties</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">engines</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">plugins</span>
+11:         <span class="ruby-ivar">@all</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>
+12:         <span class="ruby-ivar">@all</span>
+13:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004362">
+                    
+                    <a name="M004362"></a><b>engines</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004362_source')" id="l_M004362_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2fde9d774b322fc708990675671231c64c691a33/railties/lib/rails/application/railties.rb#L19" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004362_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/application/railties.rb, line 19</span>
+19:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">engines</span>
+20:         <span class="ruby-ivar">@engines</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Engine</span>.<span class="ruby-identifier">subclasses</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:new</span>)
+21:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004363">
+                    
+                    <a name="M004363"></a><b>plugins</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004363_source')" id="l_M004363_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2fde9d774b322fc708990675671231c64c691a33/railties/lib/rails/application/railties.rb#L23" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004363_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/application/railties.rb, line 23</span>
+23:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">plugins</span>
+24:         <span class="ruby-ivar">@plugins</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">begin</span>
+25:           <span class="ruby-identifier">plugin_names</span> = (<span class="ruby-ivar">@config</span>.<span class="ruby-identifier">plugins</span> <span class="ruby-operator">||</span> [<span class="ruby-identifier">:all</span>]).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">to_sym</span> }
+26:           <span class="ruby-constant">Plugin</span>.<span class="ruby-identifier">all</span>(<span class="ruby-identifier">plugin_names</span>, <span class="ruby-ivar">@config</span>.<span class="ruby-identifier">paths</span>.<span class="ruby-identifier">vendor</span>.<span class="ruby-identifier">plugins</span>)
+27:         <span class="ruby-keyword kw">end</span>
+28:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004361">
+                    
+                    <a name="M004361"></a><b>railties</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004361_source')" id="l_M004361_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2fde9d774b322fc708990675671231c64c691a33/railties/lib/rails/application/railties.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004361_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/application/railties.rb, line 15</span>
+15:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">railties</span>
+16:         <span class="ruby-ivar">@railties</span> <span class="ruby-operator">||=</span> <span class="ruby-operator">::</span><span class="ruby-constant">Rails</span><span class="ruby-operator">::</span><span class="ruby-constant">Railtie</span>.<span class="ruby-identifier">subclasses</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:new</span>)
+17:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

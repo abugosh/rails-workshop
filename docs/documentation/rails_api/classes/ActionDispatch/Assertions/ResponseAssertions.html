@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Assertions::ResponseAssertions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionDispatch::Assertions::ResponseAssertions 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_dispatch/testing/assertions/response_rb.html">actionpack/lib/action_dispatch/testing/assertions/response.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+A small suite of assertions that test responses from Rails applications.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006074">assert_redirected_to</a>,</li>
+                
+                <li><a href="#M006073">assert_response</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006074">
+                    
+                    <a name="M006074"></a><b>assert_redirected_to</b>(options = {}, message=nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Assert that the redirection options passed in match those of the redirect
+called in the latest action. This match can be partial, such that <tt><a
+href="ResponseAssertions.html#M006074">assert_redirected_to</a>(:controller
+=&gt; &quot;weblog&quot;)</tt> will also match the redirection of
+<tt>redirect_to(:controller =&gt; &quot;weblog&quot;, :action =&gt;
+&quot;show&quot;)</tt> and so on.
+</p>
+<h4>Examples</h4>
+<pre>
+  # assert that the redirection was to the &quot;index&quot; action on the WeblogController
+  assert_redirected_to :controller =&gt; &quot;weblog&quot;, :action =&gt; &quot;index&quot;
+
+  # assert that the redirection was to the named route login_url
+  assert_redirected_to login_url
+
+  # assert that the redirection was to the url for @customer
+  assert_redirected_to @customer
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006074_source')" id="l_M006074_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/8da45763b2238e76e75077fbce53fe48cf8e5dec/actionpack/lib/action_dispatch/testing/assertions/response.rb#L62" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006074_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/assertions/response.rb, line 62</span>
+62:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert_redirected_to</span>(<span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">message</span>=<span class="ruby-keyword kw">nil</span>)
+63:         <span class="ruby-identifier">validate_request!</span>
+64: 
+65:         <span class="ruby-identifier">assert_response</span>(<span class="ruby-identifier">:redirect</span>, <span class="ruby-identifier">message</span>)
+66:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">location</span>
+67: 
+68:         <span class="ruby-identifier">redirected_to_after_normalisation</span> = <span class="ruby-identifier">normalize_argument_to_redirection</span>(<span class="ruby-ivar">@response</span>.<span class="ruby-identifier">location</span>)
+69:         <span class="ruby-identifier">options_after_normalisation</span>       = <span class="ruby-identifier">normalize_argument_to_redirection</span>(<span class="ruby-identifier">options</span>)
+70: 
+71:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">redirected_to_after_normalisation</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">options_after_normalisation</span>
+72:           <span class="ruby-identifier">flunk</span> <span class="ruby-node">&quot;Expected response to be a redirect to &lt;#{options_after_normalisation}&gt; but was a redirect to &lt;#{redirected_to_after_normalisation}&gt;&quot;</span>
+73:         <span class="ruby-keyword kw">end</span>
+74:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006073">
+                    
+                    <a name="M006073"></a><b>assert_response</b>(type, message = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Asserts that the response is one of the following types:
+</p>
+<ul>
+<li><tt>:success</tt> - Status code was 200
+
+</li>
+<li><tt>:redirect</tt> - Status code was in the 300-399 range
+
+</li>
+<li><tt>:missing</tt> - Status code was 404
+
+</li>
+<li><tt>:error</tt> - Status code was in the 500-599 range
+
+</li>
+</ul>
+<p>
+You can also pass an explicit status number like <tt><a
+href="ResponseAssertions.html#M006073">assert_response</a>(501)</tt> or its
+symbolic equivalent <tt><a
+href="ResponseAssertions.html#M006073">assert_response</a>(:not_implemented)</tt>.
+See ActionDispatch::StatusCodes for a full list.
+</p>
+<h4>Examples</h4>
+<pre>
+  # assert that the response was a redirection
+  assert_response :redirect
+
+  # assert that the response code was status code 401 (unauthorized)
+  assert_response 401
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006073_source')" id="l_M006073_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/8da45763b2238e76e75077fbce53fe48cf8e5dec/actionpack/lib/action_dispatch/testing/assertions/response.rb#L33" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006073_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/assertions/response.rb, line 33</span>
+33:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert_response</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">message</span> = <span class="ruby-keyword kw">nil</span>)
+34:         <span class="ruby-identifier">validate_request!</span>
+35: 
+36:         <span class="ruby-keyword kw">if</span> [ <span class="ruby-identifier">:success</span>, <span class="ruby-identifier">:missing</span>, <span class="ruby-identifier">:redirect</span>, <span class="ruby-identifier">:error</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">type</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{type}?&quot;</span>)
+37:           <span class="ruby-identifier">assert_block</span>(<span class="ruby-value str">&quot;&quot;</span>) { <span class="ruby-keyword kw">true</span> } <span class="ruby-comment cmt"># to count the assertion</span>
+38:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">response_code</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">type</span>
+39:           <span class="ruby-identifier">assert_block</span>(<span class="ruby-value str">&quot;&quot;</span>) { <span class="ruby-keyword kw">true</span> } <span class="ruby-comment cmt"># to count the assertion</span>
+40:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">response_code</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Rack</span><span class="ruby-operator">::</span><span class="ruby-constant">Utils</span><span class="ruby-operator">::</span><span class="ruby-constant">SYMBOL_TO_STATUS_CODE</span>[<span class="ruby-identifier">type</span>]
+41:           <span class="ruby-identifier">assert_block</span>(<span class="ruby-value str">&quot;&quot;</span>) { <span class="ruby-keyword kw">true</span> } <span class="ruby-comment cmt"># to count the assertion</span>
+42:         <span class="ruby-keyword kw">else</span>
+43:           <span class="ruby-identifier">assert_block</span>(<span class="ruby-identifier">build_message</span>(<span class="ruby-identifier">message</span>, <span class="ruby-value str">&quot;Expected response to be a &lt;?&gt;, but was &lt;?&gt;&quot;</span>, <span class="ruby-identifier">type</span>, <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">response_code</span>)) { <span class="ruby-keyword kw">false</span> }
+44:         <span class="ruby-keyword kw">end</span>
+45:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Validations</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::Validations 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/numericality_rb.html">activemodel/lib/active_model/validations/numericality.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/exclusion_rb.html">activemodel/lib/active_model/validations/exclusion.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/validates_rb.html">activemodel/lib/active_model/validations/validates.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/inclusion_rb.html">activemodel/lib/active_model/validations/inclusion.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/length_rb.html">activemodel/lib/active_model/validations/length.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/callbacks_rb.html">activemodel/lib/active_model/validations/callbacks.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/with_rb.html">activemodel/lib/active_model/validations/with.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/format_rb.html">activemodel/lib/active_model/validations/format.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/presence_rb.html">activemodel/lib/active_model/validations/presence.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/confirmation_rb.html">activemodel/lib/active_model/validations/confirmation.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations/acceptance_rb.html">activemodel/lib/active_model/validations/acceptance.rb</a></li>
+            
+            <li><a href="../../files/activemodel/lib/active_model/validations_rb.html">activemodel/lib/active_model/validations.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <h2>Active Model Numericality <a href="Validator.html">Validator</a></h2>
+<hr size="1"></hr><h2>Active Model Exclusion <a href="Validator.html">Validator</a></h2>
+<hr size="1"></hr><h2>Active Model validates method</h2>
+<hr size="1"></hr><h2>Active Model Inclusion <a href="Validator.html">Validator</a></h2>
+<hr size="1"></hr><h2>Active Model Length <a href="Validator.html">Validator</a></h2>
+<hr size="1"></hr><h2>Active Model Format <a href="Validator.html">Validator</a></h2>
+<hr size="1"></hr><h2>Active Model Presence <a href="Validator.html">Validator</a></h2>
+<hr size="1"></hr><h2>Active Model Confirmation <a href="Validator.html">Validator</a></h2>
+<hr size="1"></hr><h2>Active Model Acceptance <a href="Validator.html">Validator</a></h2>
+<hr size="1"></hr><h2>Active Model <a href="Validations.html">Validations</a></h2>
+<p>
+Provides a full validation framework to your objects.
+</p>
+<p>
+A minimal implementation could be:
+</p>
+<pre>
+  class Person
+    include ActiveModel::Validations
+
+    attr_accessor :first_name, :last_name
+
+    validates_each :first_name, :last_name do |record, attr, value|
+      record.errors.add attr, 'starts with z.' if value.to_s[0] == ?z
+    end
+  end
+</pre>
+<p>
+Which provides you with the full standard validation stack that you know
+from Active Record:
+</p>
+<pre>
+  person = Person.new
+  person.valid?                   # =&gt; true
+  person.invalid?                 # =&gt; false
+
+  person.first_name = 'zoolander'
+  person.valid?                   # =&gt; false
+  person.invalid?                 # =&gt; true
+  person.errors                   # =&gt; #&lt;OrderedHash {:first_name=&gt;[&quot;starts with z.&quot;]}&gt;
+</pre>
+<p>
+Note that <a href="Validations.html">ActiveModel::Validations</a>
+automatically adds an <tt>errors</tt> method to your instances initialized
+with a new <a href="Errors.html">ActiveModel::Errors</a> object, so there
+is no need for you to do this manually.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007715">errors</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007717">invalid?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007718">run_validations!</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>V</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007716">valid?</a>,</li>
+                
+                <li><a href="#M007696">validates_with</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <a href="../Rails.html">Rails</a>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="Validations.html">ActiveModel::Validations</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="Validations/Callbacks.html">ActiveModel::Validations::Callbacks</a></li>
+        
+        <li><span class="type">MODULE</span> <a href="Validations/ClassMethods.html">ActiveModel::Validations::ClassMethods</a></li>
+        
+        <li><span class="type">MODULE</span> <a href="Validations/HelperMethods.html">ActiveModel::Validations::HelperMethods</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Validations/AcceptanceValidator.html">ActiveModel::Validations::AcceptanceValidator</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Validations/ConfirmationValidator.html">ActiveModel::Validations::ConfirmationValidator</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Validations/ExclusionValidator.html">ActiveModel::Validations::ExclusionValidator</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Validations/FormatValidator.html">ActiveModel::Validations::FormatValidator</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Validations/InclusionValidator.html">ActiveModel::Validations::InclusionValidator</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Validations/LengthValidator.html">ActiveModel::Validations::LengthValidator</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Validations/NumericalityValidator.html">ActiveModel::Validations::NumericalityValidator</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Validations/PresenceValidator.html">ActiveModel::Validations::PresenceValidator</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007715">
+                    
+                    <a name="M007715"></a><b>errors</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns the <a href="Errors.html">Errors</a> object that holds all
+information about attribute error messages.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007715_source')" id="l_M007715_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75b985e4e8b3319a4640a8d566d2f3eedce7918e/activemodel/lib/active_model/validations.rb#L170" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007715_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations.rb, line 170</span>
+170:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">errors</span>
+171:       <span class="ruby-ivar">@errors</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Errors</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>)
+172:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007717">
+                    
+                    <a name="M007717"></a><b>invalid?</b>(context = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs the opposite of <tt>valid?</tt>. Returns true if errors were
+added, false otherwise.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007717_source')" id="l_M007717_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75b985e4e8b3319a4640a8d566d2f3eedce7918e/activemodel/lib/active_model/validations.rb#L187" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007717_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations.rb, line 187</span>
+187:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">invalid?</span>(<span class="ruby-identifier">context</span> = <span class="ruby-keyword kw">nil</span>)
+188:       <span class="ruby-operator">!</span><span class="ruby-identifier">valid?</span>(<span class="ruby-identifier">context</span>)
+189:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007716">
+                    
+                    <a name="M007716"></a><b>valid?</b>(context = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Runs all the specified validations and returns true if no errors were added
+otherwise false. Context can optionally be supplied to define which
+callbacks to test against (the context is defined on the validations using
+:on).
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007716_source')" id="l_M007716_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75b985e4e8b3319a4640a8d566d2f3eedce7918e/activemodel/lib/active_model/validations.rb#L177" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007716_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations.rb, line 177</span>
+177:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valid?</span>(<span class="ruby-identifier">context</span> = <span class="ruby-keyword kw">nil</span>)
+178:       <span class="ruby-identifier">current_context</span>, <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">validation_context</span> = <span class="ruby-identifier">validation_context</span>, <span class="ruby-identifier">context</span>
+179:       <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">clear</span>
+180:       <span class="ruby-identifier">run_validations!</span>
+181:     <span class="ruby-keyword kw">ensure</span>
+182:       <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">validation_context</span> = <span class="ruby-identifier">current_context</span>
+183:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007696">
+                    
+                    <a name="M007696"></a><b>validates_with</b>(*args, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Passes the record off to the class or classes specified and allows them to
+add errors based on more complex conditions.
+</p>
+<pre>
+  class Person
+    include ActiveModel::Validations
+
+    validates :instance_validations
+
+    def instance_validations
+      validates_with MyValidator
+    end
+  end
+</pre>
+<p>
+Please consult the class method documentation for more information on
+creating your own validator.
+</p>
+<p>
+You may also pass it multiple classes, like so:
+</p>
+<pre>
+  class Person
+    include ActiveModel::Validations
+
+    validates :instance_validations, :on =&gt; :create
+
+    def instance_validations
+      validates_with MyValidator, MyOtherValidator
+    end
+  end
+</pre>
+<p>
+Standard configuration options (:on, :if and :unless), which are available
+on the class version of <a
+href="Validations.html#M007696">validates_with</a>, should instead be
+placed on the <tt>validates</tt> method as these are applied and tested in
+the callback
+</p>
+<p>
+If you pass any additional configuration options, they will be passed to
+the class and available as <tt>options</tt>, please refer to the class
+version of this method for more information
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007696_source')" id="l_M007696_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0421fb7a913c1c8a7e07a395106bbc65e75e9d45/activemodel/lib/active_model/validations/with.rb#L123" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007696_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/with.rb, line 123</span>
+123:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validates_with</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+124:       <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">extract_options!</span>
+125:       <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">klass</span><span class="ruby-operator">|</span>
+126:         <span class="ruby-identifier">validator</span> = <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+127:         <span class="ruby-identifier">validator</span>.<span class="ruby-identifier">validate</span>(<span class="ruby-keyword kw">self</span>)
+128:       <span class="ruby-keyword kw">end</span>
+129:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007718">
+                    
+                    <a name="M007718"></a><b>run_validations!</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007718_source')" id="l_M007718_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75b985e4e8b3319a4640a8d566d2f3eedce7918e/activemodel/lib/active_model/validations.rb#L212" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007718_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations.rb, line 212</span>
+212:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run_validations!</span>
+213:       <span class="ruby-identifier">_run_validate_callbacks</span>
+214:       <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">empty?</span>
+215:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

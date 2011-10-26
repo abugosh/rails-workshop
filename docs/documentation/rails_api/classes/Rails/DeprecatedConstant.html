@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::DeprecatedConstant</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Rails::DeprecatedConstant 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../ActiveSupport/BasicObject.html">ActiveSupport::BasicObject</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/railties/lib/rails/deprecation_rb.html">railties/lib/rails/deprecation.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004336">deprecate</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004338">method_missing</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004337">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004336">
+                    
+                    <a name="M004336"></a><b>deprecate</b>(old, new)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004336_source')" id="l_M004336_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e8a083ecc2b62f0a070c88ff4871beca57199a25/railties/lib/rails/deprecation.rb#L14" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004336_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/deprecation.rb, line 14</span>
+14:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">deprecate</span>(<span class="ruby-identifier">old</span>, <span class="ruby-identifier">new</span>)
+15:       <span class="ruby-identifier">constant</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">old</span>, <span class="ruby-identifier">new</span>)
+16:       <span class="ruby-identifier">eval</span> <span class="ruby-node">&quot;::#{old} = constant&quot;</span>
+17:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004337">
+                    
+                    <a name="M004337"></a><b>new</b>(old, new)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004337_source')" id="l_M004337_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e8a083ecc2b62f0a070c88ff4871beca57199a25/railties/lib/rails/deprecation.rb#L19" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004337_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/deprecation.rb, line 19</span>
+19:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">old</span>, <span class="ruby-identifier">new</span>)
+20:       <span class="ruby-ivar">@old</span>, <span class="ruby-ivar">@new</span> = <span class="ruby-identifier">old</span>, <span class="ruby-identifier">new</span>
+21:       <span class="ruby-ivar">@target</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">eval</span> <span class="ruby-node">&quot;proc { #{@new} }&quot;</span>
+22:       <span class="ruby-ivar">@warned</span> = <span class="ruby-keyword kw">false</span>
+23:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004338">
+                    
+                    <a name="M004338"></a><b>method_missing</b>(meth, *args, &amp;block)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004338_source')" id="l_M004338_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e8a083ecc2b62f0a070c88ff4871beca57199a25/railties/lib/rails/deprecation.rb#L25" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004338_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/deprecation.rb, line 25</span>
+25:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">meth</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+26:       <span class="ruby-operator">::</span><span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-node">&quot;#{@old} is deprecated. Please use #{@new}&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@warned</span>
+27:       <span class="ruby-ivar">@warned</span> = <span class="ruby-keyword kw">true</span>
+28: 
+29:       <span class="ruby-identifier">target</span> = <span class="ruby-ivar">@target</span>.<span class="ruby-identifier">call</span>
+30:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">target</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">meth</span>)
+31:         <span class="ruby-identifier">target</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">meth</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+32:       <span class="ruby-keyword kw">else</span>
+33:         <span class="ruby-keyword kw">super</span>
+34:       <span class="ruby-keyword kw">end</span>
+35:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

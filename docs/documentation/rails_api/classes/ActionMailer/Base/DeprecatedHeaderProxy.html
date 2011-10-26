@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionMailer::Base::DeprecatedHeaderProxy</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActionMailer::Base::DeprecatedHeaderProxy 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../ActiveSupport/BasicObject.html">ActiveSupport::BasicObject</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionmailer/lib/action_mailer/base_rb.html">actionmailer/lib/action_mailer/base.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>#</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006642">[]=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>H</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006643">headers</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006644">method_missing</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006641">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006641">
+                    
+                    <a name="M006641"></a><b>new</b>(message)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006641_source')" id="l_M006641_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e6bc81837fd14e365a9ea7b737b13889b8536105/actionmailer/lib/action_mailer/base.rb#L475" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006641_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionmailer/lib/action_mailer/base.rb, line 475</span>
+475:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">message</span>)
+476:         <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">message</span>
+477:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006642">
+                    
+                    <a name="M006642"></a><b>[]=</b>(key, value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006642_source')" id="l_M006642_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e6bc81837fd14e365a9ea7b737b13889b8536105/actionmailer/lib/action_mailer/base.rb#L479" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006642_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionmailer/lib/action_mailer/base.rb, line 479</span>
+479:       <span class="ruby-keyword kw">def</span> <span class="ruby-operator">[]=</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span>)
+480:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">String</span>)
+481:           <span class="ruby-operator">::</span><span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-value str">&quot;Using a non-String object for a header's value is deprecated. &quot;</span> \
+482:             <span class="ruby-node">&quot;You specified #{value.inspect} (a #{value.class}) for #{key}&quot;</span>, <span class="ruby-identifier">caller</span>)
+483: 
+484:           <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>
+485:         <span class="ruby-keyword kw">end</span>
+486: 
+487:         <span class="ruby-ivar">@message</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">value</span>
+488:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006643">
+                    
+                    <a name="M006643"></a><b>headers</b>(hash = {})
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006643_source')" id="l_M006643_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e6bc81837fd14e365a9ea7b737b13889b8536105/actionmailer/lib/action_mailer/base.rb#L490" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006643_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionmailer/lib/action_mailer/base.rb, line 490</span>
+490:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">headers</span>(<span class="ruby-identifier">hash</span> = {})
+491:         <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+492:           <span class="ruby-keyword kw">self</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>
+493:         <span class="ruby-keyword kw">end</span>
+494:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006644">
+                    
+                    <a name="M006644"></a><b>method_missing</b>(meth, *args, &amp;block)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006644_source')" id="l_M006644_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e6bc81837fd14e365a9ea7b737b13889b8536105/actionmailer/lib/action_mailer/base.rb#L496" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006644_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionmailer/lib/action_mailer/base.rb, line 496</span>
+496:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">meth</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+497:         <span class="ruby-ivar">@message</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">meth</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+498:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

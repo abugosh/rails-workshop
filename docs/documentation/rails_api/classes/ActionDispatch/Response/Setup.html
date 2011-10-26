@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Response::Setup</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionDispatch::Response::Setup 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_dispatch/http/response_rb.html">actionpack/lib/action_dispatch/http/response.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005810">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005810">
+                    
+                    <a name="M005810"></a><b>new</b>(status = 200, header = {}, body = [])
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005810_source')" id="l_M005810_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e8d2002f217ae13edffe4f8e5c4c0174276bc03b/actionpack/lib/action_dispatch/http/response.rb#L42" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005810_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/response.rb, line 42</span>
+42:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">status</span> = <span class="ruby-value">200</span>, <span class="ruby-identifier">header</span> = {}, <span class="ruby-identifier">body</span> = [])
+43:         <span class="ruby-ivar">@writer</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">x</span> }
+44:         <span class="ruby-ivar">@block</span> = <span class="ruby-keyword kw">nil</span>
+45:         <span class="ruby-ivar">@length</span> = <span class="ruby-value">0</span>
+46: 
+47:         <span class="ruby-ivar">@status</span>, <span class="ruby-ivar">@header</span> = <span class="ruby-identifier">status</span>, <span class="ruby-identifier">header</span>
+48:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">body</span>
+49: 
+50:         <span class="ruby-ivar">@cookie</span> = []
+51:         <span class="ruby-ivar">@sending_file</span> = <span class="ruby-keyword kw">false</span>
+52: 
+53:         <span class="ruby-ivar">@blank</span> = <span class="ruby-keyword kw">false</span>
+54: 
+55:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content_type</span> = <span class="ruby-keyword kw">self</span>[<span class="ruby-value str">&quot;Content-Type&quot;</span>]
+56:           <span class="ruby-identifier">type</span>, <span class="ruby-identifier">charset</span> = <span class="ruby-identifier">content_type</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/;\s*charset=/</span>)
+57:           <span class="ruby-ivar">@content_type</span> = <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">Type</span>.<span class="ruby-identifier">lookup</span>(<span class="ruby-identifier">type</span>)
+58:           <span class="ruby-ivar">@charset</span> = <span class="ruby-identifier">charset</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;UTF-8&quot;</span>
+59:         <span class="ruby-keyword kw">end</span>
+60: 
+61:         <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+62:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

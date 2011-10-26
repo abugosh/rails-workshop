@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Routing::Mapper::Base</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionDispatch::Routing::Mapper::Base 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/actionpack/lib/action_dispatch/routing/mapper_rb.html">actionpack/lib/action_dispatch/routing/mapper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006166">default_url_options</a>,</li>
+                
+                <li><a href="#M006165">default_url_options=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006163">match</a>,</li>
+                
+                <li><a href="#M006164">mount</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006162">root</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006166">
+                    
+                    <a name="M006166"></a><b>default_url_options</b>(options)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="Base.html#M006165">default_url_options=</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006165">
+                    
+                    <a name="M006165"></a><b>default_url_options=</b>(options)
+                    
+                </div>
+                
+                
+                <div class="aka">
+                    This method is also aliased as
+                    
+                    <a href="Base.html#M006166">default_url_options</a>
+                    
+                </div>
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006165_source')" id="l_M006165_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2dc297d0d74c554b9b1da86c0243afcfe95737ab/actionpack/lib/action_dispatch/routing/mapper.rb#L309" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006165_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/routing/mapper.rb, line 309</span>
+309:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default_url_options=</span>(<span class="ruby-identifier">options</span>)
+310:           <span class="ruby-ivar">@set</span>.<span class="ruby-identifier">default_url_options</span> = <span class="ruby-identifier">options</span>
+311:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006163">
+                    
+                    <a name="M006163"></a><b>match</b>(path, options=nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+When you set up a regular route, you supply a series of symbols that <a
+href="../../../Rails.html">Rails</a> maps to parts of an incoming HTTP
+request.
+</p>
+<pre>
+  match ':controller/:action/:id/:user_id'
+</pre>
+<p>
+Two of these symbols are special: :controller maps to the name of a
+controller in your application, and :action maps to the name of an action
+within that controller. Anything other than :controller or :action will be
+available to the action as part of params.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006163_source')" id="l_M006163_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2dc297d0d74c554b9b1da86c0243afcfe95737ab/actionpack/lib/action_dispatch/routing/mapper.rb#L271" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006163_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/routing/mapper.rb, line 271</span>
+271:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">match</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span>=<span class="ruby-keyword kw">nil</span>)
+272:           <span class="ruby-identifier">mapping</span> = <span class="ruby-constant">Mapping</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@set</span>, <span class="ruby-ivar">@scope</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span> <span class="ruby-operator">||</span> {}).<span class="ruby-identifier">to_route</span>
+273:           <span class="ruby-ivar">@set</span>.<span class="ruby-identifier">add_route</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">mapping</span>)
+274:           <span class="ruby-keyword kw">self</span>
+275:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006164">
+                    
+                    <a name="M006164"></a><b>mount</b>(app, options = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Mount a Rack-based application to be used within the application.
+</p>
+<pre>
+  mount SomeRackApp, :at =&gt; &quot;some_route&quot;
+</pre>
+<p>
+Alternatively:
+</p>
+<pre>
+  mount(SomeRackApp =&gt; &quot;some_route&quot;)
+</pre>
+<p>
+All mounted applications come with routing helpers to access them. These
+are named after the class specified, so for the above example the helper is
+either <tt>some_rack_app_path</tt> or <tt>some_rack_app_url</tt>. To
+customize this helper&#8217;s name, use the <tt>:as</tt> option:
+</p>
+<pre>
+  mount(SomeRackApp =&gt; &quot;some_route&quot;, :as =&gt; &quot;exciting&quot;)
+</pre>
+<p>
+This will generate the <tt>exciting_path</tt> and <tt>exciting_url</tt>
+helpers which can be used to navigate to this mounted app.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006164_source')" id="l_M006164_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2dc297d0d74c554b9b1da86c0243afcfe95737ab/actionpack/lib/action_dispatch/routing/mapper.rb#L294" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006164_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/routing/mapper.rb, line 294</span>
+294:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mount</span>(<span class="ruby-identifier">app</span>, <span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>)
+295:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>
+296:             <span class="ruby-identifier">path</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:at</span>)
+297:           <span class="ruby-keyword kw">else</span>
+298:             <span class="ruby-identifier">options</span> = <span class="ruby-identifier">app</span>
+299:             <span class="ruby-identifier">app</span>, <span class="ruby-identifier">path</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">find</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:call</span>) }
+300:             <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">app</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">app</span>
+301:           <span class="ruby-keyword kw">end</span>
+302: 
+303:           <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;A rack application must be specified&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">path</span>
+304: 
+305:           <span class="ruby-identifier">match</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:to</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">app</span>, <span class="ruby-identifier">:anchor</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">:format</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>))
+306:           <span class="ruby-keyword kw">self</span>
+307:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006162">
+                    
+                    <a name="M006162"></a><b>root</b>(options = {})
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+You can specify what <a href="../../../Rails.html">Rails</a> should route
+&#8220;/&#8221; to with the root method:
+</p>
+<pre>
+  root :to =&gt; 'pages#main'
+</pre>
+<p>
+For options, see the <tt>match</tt> method&#8217;s documentation, as
+<tt>root</tt> uses it internally.
+</p>
+<p>
+You should put the root route at the top of <tt>config/routes.rb</tt>,
+because this means it will be matched first. As this is the most popular
+route of most <a href="../../../Rails.html">Rails</a> applications, this is
+beneficial.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006162_source')" id="l_M006162_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/2dc297d0d74c554b9b1da86c0243afcfe95737ab/actionpack/lib/action_dispatch/routing/mapper.rb#L258" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006162_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/routing/mapper.rb, line 258</span>
+258:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">root</span>(<span class="ruby-identifier">options</span> = {})
+259:           <span class="ruby-identifier">match</span> <span class="ruby-value str">'/'</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-identifier">:as</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:root</span>)
+260:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::Validations::UniquenessValidator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveRecord::Validations::UniquenessValidator 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../ActiveModel/EachValidator.html">ActiveModel::EachValidator</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/validations/uniqueness_rb.html">activerecord/lib/active_record/validations/uniqueness.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005201">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005202">setup</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>V</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005203">validate_each</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005201">
+                    
+                    <a name="M005201"></a><b>new</b>(options)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005201_source')" id="l_M005201_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75015d1b5cae80826ef41add3c84d1dd51fee259/activerecord/lib/active_record/validations/uniqueness.rb#L6" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005201_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File activerecord/lib/active_record/validations/uniqueness.rb, line 6</span>
+6:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span>)
+7:         <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-identifier">:case_sensitive</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>))
+8:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005202">
+                    
+                    <a name="M005202"></a><b>setup</b>(klass)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Unfortunately, we have to tie Uniqueness validators to a class.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005202_source')" id="l_M005202_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75015d1b5cae80826ef41add3c84d1dd51fee259/activerecord/lib/active_record/validations/uniqueness.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005202_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/validations/uniqueness.rb, line 11</span>
+11:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>(<span class="ruby-identifier">klass</span>)
+12:         <span class="ruby-ivar">@klass</span> = <span class="ruby-identifier">klass</span>
+13:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005203">
+                    
+                    <a name="M005203"></a><b>validate_each</b>(record, attribute, value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005203_source')" id="l_M005203_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75015d1b5cae80826ef41add3c84d1dd51fee259/activerecord/lib/active_record/validations/uniqueness.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005203_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/validations/uniqueness.rb, line 15</span>
+15:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
+16:         <span class="ruby-identifier">finder_class</span> = <span class="ruby-identifier">find_finder_class_for</span>(<span class="ruby-identifier">record</span>)
+17:         <span class="ruby-identifier">table</span> = <span class="ruby-identifier">finder_class</span>.<span class="ruby-identifier">unscoped</span>
+18: 
+19:         <span class="ruby-identifier">table_name</span>   = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">quoted_table_name</span>
+20: 
+21:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">serialized_attributes</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">attribute</span>.<span class="ruby-identifier">to_s</span>)
+22:           <span class="ruby-identifier">value</span> = <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">dump</span> <span class="ruby-identifier">value</span>
+23:         <span class="ruby-keyword kw">end</span>
+24: 
+25:         <span class="ruby-identifier">sql</span>, <span class="ruby-identifier">params</span>  = <span class="ruby-identifier">mount_sql_and_params</span>(<span class="ruby-identifier">finder_class</span>, <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
+26: 
+27:         <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">table</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">params</span>)
+28: 
+29:         <span class="ruby-constant">Array</span>.<span class="ruby-identifier">wrap</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:scope</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">scope_item</span><span class="ruby-operator">|</span>
+30:           <span class="ruby-identifier">scope_value</span> = <span class="ruby-identifier">record</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">scope_item</span>)
+31:           <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">scope_item</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">scope_value</span>)
+32:         <span class="ruby-keyword kw">end</span>
+33: 
+34:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">new_record?</span>
+35:           <span class="ruby-comment cmt"># TODO : This should be in Arel</span>
+36:           <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">where</span>(<span class="ruby-node">&quot;#{record.class.quoted_table_name}.#{record.class.primary_key} &lt;&gt; ?&quot;</span>, <span class="ruby-identifier">record</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:id</span>))
+37:         <span class="ruby-keyword kw">end</span>
+38: 
+39:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">exists?</span>
+40:           <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">:taken</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">except</span>(<span class="ruby-identifier">:case_sensitive</span>, <span class="ruby-identifier">:scope</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:value</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span>))
+41:         <span class="ruby-keyword kw">end</span>
+42:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

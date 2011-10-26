@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::JSON::Backends::Yaml</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::JSON::Backends::Yaml 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activesupport/lib/active_support/json/backends/yaml_rb.html">activesupport/lib/active_support/json/backends/yaml.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006995">decode</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">ParseError</td>
+            <td>=</td>
+            <td class="attr-value">::StandardError</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006995">
+                    
+                    <a name="M006995"></a><b>decode</b>(json)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Parses a <a href="../../JSON.html">JSON</a> string or IO and converts it
+into an object
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006995_source')" id="l_M006995_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/cae1d46f1c944dc58f57cb60385b125f8b2c8ded/activesupport/lib/active_support/json/backends/yaml.rb#L18" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006995_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/json/backends/yaml.rb, line 18</span>
+18:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">decode</span>(<span class="ruby-identifier">json</span>)
+19:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">json</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:read</span>)
+20:             <span class="ruby-identifier">json</span> = <span class="ruby-identifier">json</span>.<span class="ruby-identifier">read</span>
+21:           <span class="ruby-keyword kw">end</span>
+22:           <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">load</span>(<span class="ruby-identifier">convert_json_to_yaml</span>(<span class="ruby-identifier">json</span>))
+23:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-operator">*</span><span class="ruby-constant">EXCEPTIONS</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+24:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">ParseError</span>, <span class="ruby-value str">&quot;Invalid JSON string: '%s'&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">json</span>
+25:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

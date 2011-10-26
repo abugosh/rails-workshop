@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Http::Cache::Response</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionDispatch::Http::Cache::Response 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/actionpack/lib/action_dispatch/http/cache_rb.html">actionpack/lib/action_dispatch/http/cache.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005922">etag</a>,</li>
+                
+                <li><a href="#M005924">etag=</a>,</li>
+                
+                <li><a href="#M005923">etag?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>L</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005919">last_modified</a>,</li>
+                
+                <li><a href="#M005921">last_modified=</a>,</li>
+                
+                <li><a href="#M005920">last_modified?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005918">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">DEFAULT_CACHE_CONTROL</td>
+            <td>=</td>
+            <td class="attr-value">&quot;max-age=0, private, must-revalidate&quot;</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>cache_control</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005918">
+                    
+                    <a name="M005918"></a><b>new</b>(*)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005918_source')" id="l_M005918_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/bfd728182ce24c7d59e8dbeed705ed5e1361116c/actionpack/lib/action_dispatch/http/cache.rb#L44" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005918_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/cache.rb, line 44</span>
+44:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">*</span>)
+45:           <span class="ruby-identifier">status</span>, <span class="ruby-identifier">header</span>, <span class="ruby-identifier">body</span> = <span class="ruby-keyword kw">super</span>
+46: 
+47:           <span class="ruby-ivar">@cache_control</span> = {}
+48:           <span class="ruby-ivar">@etag</span> = <span class="ruby-keyword kw">self</span>[<span class="ruby-value str">&quot;ETag&quot;</span>]
+49: 
+50:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cache_control</span> = <span class="ruby-keyword kw">self</span>[<span class="ruby-value str">&quot;Cache-Control&quot;</span>]
+51:             <span class="ruby-identifier">cache_control</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/,\s*/</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">segment</span><span class="ruby-operator">|</span>
+52:               <span class="ruby-identifier">first</span>, <span class="ruby-identifier">last</span> = <span class="ruby-identifier">segment</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;=&quot;</span>)
+53:               <span class="ruby-identifier">last</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">true</span>
+54:               <span class="ruby-ivar">@cache_control</span>[<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_sym</span>] = <span class="ruby-identifier">last</span>
+55:             <span class="ruby-keyword kw">end</span>
+56:           <span class="ruby-keyword kw">end</span>
+57:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005922">
+                    
+                    <a name="M005922"></a><b>etag</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005922_source')" id="l_M005922_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/bfd728182ce24c7d59e8dbeed705ed5e1361116c/actionpack/lib/action_dispatch/http/cache.rb#L73" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005922_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/cache.rb, line 73</span>
+73:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">etag</span>
+74:           <span class="ruby-ivar">@etag</span>
+75:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005924">
+                    
+                    <a name="M005924"></a><b>etag=</b>(etag)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005924_source')" id="l_M005924_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/bfd728182ce24c7d59e8dbeed705ed5e1361116c/actionpack/lib/action_dispatch/http/cache.rb#L81" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005924_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/cache.rb, line 81</span>
+81:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">etag=</span>(<span class="ruby-identifier">etag</span>)
+82:           <span class="ruby-identifier">key</span> = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Cache</span>.<span class="ruby-identifier">expand_cache_key</span>(<span class="ruby-identifier">etag</span>)
+83:           <span class="ruby-ivar">@etag</span> = <span class="ruby-keyword kw">self</span>[<span class="ruby-value str">&quot;ETag&quot;</span>] = <span class="ruby-node">%(&quot;#{Digest::MD5.hexdigest(key)}&quot;)</span>
+84:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005923">
+                    
+                    <a name="M005923"></a><b>etag?</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005923_source')" id="l_M005923_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/bfd728182ce24c7d59e8dbeed705ed5e1361116c/actionpack/lib/action_dispatch/http/cache.rb#L77" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005923_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/cache.rb, line 77</span>
+77:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">etag?</span>
+78:           <span class="ruby-ivar">@etag</span>
+79:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005919">
+                    
+                    <a name="M005919"></a><b>last_modified</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005919_source')" id="l_M005919_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/bfd728182ce24c7d59e8dbeed705ed5e1361116c/actionpack/lib/action_dispatch/http/cache.rb#L59" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005919_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/cache.rb, line 59</span>
+59:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_modified</span>
+60:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last</span> = <span class="ruby-identifier">headers</span>[<span class="ruby-value str">'Last-Modified'</span>]
+61:             <span class="ruby-constant">Time</span>.<span class="ruby-identifier">httpdate</span>(<span class="ruby-identifier">last</span>)
+62:           <span class="ruby-keyword kw">end</span>
+63:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005921">
+                    
+                    <a name="M005921"></a><b>last_modified=</b>(utc_time)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005921_source')" id="l_M005921_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/bfd728182ce24c7d59e8dbeed705ed5e1361116c/actionpack/lib/action_dispatch/http/cache.rb#L69" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005921_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/cache.rb, line 69</span>
+69:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_modified=</span>(<span class="ruby-identifier">utc_time</span>)
+70:           <span class="ruby-identifier">headers</span>[<span class="ruby-value str">'Last-Modified'</span>] = <span class="ruby-identifier">utc_time</span>.<span class="ruby-identifier">httpdate</span>
+71:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005920">
+                    
+                    <a name="M005920"></a><b>last_modified?</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005920_source')" id="l_M005920_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/bfd728182ce24c7d59e8dbeed705ed5e1361116c/actionpack/lib/action_dispatch/http/cache.rb#L65" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005920_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/http/cache.rb, line 65</span>
+65:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">last_modified?</span>
+66:           <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'Last-Modified'</span>)
+67:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

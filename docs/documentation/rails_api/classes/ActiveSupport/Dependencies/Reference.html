@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Dependencies::Reference</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::Dependencies::Reference 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/dependencies_rb.html">activesupport/lib/active_support/dependencies.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007380">clear!</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>G</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007379">get</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007378">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>name</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007380">
+                    
+                    <a name="M007380"></a><b>clear!</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007380_source')" id="l_M007380_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/202159680a1be654f785b97765ee109a4a35286d/activesupport/lib/active_support/dependencies.rb#L541" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007380_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/dependencies.rb, line 541</span>
+541:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">clear!</span>
+542:         <span class="ruby-ivar">@@constants</span>.<span class="ruby-identifier">clear</span>
+543:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007378">
+                    
+                    <a name="M007378"></a><b>new</b>(name)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007378_source')" id="l_M007378_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/202159680a1be654f785b97765ee109a4a35286d/activesupport/lib/active_support/dependencies.rb#L532" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007378_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/dependencies.rb, line 532</span>
+532:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>)
+533:         <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>
+534:         <span class="ruby-ivar">@@constants</span>[<span class="ruby-ivar">@name</span>] = <span class="ruby-identifier">name</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:name</span>)
+535:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007379">
+                    
+                    <a name="M007379"></a><b>get</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007379_source')" id="l_M007379_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/202159680a1be654f785b97765ee109a4a35286d/activesupport/lib/active_support/dependencies.rb#L537" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007379_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/dependencies.rb, line 537</span>
+537:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>
+538:         <span class="ruby-ivar">@@constants</span>[<span class="ruby-ivar">@name</span>]
+539:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

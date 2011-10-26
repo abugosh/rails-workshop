@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionView::Resolver</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActionView::Resolver 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_view/template/resolver_rb.html">actionpack/lib/action_view/template/resolver.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <h1>Action View <a href="Resolver.html">Resolver</a></h1>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006257">clear_cache</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006258">find_all</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006256">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006256">
+                    
+                    <a name="M006256"></a><b>new</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006256_source')" id="l_M006256_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/6f80224057803f85b3f448936aae89e742452c3b/actionpack/lib/action_view/template/resolver.rb#L8" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006256_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_view/template/resolver.rb, line 8</span>
+ 8:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>
+ 9:       <span class="ruby-ivar">@cached</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h1</span>,<span class="ruby-identifier">k1</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h1</span>[<span class="ruby-identifier">k1</span>] =
+10:         <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h2</span>,<span class="ruby-identifier">k2</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h2</span>[<span class="ruby-identifier">k2</span>] = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h3</span>, <span class="ruby-identifier">k3</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h3</span>[<span class="ruby-identifier">k3</span>] = {} } } }
+11:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006257">
+                    
+                    <a name="M006257"></a><b>clear_cache</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006257_source')" id="l_M006257_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/6f80224057803f85b3f448936aae89e742452c3b/actionpack/lib/action_view/template/resolver.rb#L13" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006257_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_view/template/resolver.rb, line 13</span>
+13:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear_cache</span>
+14:       <span class="ruby-ivar">@cached</span>.<span class="ruby-identifier">clear</span>
+15:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006258">
+                    
+                    <a name="M006258"></a><b>find_all</b>(name, prefix=nil, partial=false, details={}, key=nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Normalizes the arguments and passes it on to find_template.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006258_source')" id="l_M006258_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/6f80224057803f85b3f448936aae89e742452c3b/actionpack/lib/action_view/template/resolver.rb#L18" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006258_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_view/template/resolver.rb, line 18</span>
+18:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_all</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">prefix</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">partial</span>=<span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">details</span>={}, <span class="ruby-identifier">key</span>=<span class="ruby-keyword kw">nil</span>)
+19:       <span class="ruby-identifier">cached</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">partial</span>) <span class="ruby-keyword kw">do</span>
+20:         <span class="ruby-identifier">find_templates</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">prefix</span>, <span class="ruby-identifier">partial</span>, <span class="ruby-identifier">details</span>)
+21:       <span class="ruby-keyword kw">end</span>
+22:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

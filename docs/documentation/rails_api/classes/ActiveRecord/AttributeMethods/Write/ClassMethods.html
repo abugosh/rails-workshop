@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::AttributeMethods::Write::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::AttributeMethods::Write::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activerecord/lib/active_record/attribute_methods/write_rb.html">activerecord/lib/active_record/attribute_methods/write.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005246">define_method_attribute=</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005246">
+                    
+                    <a name="M005246"></a><b>define_method_attribute=</b>(attr_name)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005246_source')" id="l_M005246_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/63dca41fb62f47d257fd778371dc9cef0fb4181e/activerecord/lib/active_record/attribute_methods/write.rb#L12" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005246_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/attribute_methods/write.rb, line 12</span>
+12:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">define_method_attribute=</span>(<span class="ruby-identifier">attr_name</span>)
+13:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">attr_name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^[a-zA-Z_]\w*[!?=]?$/</span>
+14:               <span class="ruby-identifier">generated_attribute_methods</span>.<span class="ruby-identifier">module_eval</span>(<span class="ruby-node">&quot;def #{attr_name}=(new_value); write_attribute('#{attr_name}', new_value); end&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span>)
+15:             <span class="ruby-keyword kw">else</span>
+16:               <span class="ruby-identifier">generated_attribute_methods</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:define_method</span>, <span class="ruby-node">&quot;#{attr_name}=&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">new_value</span><span class="ruby-operator">|</span>
+17:                 <span class="ruby-identifier">write_attribute</span>(<span class="ruby-identifier">attr_name</span>, <span class="ruby-identifier">new_value</span>)
+18:               <span class="ruby-keyword kw">end</span>
+19:             <span class="ruby-keyword kw">end</span>
+20:           <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

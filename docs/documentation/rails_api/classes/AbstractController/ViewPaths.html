@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>AbstractController::ViewPaths</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            AbstractController::ViewPaths 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/abstract_controller/view_paths_rb.html">actionpack/lib/abstract_controller/view_paths.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005522">append_view_path</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005521">details_for_lookup</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>L</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005520">lookup_context</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005523">prepend_view_path</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="ViewPaths/ClassMethods.html">AbstractController::ViewPaths::ClassMethods</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005522">
+                    
+                    <a name="M005522"></a><b>append_view_path</b>(path)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005522_source')" id="l_M005522_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/908544c90e82b994a01bd9d44250903ef8dd420c/actionpack/lib/abstract_controller/view_paths.rb#L25" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005522_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/abstract_controller/view_paths.rb, line 25</span>
+25:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">append_view_path</span>(<span class="ruby-identifier">path</span>)
+26:       <span class="ruby-identifier">lookup_context</span>.<span class="ruby-identifier">view_paths</span>.<span class="ruby-identifier">push</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">path</span>)
+27:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005521">
+                    
+                    <a name="M005521"></a><b>details_for_lookup</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005521_source')" id="l_M005521_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/908544c90e82b994a01bd9d44250903ef8dd420c/actionpack/lib/abstract_controller/view_paths.rb#L21" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005521_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/abstract_controller/view_paths.rb, line 21</span>
+21:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">details_for_lookup</span>
+22:       { }
+23:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005520">
+                    
+                    <a name="M005520"></a><b>lookup_context</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+LookupContext is the object responsible to hold all information required to
+lookup templates, i.e. view paths and details. Check
+ActionView::LookupContext for more information.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005520_source')" id="l_M005520_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/908544c90e82b994a01bd9d44250903ef8dd420c/actionpack/lib/abstract_controller/view_paths.rb#L17" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005520_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/abstract_controller/view_paths.rb, line 17</span>
+17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">lookup_context</span>
+18:       <span class="ruby-ivar">@lookup_context</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ActionView</span><span class="ruby-operator">::</span><span class="ruby-constant">LookupContext</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">_view_paths</span>, <span class="ruby-identifier">details_for_lookup</span>)
+19:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005523">
+                    
+                    <a name="M005523"></a><b>prepend_view_path</b>(path)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005523_source')" id="l_M005523_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/908544c90e82b994a01bd9d44250903ef8dd420c/actionpack/lib/abstract_controller/view_paths.rb#L29" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005523_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/abstract_controller/view_paths.rb, line 29</span>
+29:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prepend_view_path</span>(<span class="ruby-identifier">path</span>)
+30:       <span class="ruby-identifier">lookup_context</span>.<span class="ruby-identifier">view_paths</span>.<span class="ruby-identifier">unshift</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">path</span>)
+31:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

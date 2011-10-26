@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Cache::Strategy::LocalCache</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Cache::Strategy::LocalCache 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activesupport/lib/active_support/cache/strategy/local_cache_rb.html">activesupport/lib/active_support/cache/strategy/local_cache.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+Caches that implement <a href="LocalCache.html">LocalCache</a> will be
+backed by an in memory cache for the duration of a block. Repeated calls to
+the cache for the same key will hit the in memory cache for faster access.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006923">middleware</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>W</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006922">with_local_cache</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">CLASS</span> <a href="LocalCache/LocalStore.html">ActiveSupport::Cache::Strategy::LocalCache::LocalStore</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006923">
+                    
+                    <a name="M006923"></a><b>middleware</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Middleware class can be inserted as a Rack handler to be local cache for
+the duration of request.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006923_source')" id="l_M006923_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activesupport/lib/active_support/cache/strategy/local_cache.rb#L55" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006923_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache/strategy/local_cache.rb, line 55</span>
+55:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">middleware</span>
+56:           <span class="ruby-ivar">@middleware</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">begin</span>
+57:             <span class="ruby-identifier">klass</span> = <span class="ruby-constant">Class</span>.<span class="ruby-identifier">new</span>
+58:             <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">class_eval</span>(<span class="ruby-value str">&quot;class &lt;&lt; self\ndef name\n\&quot;ActiveSupport::Cache::Strategy::LocalCache\&quot;\nend\nalias :to_s :name\nend\n\ndef initialize(app)\n@app = app\nend\n\ndef call(env)\nThread.current[:\#{thread_local_key}] = LocalStore.new\n@app.call(env)\nensure\nThread.current[:\#{thread_local_key}] = nil\nend\n&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)
+59:             <span class="ruby-identifier">klass</span>
+60:           <span class="ruby-keyword kw">end</span>
+61:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006922">
+                    
+                    <a name="M006922"></a><b>with_local_cache</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Use a local cache for the duration of block.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006922_source')" id="l_M006922_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activesupport/lib/active_support/cache/strategy/local_cache.rb#L43" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006922_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache/strategy/local_cache.rb, line 43</span>
+43:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">with_local_cache</span>
+44:           <span class="ruby-identifier">save_val</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-identifier">thread_local_key</span>]
+45:           <span class="ruby-keyword kw">begin</span>
+46:             <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-identifier">thread_local_key</span>] = <span class="ruby-constant">LocalStore</span>.<span class="ruby-identifier">new</span>
+47:             <span class="ruby-keyword kw">yield</span>
+48:           <span class="ruby-keyword kw">ensure</span>
+49:             <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-identifier">thread_local_key</span>] = <span class="ruby-identifier">save_val</span>
+50:           <span class="ruby-keyword kw">end</span>
+51:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

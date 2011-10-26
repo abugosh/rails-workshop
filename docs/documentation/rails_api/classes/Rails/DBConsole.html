@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::DBConsole</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Rails::DBConsole 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/railties/lib/rails/commands/dbconsole_rb.html">railties/lib/rails/commands/dbconsole.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M003966">find_cmd</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M003964">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M003965">start</a>,</li>
+                
+                <li><a href="#M003963">start</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M003964">
+                    
+                    <a name="M003964"></a><b>new</b>(app)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003964_source')" id="l_M003964_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e4594f7294d18d214746b19e1ce32bd24a1b6387/railties/lib/rails/commands/dbconsole.rb#L18" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003964_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/commands/dbconsole.rb, line 18</span>
+18:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">app</span>)
+19:       <span class="ruby-ivar">@app</span> = <span class="ruby-identifier">app</span>
+20:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M003963">
+                    
+                    <a name="M003963"></a><b>start</b>(app)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003963_source')" id="l_M003963_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e4594f7294d18d214746b19e1ce32bd24a1b6387/railties/lib/rails/commands/dbconsole.rb#L14" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003963_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/commands/dbconsole.rb, line 14</span>
+14:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">start</span>(<span class="ruby-identifier">app</span>)
+15:       <span class="ruby-identifier">new</span>(<span class="ruby-identifier">app</span>).<span class="ruby-identifier">start</span>
+16:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M003966">
+                    
+                    <a name="M003966"></a><b>find_cmd</b>(*commands)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003966_source')" id="l_M003966_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e4594f7294d18d214746b19e1ce32bd24a1b6387/railties/lib/rails/commands/dbconsole.rb#L49" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003966_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/commands/dbconsole.rb, line 49</span>
+49:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_cmd</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">commands</span>)
+50:         <span class="ruby-identifier">dirs_on_path</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'PATH'</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">PATH_SEPARATOR</span>)
+51:         <span class="ruby-identifier">commands</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">commands</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">cmd</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{cmd}.exe&quot;</span>} <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-value str">'host_os'</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/mswin|mingw/</span>
+52: 
+53:         <span class="ruby-identifier">full_path_command</span> = <span class="ruby-keyword kw">nil</span>
+54:         <span class="ruby-identifier">found</span> = <span class="ruby-identifier">commands</span>.<span class="ruby-identifier">detect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cmd</span><span class="ruby-operator">|</span>
+55:           <span class="ruby-identifier">dir</span> = <span class="ruby-identifier">dirs_on_path</span>.<span class="ruby-identifier">detect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+56:             <span class="ruby-identifier">full_path_command</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">cmd</span>)
+57:             <span class="ruby-constant">File</span>.<span class="ruby-identifier">executable?</span> <span class="ruby-identifier">full_path_command</span>
+58:           <span class="ruby-keyword kw">end</span>
+59:         <span class="ruby-keyword kw">end</span>
+60:         <span class="ruby-identifier">found</span> <span class="ruby-value">? </span><span class="ruby-identifier">full_path_command</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">abort</span>(<span class="ruby-node">&quot;Couldn't find database client: #{commands.join(', ')}. Check your $PATH and try again.&quot;</span>)
+61:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M003965">
+                    
+                    <a name="M003965"></a><b>start</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003965_source')" id="l_M003965_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/e4594f7294d18d214746b19e1ce32bd24a1b6387/railties/lib/rails/commands/dbconsole.rb#L22" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003965_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/commands/dbconsole.rb, line 22</span>
+ 22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">start</span>
+ 23:       <span class="ruby-identifier">include_password</span> = <span class="ruby-keyword kw">false</span>
+ 24:       <span class="ruby-identifier">options</span> = {}
+ 25:       <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span><span class="ruby-operator">|</span>
+ 26:         <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">banner</span> = <span class="ruby-value str">&quot;Usage: dbconsole [options] [environment]&quot;</span>
+ 27:         <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-p&quot;</span>, <span class="ruby-value str">&quot;--include-password&quot;</span>, <span class="ruby-value str">&quot;Automatically provide the password from database.yml&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+ 28:           <span class="ruby-identifier">include_password</span> = <span class="ruby-keyword kw">true</span>
+ 29:         <span class="ruby-keyword kw">end</span>
+ 30: 
+ 31:         <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;--mode [MODE]&quot;</span>, [<span class="ruby-value str">'html'</span>, <span class="ruby-value str">'list'</span>, <span class="ruby-value str">'line'</span>, <span class="ruby-value str">'column'</span>],
+ 32:           <span class="ruby-value str">&quot;Automatically put the sqlite3 database in the specified mode (html, list, line, column).&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">mode</span><span class="ruby-operator">|</span>
+ 33:             <span class="ruby-identifier">options</span>[<span class="ruby-value str">'mode'</span>] = <span class="ruby-identifier">mode</span>
+ 34:         <span class="ruby-keyword kw">end</span>
+ 35: 
+ 36:         <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">&quot;-h&quot;</span>, <span class="ruby-value str">&quot;--header&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">h</span><span class="ruby-operator">|</span>
+ 37:           <span class="ruby-identifier">options</span>[<span class="ruby-value str">'header'</span>] = <span class="ruby-identifier">h</span>
+ 38:         <span class="ruby-keyword kw">end</span>
+ 39: 
+ 40:         <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">parse!</span>(<span class="ruby-constant">ARGV</span>)
+ 41:         <span class="ruby-identifier">abort</span> <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">unless</span> (<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">size</span>)
+ 42:       <span class="ruby-keyword kw">end</span>
+ 43: 
+ 44:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">config</span> = <span class="ruby-constant">YAML</span><span class="ruby-operator">::</span><span class="ruby-identifier">load</span>(<span class="ruby-constant">ERB</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">IO</span>.<span class="ruby-identifier">read</span>(<span class="ruby-node">&quot;#{@app.root}/config/database.yml&quot;</span>)).<span class="ruby-identifier">result</span>)[<span class="ruby-constant">Rails</span>.<span class="ruby-identifier">env</span>]
+ 45:         <span class="ruby-identifier">abort</span> <span class="ruby-node">&quot;No database is configured for the environment '#{Rails.env}'&quot;</span>
+ 46:       <span class="ruby-keyword kw">end</span>
+ 47: 
+ 48: 
+ 49:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_cmd</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">commands</span>)
+ 50:         <span class="ruby-identifier">dirs_on_path</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'PATH'</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">split</span>(<span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">PATH_SEPARATOR</span>)
+ 51:         <span class="ruby-identifier">commands</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">commands</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">cmd</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{cmd}.exe&quot;</span>} <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RbConfig</span><span class="ruby-operator">::</span><span class="ruby-constant">CONFIG</span>[<span class="ruby-value str">'host_os'</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/mswin|mingw/</span>
+ 52: 
+ 53:         <span class="ruby-identifier">full_path_command</span> = <span class="ruby-keyword kw">nil</span>
+ 54:         <span class="ruby-identifier">found</span> = <span class="ruby-identifier">commands</span>.<span class="ruby-identifier">detect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cmd</span><span class="ruby-operator">|</span>
+ 55:           <span class="ruby-identifier">dir</span> = <span class="ruby-identifier">dirs_on_path</span>.<span class="ruby-identifier">detect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+ 56:             <span class="ruby-identifier">full_path_command</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">cmd</span>)
+ 57:             <span class="ruby-constant">File</span>.<span class="ruby-identifier">executable?</span> <span class="ruby-identifier">full_path_command</span>
+ 58:           <span class="ruby-keyword kw">end</span>
+ 59:         <span class="ruby-keyword kw">end</span>
+ 60:         <span class="ruby-identifier">found</span> <span class="ruby-value">? </span><span class="ruby-identifier">full_path_command</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">abort</span>(<span class="ruby-node">&quot;Couldn't find database client: #{commands.join(', ')}. Check your $PATH and try again.&quot;</span>)
+ 61:       <span class="ruby-keyword kw">end</span>
+ 62: 
+ 63:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;adapter&quot;</span>]
+ 64:       <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^mysql/</span>
+ 65:         <span class="ruby-identifier">args</span> = {
+ 66:           <span class="ruby-value str">'host'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'--host'</span>,
+ 67:           <span class="ruby-value str">'port'</span>      =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'--port'</span>,
+ 68:           <span class="ruby-value str">'socket'</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'--socket'</span>,
+ 69:           <span class="ruby-value str">'username'</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'--user'</span>,
+ 70:           <span class="ruby-value str">'encoding'</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'--default-character-set'</span>
+ 71:         }.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span>, <span class="ruby-identifier">arg</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{arg}=#{config[opt]}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-identifier">opt</span>] }.<span class="ruby-identifier">compact</span>
+ 72: 
+ 73:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">'password'</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">include_password</span>
+ 74:           <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;--password=#{config['password']}&quot;</span>
+ 75:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">'password'</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">config</span>[<span class="ruby-value str">'password'</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
+ 76:           <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;-p&quot;</span>
+ 77:         <span class="ruby-keyword kw">end</span>
+ 78: 
+ 79:         <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">'database'</span>]
+ 80: 
+ 81:         <span class="ruby-identifier">exec</span>(<span class="ruby-identifier">find_cmd</span>(<span class="ruby-value str">'mysql'</span>, <span class="ruby-value str">'mysql5'</span>), <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+ 82: 
+ 83:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;postgresql&quot;</span>
+ 84:         <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'PGUSER'</span>]     = <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;username&quot;</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;username&quot;</span>]
+ 85:         <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'PGHOST'</span>]     = <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;host&quot;</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;host&quot;</span>]
+ 86:         <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'PGPORT'</span>]     = <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;port&quot;</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;port&quot;</span>]
+ 87:         <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'PGPASSWORD'</span>] = <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;password&quot;</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;password&quot;</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">include_password</span>
+ 88:         <span class="ruby-identifier">exec</span>(<span class="ruby-identifier">find_cmd</span>(<span class="ruby-value str">'psql'</span>), <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;database&quot;</span>])
+ 89: 
+ 90:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;sqlite&quot;</span>
+ 91:         <span class="ruby-identifier">exec</span>(<span class="ruby-identifier">find_cmd</span>(<span class="ruby-value str">'sqlite'</span>), <span class="ruby-identifier">config</span>[<span class="ruby-value str">&quot;database&quot;</span>])
+ 92: 
+ 93:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;sqlite3&quot;</span>
+ 94:         <span class="ruby-identifier">args</span> = []
+ 95: 
+ 96:         <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;-#{options['mode']}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'mode'</span>]
+ 97:         <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;-header&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'header'</span>]
+ 98:         <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">'database'</span>]
+ 99: 
+100:         <span class="ruby-identifier">exec</span>(<span class="ruby-identifier">find_cmd</span>(<span class="ruby-value str">'sqlite3'</span>), <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+101: 
+102:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;oracle&quot;</span>, <span class="ruby-value str">&quot;oracle_enhanced&quot;</span>
+103:         <span class="ruby-identifier">logon</span> = <span class="ruby-value str">&quot;&quot;</span>
+104: 
+105:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">'username'</span>]
+106:           <span class="ruby-identifier">logon</span> = <span class="ruby-identifier">config</span>[<span class="ruby-value str">'username'</span>]
+107:           <span class="ruby-identifier">logon</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;/#{config['password']}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">'password'</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">include_password</span>
+108:           <span class="ruby-identifier">logon</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;@#{config['database']}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-value str">'database'</span>]
+109:         <span class="ruby-keyword kw">end</span>
+110: 
+111:         <span class="ruby-identifier">exec</span>(<span class="ruby-identifier">find_cmd</span>(<span class="ruby-value str">'sqlplus'</span>), <span class="ruby-identifier">logon</span>)
+112: 
+113:       <span class="ruby-keyword kw">else</span>
+114:         <span class="ruby-identifier">abort</span> <span class="ruby-node">&quot;Unknown command-line client for #{config['database']}. Submit a Rails patch to add support!&quot;</span>
+115:       <span class="ruby-keyword kw">end</span>
+116:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

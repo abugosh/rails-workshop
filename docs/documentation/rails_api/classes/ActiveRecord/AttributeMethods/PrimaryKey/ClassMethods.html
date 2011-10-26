@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::AttributeMethods::PrimaryKey::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::AttributeMethods::PrimaryKey::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activerecord/lib/active_record/attribute_methods/primary_key_rb.html">activerecord/lib/active_record/attribute_methods/primary_key.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005217">primary_key</a>,</li>
+                
+                <li><a href="#M005222">primary_key=</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>Q</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005218">quoted_primary_key</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005221">set_primary_key</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005217">
+                    
+                    <a name="M005217"></a><b>primary_key</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Defines the primary key field &#8212; can be overridden in subclasses.
+Overwriting will negate any effect of the primary_key_prefix_type setting,
+though.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005217_source')" id="l_M005217_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3ed8a331973b80c49d56b65d726b1f8be52e5261/activerecord/lib/active_record/attribute_methods/primary_key.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005217_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/attribute_methods/primary_key.rb, line 15</span>
+15:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">primary_key</span>
+16:           <span class="ruby-identifier">reset_primary_key</span>
+17:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005222">
+                    
+                    <a name="M005222"></a><b>primary_key=</b>(value = nil, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="ClassMethods.html#M005221">set_primary_key</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005218">
+                    
+                    <a name="M005218"></a><b>quoted_primary_key</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns a quoted version of the primary key name, used to construct SQL
+statements.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005218_source')" id="l_M005218_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3ed8a331973b80c49d56b65d726b1f8be52e5261/activerecord/lib/active_record/attribute_methods/primary_key.rb#L20" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005218_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/attribute_methods/primary_key.rb, line 20</span>
+20:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">quoted_primary_key</span>
+21:           <span class="ruby-ivar">@quoted_primary_key</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote_column_name</span>(<span class="ruby-identifier">primary_key</span>)
+22:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005221">
+                    
+                    <a name="M005221"></a><b>set_primary_key</b>(value = nil, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Sets the name of the primary key column to use to the given value, or (if
+the value is nil or false) to the value returned by the given block.
+</p>
+<pre>
+  class Project &lt; ActiveRecord::Base
+    set_primary_key &quot;sysid&quot;
+  end
+</pre>
+
+                </div>
+                
+                
+                <div class="aka">
+                    This method is also aliased as
+                    
+                    <a href="ClassMethods.html#M005222">primary_key=</a>
+                    
+                </div>
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005221_source')" id="l_M005221_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3ed8a331973b80c49d56b65d726b1f8be52e5261/activerecord/lib/active_record/attribute_methods/primary_key.rb#L48" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005221_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/attribute_methods/primary_key.rb, line 48</span>
+48:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_primary_key</span>(<span class="ruby-identifier">value</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+49:           <span class="ruby-ivar">@quoted_primary_key</span> = <span class="ruby-keyword kw">nil</span>
+50:           <span class="ruby-identifier">define_attr_method</span> <span class="ruby-identifier">:primary_key</span>, <span class="ruby-identifier">value</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+51:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

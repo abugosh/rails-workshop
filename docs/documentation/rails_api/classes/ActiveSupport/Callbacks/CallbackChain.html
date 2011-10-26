@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Callbacks::CallbackChain</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::Callbacks::CallbackChain 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Array.html">Array</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/callbacks_rb.html">activesupport/lib/active_support/callbacks.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+An Array with a compile method
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007399">compile</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007398">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>name</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>config</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007398">
+                    
+                    <a name="M007398"></a><b>new</b>(name, config)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007398_source')" id="l_M007398_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/30dd1236b1e34e4272ce1048a6eeeacf03230f60/activesupport/lib/active_support/callbacks.rb#L347" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007398_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/callbacks.rb, line 347</span>
+347:       <span class="ruby-keyword kw">def</span>  <span class="ruby-identifier">initialize</span><span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">config</span>)
+348:         <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">name</span>
+349:         <span class="ruby-ivar">@config</span> = {
+350:           <span class="ruby-identifier">:terminator</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;false&quot;</span>,
+351:           <span class="ruby-identifier">:rescuable</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">false</span>,
+352:           <span class="ruby-identifier">:scope</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-identifier">:kind</span> ]
+353:         }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">config</span>)
+354:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007399">
+                    
+                    <a name="M007399"></a><b>compile</b>(key=nil, object=nil)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007399_source')" id="l_M007399_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/30dd1236b1e34e4272ce1048a6eeeacf03230f60/activesupport/lib/active_support/callbacks.rb#L356" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007399_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/callbacks.rb, line 356</span>
+356:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">compile</span>(<span class="ruby-identifier">key</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">object</span>=<span class="ruby-keyword kw">nil</span>)
+357:         <span class="ruby-identifier">method</span> = []
+358:         <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;value = nil&quot;</span>
+359:         <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;halted = false&quot;</span>
+360: 
+361:         <span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">callback</span><span class="ruby-operator">|</span>
+362:           <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">callback</span>.<span class="ruby-identifier">start</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">object</span>)
+363:         <span class="ruby-keyword kw">end</span>
+364: 
+365:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:rescuable</span>]
+366:           <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;rescued_error = nil&quot;</span>
+367:           <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;begin&quot;</span>
+368:         <span class="ruby-keyword kw">end</span>
+369: 
+370:         <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;value = yield if block_given? &amp;&amp; !halted&quot;</span>
+371: 
+372:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:rescuable</span>]
+373:           <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;rescue Exception =&gt; e&quot;</span>
+374:           <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;rescued_error = e&quot;</span>
+375:           <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;end&quot;</span>
+376:         <span class="ruby-keyword kw">end</span>
+377: 
+378:         <span class="ruby-identifier">reverse_each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">callback</span><span class="ruby-operator">|</span>
+379:           <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">callback</span>.<span class="ruby-identifier">end</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">object</span>)
+380:         <span class="ruby-keyword kw">end</span>
+381: 
+382:         <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;raise rescued_error if rescued_error&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">config</span>[<span class="ruby-identifier">:rescuable</span>]
+383:         <span class="ruby-identifier">method</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;halted ? false : (block_given? ? value : true)&quot;</span>
+384:         <span class="ruby-identifier">method</span>.<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+385:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

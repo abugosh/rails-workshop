@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::NamedScope::ClassMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::NamedScope::ClassMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/named_scope_rb.html">activerecord/lib/active_record/named_scope.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004823">named_scope</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004822">scope</a>,</li>
+                
+                <li><a href="#M004820">scoped</a>,</li>
+                
+                <li><a href="#M004821">scopes</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>V</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004824">valid_scope_name?</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004823">
+                    
+                    <a name="M004823"></a><b>named_scope</b>(*args, &amp;block)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004823_source')" id="l_M004823_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activerecord/lib/active_record/named_scope.rb#L123" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004823_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/named_scope.rb, line 123</span>
+123:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">named_scope</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+124:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span>(<span class="ruby-value str">&quot;Base.named_scope has been deprecated, please use Base.scope instead&quot;</span>, <span class="ruby-identifier">caller</span>)
+125:         <span class="ruby-identifier">scope</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+126:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004822">
+                    
+                    <a name="M004822"></a><b>scope</b>(name, scope_options = {}, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Adds a class method for retrieving and querying objects. A scope represents
+a narrowing of a database query, such as <tt>where(:color =&gt;
+:red).select('shirts.*').includes(:washing_instructions)</tt>.
+</p>
+<pre>
+  class Shirt &lt; ActiveRecord::Base
+    scope :red, where(:color =&gt; 'red')
+    scope :dry_clean_only, joins(:washing_instructions).where('washing_instructions.dry_clean_only = ?', true)
+  end
+</pre>
+<p>
+The above calls to <tt>scope</tt> define class methods Shirt.red and
+Shirt.dry_clean_only. Shirt.red, in effect, represents the query
+<tt>Shirt.where(:color =&gt; 'red')</tt>.
+</p>
+<p>
+Unlike <tt>Shirt.find(...)</tt>, however, the object returned by Shirt.red
+is not an Array; it resembles the association object constructed by a
+<tt>has_many</tt> declaration. For instance, you can invoke
+<tt>Shirt.red.first</tt>, <tt>Shirt.red.count</tt>,
+<tt>Shirt.red.where(:size =&gt; 'small')</tt>. Also, just as with the
+association objects, named scopes act like an Array, implementing <a
+href="../../Enumerable.html">Enumerable</a>;
+<tt>Shirt.red.each(&amp;block)</tt>, <tt>Shirt.red.first</tt>, and
+<tt>Shirt.red.inject(memo, &amp;block)</tt> all behave as if Shirt.red
+really was an Array.
+</p>
+<p>
+These named scopes are composable. For instance,
+<tt>Shirt.red.dry_clean_only</tt> will produce all shirts that are both red
+and dry clean only. Nested finds and calculations also work with these
+compositions: <tt>Shirt.red.dry_clean_only.count</tt> returns the number of
+garments for which these criteria obtain. Similarly with
+<tt>Shirt.red.dry_clean_only.average(:thread_count)</tt>.
+</p>
+<p>
+All scopes are available as class methods on the <a
+href="../Base.html">ActiveRecord::Base</a> descendant upon which the scopes
+were defined. But they are also available to <tt>has_many</tt>
+associations. If,
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    has_many :shirts
+  end
+</pre>
+<p>
+then <tt>elton.shirts.red.dry_clean_only</tt> will return all of
+Elton&#8217;s red, dry clean only shirts.
+</p>
+<p>
+Named scopes can also be procedural:
+</p>
+<pre>
+  class Shirt &lt; ActiveRecord::Base
+    scope :colored, lambda {|color| where(:color =&gt; color) }
+  end
+</pre>
+<p>
+In this example, <tt>Shirt.colored('puce')</tt> finds all puce shirts.
+</p>
+<p>
+Named scopes can also have extensions, just as with <tt>has_many</tt>
+declarations:
+</p>
+<pre>
+  class Shirt &lt; ActiveRecord::Base
+    scope :red, where(:color =&gt; 'red') do
+      def dom_id
+        'red_shirts'
+      end
+    end
+  end
+</pre>
+<p>
+Scopes can also be used while creating/building a record.
+</p>
+<pre>
+  class Article &lt; ActiveRecord::Base
+    scope :published, where(:published =&gt; true)
+  end
+
+  Article.published.new.published    # =&gt; true
+  Article.published.create.published # =&gt; true
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004822_source')" id="l_M004822_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activerecord/lib/active_record/named_scope.rb#L100" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004822_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/named_scope.rb, line 100</span>
+100:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">scope</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">scope_options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+101:         <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>
+102:         <span class="ruby-identifier">valid_scope_name?</span>(<span class="ruby-identifier">name</span>)
+103: 
+104:         <span class="ruby-identifier">extension</span> = <span class="ruby-constant">Module</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+105: 
+106:         <span class="ruby-identifier">scopes</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+107:           <span class="ruby-identifier">options</span> = <span class="ruby-identifier">scope_options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Proc</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">scope_options</span>.<span class="ruby-identifier">call</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">scope_options</span>
+108: 
+109:           <span class="ruby-identifier">relation</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+110:             <span class="ruby-identifier">scoped</span>.<span class="ruby-identifier">apply_finder_options</span>(<span class="ruby-identifier">options</span>)
+111:           <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">options</span>
+112:             <span class="ruby-identifier">scoped</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">options</span>)
+113:           <span class="ruby-keyword kw">else</span>
+114:             <span class="ruby-identifier">scoped</span>
+115:           <span class="ruby-keyword kw">end</span>
+116: 
+117:           <span class="ruby-identifier">extension</span> <span class="ruby-value">? </span><span class="ruby-identifier">relation</span>.<span class="ruby-identifier">extending</span>(<span class="ruby-identifier">extension</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">relation</span>
+118:         <span class="ruby-keyword kw">end</span>
+119: 
+120:         <span class="ruby-identifier">singleton_class</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:redefine_method</span>, <span class="ruby-identifier">name</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">scopes</span>[<span class="ruby-identifier">name</span>])
+121:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004820">
+                    
+                    <a name="M004820"></a><b>scoped</b>(options = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns an anonymous scope.
+</p>
+<pre>
+  posts = Post.scoped
+  posts.size # Fires &quot;select count(*) from  posts&quot; and returns the count
+  posts.each {|p| puts p.name } # Fires &quot;select * from posts&quot; and loads post objects
+
+  fruits = Fruit.scoped
+  fruits = fruits.where(:colour =&gt; 'red') if options[:red_only]
+  fruits = fruits.limit(10) if limited?
+</pre>
+<p>
+Anonymous scopes tend to be useful when procedurally generating complex
+queries, where passing intermediate values (scopes) around as first-class
+objects is convenient.
+</p>
+<p>
+You can define a scope that applies to all finders using <a
+href="../Base.html#M005080">ActiveRecord::Base.default_scope</a>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004820_source')" id="l_M004820_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activerecord/lib/active_record/named_scope.rb#L28" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004820_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/named_scope.rb, line 28</span>
+28:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">scoped</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>)
+29:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>
+30:           <span class="ruby-identifier">scoped</span>.<span class="ruby-identifier">apply_finder_options</span>(<span class="ruby-identifier">options</span>)
+31:         <span class="ruby-keyword kw">else</span>
+32:           <span class="ruby-identifier">current_scoped_methods</span> <span class="ruby-value">? </span><span class="ruby-identifier">relation</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">current_scoped_methods</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">clone</span>
+33:         <span class="ruby-keyword kw">end</span>
+34:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004821">
+                    
+                    <a name="M004821"></a><b>scopes</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004821_source')" id="l_M004821_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activerecord/lib/active_record/named_scope.rb#L36" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004821_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/named_scope.rb, line 36</span>
+36:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">scopes</span>
+37:         <span class="ruby-identifier">read_inheritable_attribute</span>(<span class="ruby-identifier">:scopes</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">write_inheritable_attribute</span>(<span class="ruby-identifier">:scopes</span>, {})
+38:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004824">
+                    
+                    <a name="M004824"></a><b>valid_scope_name?</b>(name)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004824_source')" id="l_M004824_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activerecord/lib/active_record/named_scope.rb#L130" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004824_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/named_scope.rb, line 130</span>
+130:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valid_scope_name?</span>(<span class="ruby-identifier">name</span>)
+131:         <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">scopes</span>[<span class="ruby-identifier">name</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">name</span>, <span class="ruby-keyword kw">true</span>)
+132:           <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">warn</span> <span class="ruby-node">&quot;Creating scope :#{name}. &quot;</span> \
+133:                       <span class="ruby-node">&quot;Overwriting existing method #{self.name}.#{name}.&quot;</span>
+134:         <span class="ruby-keyword kw">end</span>
+135:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

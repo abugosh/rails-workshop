@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::SessionStore::Session</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveRecord::SessionStore::Session 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Base.html">ActiveRecord::Base</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/session_store_rb.html">activerecord/lib/active_record/session_store.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+The default Active Record class.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005173">data</a>,</li>
+                
+                <li><a href="#M005165">data_column_name</a>,</li>
+                
+                <li><a href="#M005166">data_column_size_limit</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005167">find_by_session_id</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>L</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005174">loaded?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005172">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [W]
+            </td>
+            <td class='attr-name'>data</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005165">
+                    
+                    <a name="M005165"></a><b>data_column_name</b>
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Customizable data column name. Defaults to &#8216;data&#8217;.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005165_source')" id="l_M005165_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75015d1b5cae80826ef41add3c84d1dd51fee259/activerecord/lib/active_record/session_store.rb#L81" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005165_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/session_store.rb, line 81</span>
+81:       <span class="ruby-identifier">cattr_accessor</span> <span class="ruby-identifier">:data_column_name</span>
+</pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005166">
+                    
+                    <a name="M005166"></a><b>data_column_size_limit</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005166_source')" id="l_M005166_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75015d1b5cae80826ef41add3c84d1dd51fee259/activerecord/lib/active_record/session_store.rb#L88" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005166_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/session_store.rb, line 88</span>
+88:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">data_column_size_limit</span>
+89:           <span class="ruby-ivar">@data_column_size_limit</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">columns_hash</span>[<span class="ruby-identifier">data_column_name</span>].<span class="ruby-identifier">limit</span>
+90:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005167">
+                    
+                    <a name="M005167"></a><b>find_by_session_id</b>(session_id)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Hook to set up sessid compatibility.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005167_source')" id="l_M005167_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75015d1b5cae80826ef41add3c84d1dd51fee259/activerecord/lib/active_record/session_store.rb#L93" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005167_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/session_store.rb, line 93</span>
+93:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_by_session_id</span>(<span class="ruby-identifier">session_id</span>)
+94:           <span class="ruby-identifier">setup_sessid_compatibility!</span>
+95:           <span class="ruby-identifier">find_by_session_id</span>(<span class="ruby-identifier">session_id</span>)
+96:         <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005172">
+                    
+                    <a name="M005172"></a><b>new</b>(attributes = nil)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005172_source')" id="l_M005172_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75015d1b5cae80826ef41add3c84d1dd51fee259/activerecord/lib/active_record/session_store.rb#L124" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005172_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/session_store.rb, line 124</span>
+124:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">attributes</span> = <span class="ruby-keyword kw">nil</span>)
+125:         <span class="ruby-ivar">@data</span> = <span class="ruby-keyword kw">nil</span>
+126:         <span class="ruby-keyword kw">super</span>
+127:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005173">
+                    
+                    <a name="M005173"></a><b>data</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Lazy-unmarshal session state.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005173_source')" id="l_M005173_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75015d1b5cae80826ef41add3c84d1dd51fee259/activerecord/lib/active_record/session_store.rb#L130" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005173_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/session_store.rb, line 130</span>
+130:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">data</span>
+131:         <span class="ruby-ivar">@data</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">unmarshal</span>(<span class="ruby-identifier">read_attribute</span>(<span class="ruby-ivar">@@data_column_name</span>)) <span class="ruby-operator">||</span> {}
+132:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005174">
+                    
+                    <a name="M005174"></a><b>loaded?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Has the session been loaded yet?
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005174_source')" id="l_M005174_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/75015d1b5cae80826ef41add3c84d1dd51fee259/activerecord/lib/active_record/session_store.rb#L137" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005174_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/session_store.rb, line 137</span>
+137:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">loaded?</span>
+138:         <span class="ruby-ivar">@data</span>
+139:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Erb::Generators::ScaffoldGenerator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Erb::Generators::ScaffoldGenerator 
+            
+                <span class="parent">&lt; 
+                    
+                    Base
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/railties/lib/rails/generators/erb/scaffold/scaffold_generator_rb.html">railties/lib/rails/generators/erb/scaffold/scaffold_generator.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004243">available_views</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004242">copy_view_files</a>,</li>
+                
+                <li><a href="#M004241">create_root_folder</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <a href="../../Rails.html">Rails</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004242">
+                    
+                    <a name="M004242"></a><b>copy_view_files</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004242_source')" id="l_M004242_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/67ee6c38b9b112eabe37d5869c23210b9ebf453c/railties/lib/rails/generators/erb/scaffold/scaffold_generator.rb#L15" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004242_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/generators/erb/scaffold/scaffold_generator.rb, line 15</span>
+15:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">copy_view_files</span>
+16:         <span class="ruby-identifier">available_views</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">view</span><span class="ruby-operator">|</span>
+17:           <span class="ruby-identifier">filename</span> = <span class="ruby-identifier">filename_with_extensions</span>(<span class="ruby-identifier">view</span>)
+18:           <span class="ruby-identifier">template</span> <span class="ruby-identifier">filename</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;app/views&quot;</span>, <span class="ruby-identifier">controller_file_path</span>, <span class="ruby-identifier">filename</span>)
+19:         <span class="ruby-keyword kw">end</span>
+20:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004241">
+                    
+                    <a name="M004241"></a><b>create_root_folder</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004241_source')" id="l_M004241_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/67ee6c38b9b112eabe37d5869c23210b9ebf453c/railties/lib/rails/generators/erb/scaffold/scaffold_generator.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004241_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/generators/erb/scaffold/scaffold_generator.rb, line 11</span>
+11:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_root_folder</span>
+12:         <span class="ruby-identifier">empty_directory</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;app/views&quot;</span>, <span class="ruby-identifier">controller_file_path</span>)
+13:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004243">
+                    
+                    <a name="M004243"></a><b>available_views</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004243_source')" id="l_M004243_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/67ee6c38b9b112eabe37d5869c23210b9ebf453c/railties/lib/rails/generators/erb/scaffold/scaffold_generator.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004243_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/generators/erb/scaffold/scaffold_generator.rb, line 24</span>
+24:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">available_views</span>
+25:         <span class="ruby-node">%w(index edit show new _form)</span>
+26:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

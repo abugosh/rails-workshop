@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::LogSubscriber</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::LogSubscriber 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activesupport/lib/active_support/log_subscriber_rb.html">activesupport/lib/active_support/log_subscriber.rb</a></li>
+            
+            <li><a href="../../files/activesupport/lib/active_support/log_subscriber/test_helper_rb.html">activesupport/lib/active_support/log_subscriber/test_helper.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+<a href="LogSubscriber.html">ActiveSupport::LogSubscriber</a> is an object
+set to consume <a
+href="Notifications.html">ActiveSupport::Notifications</a> with solely
+purpose of logging. The log subscriber dispatches notifications to a
+regirested object based on its given namespace.
+</p>
+<p>
+An example would be Active Record log subscriber responsible for logging
+queries:
+</p>
+<pre>
+  module ActiveRecord
+    class LogSubscriber &lt; ActiveSupport::LogSubscriber
+      def sql(event)
+        &quot;#{event.payload[:name]} (#{event.duration}) #{event.payload[:sql]}&quot;
+      end
+    end
+  end
+</pre>
+<p>
+And it&#8217;s finally registed as:
+</p>
+<pre>
+  ActiveRecord::LogSubscriber.attach_to :active_record
+</pre>
+<p>
+Since we need to know all instance methods before attaching the log
+subscriber, the line above should be called after your <a
+href="../ActiveRecord/LogSubscriber.html">ActiveRecord::LogSubscriber</a>
+definition.
+</p>
+<p>
+After configured, whenever a &#8220;sql.active_record&#8220; notification
+is published, it will properly dispatch the event (<a
+href="Notifications/Event.html">ActiveSupport::Notifications::Event</a>) to
+the sql method.
+</p>
+<p>
+Log subscriber also has some helpers to deal with logging and automatically
+flushes all logs when the request finishes (via action_dispatch.callback
+notification) in a <a href="../Rails.html">Rails</a> environment.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006813">attach_to</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006817">call</a>,</li>
+                
+                <li><a href="#M006818">color</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006816">flush_all!</a>,</li>
+                
+                <li><a href="#M006815">flushable_loggers</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>L</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006814">log_subscribers</a>,</li>
+                
+                <li><a href="#M006812">logger</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="LogSubscriber/TestHelper.html">ActiveSupport::LogSubscriber::TestHelper</a></li>
+        
+    </ul>
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">CLEAR</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[0m&quot;</td>
+        </tr>
+        
+        <tr valign='top'>
+            <td>&nbsp;</td>
+            <td colspan="2" class="attr-desc"><p>
+Embed in a String to clear all previous ANSI sequences.
+</p>
+</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">BOLD</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[1m&quot;</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">BLACK</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[30m&quot;</td>
+        </tr>
+        
+        <tr valign='top'>
+            <td>&nbsp;</td>
+            <td colspan="2" class="attr-desc"><p>
+Colors
+</p>
+</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">RED</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[31m&quot;</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">GREEN</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[32m&quot;</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">YELLOW</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[33m&quot;</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">BLUE</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[34m&quot;</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">MAGENTA</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[35m&quot;</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">CYAN</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[36m&quot;</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">WHITE</td>
+            <td>=</td>
+            <td class="attr-value">&quot;\e[37m&quot;</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006813">
+                    
+                    <a name="M006813"></a><b>attach_to</b>(namespace, log_subscriber=new, notifier=ActiveSupport::Notifications)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006813_source')" id="l_M006813_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/a2b1be28c330b0b5e11a076830fb822b663562d1/activesupport/lib/active_support/log_subscriber.rb#L59" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006813_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/log_subscriber.rb, line 59</span>
+59:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">attach_to</span>(<span class="ruby-identifier">namespace</span>, <span class="ruby-identifier">log_subscriber</span>=<span class="ruby-identifier">new</span>, <span class="ruby-identifier">notifier</span>=<span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Notifications</span>)
+60:         <span class="ruby-identifier">log_subscribers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">log_subscriber</span>
+61:         <span class="ruby-ivar">@@flushable_loggers</span> = <span class="ruby-keyword kw">nil</span>
+62: 
+63:         <span class="ruby-identifier">log_subscriber</span>.<span class="ruby-identifier">public_methods</span>(<span class="ruby-keyword kw">false</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">event</span><span class="ruby-operator">|</span>
+64:           <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-value str">'call'</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">event</span>.<span class="ruby-identifier">to_s</span>
+65: 
+66:           <span class="ruby-identifier">notifier</span>.<span class="ruby-identifier">subscribe</span>(<span class="ruby-node">&quot;#{event}.#{namespace}&quot;</span>, <span class="ruby-identifier">log_subscriber</span>)
+67:         <span class="ruby-keyword kw">end</span>
+68:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006816">
+                    
+                    <a name="M006816"></a><b>flush_all!</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Flush all <a href="LogSubscriber.html#M006814">log_subscribers</a>&#8217;
+logger.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006816_source')" id="l_M006816_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/a2b1be28c330b0b5e11a076830fb822b663562d1/activesupport/lib/active_support/log_subscriber.rb#L83" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006816_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/log_subscriber.rb, line 83</span>
+83:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">flush_all!</span>
+84:         <span class="ruby-identifier">flushable_loggers</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">log</span><span class="ruby-operator">|</span> <span class="ruby-identifier">log</span>.<span class="ruby-identifier">flush</span> }
+85:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006815">
+                    
+                    <a name="M006815"></a><b>flushable_loggers</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006815_source')" id="l_M006815_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/a2b1be28c330b0b5e11a076830fb822b663562d1/activesupport/lib/active_support/log_subscriber.rb#L74" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006815_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/log_subscriber.rb, line 74</span>
+74:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">flushable_loggers</span>
+75:         <span class="ruby-ivar">@@flushable_loggers</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">begin</span>
+76:           <span class="ruby-identifier">loggers</span> = <span class="ruby-identifier">log_subscribers</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:logger</span>)
+77:           <span class="ruby-identifier">loggers</span>.<span class="ruby-identifier">uniq!</span>
+78:           <span class="ruby-identifier">loggers</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">l</span><span class="ruby-operator">|</span> <span class="ruby-identifier">l</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:flush</span>) }
+79:         <span class="ruby-keyword kw">end</span>
+80:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006814">
+                    
+                    <a name="M006814"></a><b>log_subscribers</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006814_source')" id="l_M006814_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/a2b1be28c330b0b5e11a076830fb822b663562d1/activesupport/lib/active_support/log_subscriber.rb#L70" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006814_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/log_subscriber.rb, line 70</span>
+70:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">log_subscribers</span>
+71:         <span class="ruby-ivar">@@log_subscribers</span> <span class="ruby-operator">||=</span> []
+72:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006812">
+                    
+                    <a name="M006812"></a><b>logger</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006812_source')" id="l_M006812_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/a2b1be28c330b0b5e11a076830fb822b663562d1/activesupport/lib/active_support/log_subscriber.rb#L55" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006812_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/log_subscriber.rb, line 55</span>
+55:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">logger</span>
+56:         <span class="ruby-ivar">@logger</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">Rails</span>.<span class="ruby-identifier">logger</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">Rails</span>)
+57:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006817">
+                    
+                    <a name="M006817"></a><b>call</b>(message, *args)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006817_source')" id="l_M006817_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/a2b1be28c330b0b5e11a076830fb822b663562d1/activesupport/lib/active_support/log_subscriber.rb#L88" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006817_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/log_subscriber.rb, line 88</span>
+88:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">message</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+89:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">logger</span>
+90: 
+91:       <span class="ruby-identifier">method</span> = <span class="ruby-identifier">message</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'.'</span>).<span class="ruby-identifier">first</span>
+92:       <span class="ruby-keyword kw">begin</span>
+93:         <span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>, <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Notifications</span><span class="ruby-operator">::</span><span class="ruby-constant">Event</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">message</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>))
+94:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+95:         <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;Could not log #{message.inspect} event. #{e.class}: #{e.message}&quot;</span>
+96:       <span class="ruby-keyword kw">end</span>
+97:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006818">
+                    
+                    <a name="M006818"></a><b>color</b>(text, color, bold=false)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Set color by using a string or one of the defined constants. If a third
+option is set to true, it also adds bold to the string. This is based on
+Highline implementation and it automatically appends <a
+href="LogSubscriber.html#CLEAR">CLEAR</a> to the end of the returned
+String.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006818_source')" id="l_M006818_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/a2b1be28c330b0b5e11a076830fb822b663562d1/activesupport/lib/active_support/log_subscriber.rb#L116" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006818_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/log_subscriber.rb, line 116</span>
+116:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">color</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">color</span>, <span class="ruby-identifier">bold</span>=<span class="ruby-keyword kw">false</span>)
+117:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">text</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">colorize_logging</span>
+118:       <span class="ruby-identifier">color</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">color</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">upcase</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">color</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+119:       <span class="ruby-identifier">bold</span>  = <span class="ruby-identifier">bold</span> <span class="ruby-value">? </span><span class="ruby-constant">BOLD</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+120:       <span class="ruby-node">&quot;#{bold}#{color}#{text}#{CLEAR}&quot;</span>
+121:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::SpawnMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::SpawnMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activerecord/lib/active_record/relation/spawn_methods_rb.html">activerecord/lib/active_record/relation/spawn_methods.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>#</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004826">&</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004829">apply_finder_options</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004827">except</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004825">merge</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>O</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004828">only</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">VALID_FIND_OPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">[ :conditions, :include, :joins, :limit, :offset, :extend,                            :order, :select, :readonly, :group, :having, :from, :lock ]</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004826">
+                    
+                    <a name="M004826"></a><b>&amp;</b>(r)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004826_source')" id="l_M004826_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b8ff5f0b672a06b040d8078bfdb14f1630913b11/activerecord/lib/active_record/relation/spawn_methods.rb#L70" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004826_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/relation/spawn_methods.rb, line 70</span>
+70:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">&amp;</span>(<span class="ruby-identifier">r</span>)
+71:       <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;Using &amp; to merge relations has been deprecated and will be removed in Rails 3.1. Please use the relation's merge method, instead&quot;</span>
+72:       <span class="ruby-identifier">merge</span>(<span class="ruby-identifier">r</span>)
+73:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004829">
+                    
+                    <a name="M004829"></a><b>apply_finder_options</b>(options)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004829_source')" id="l_M004829_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b8ff5f0b672a06b040d8078bfdb14f1630913b11/activerecord/lib/active_record/relation/spawn_methods.rb#L112" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004829_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/relation/spawn_methods.rb, line 112</span>
+112:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">apply_finder_options</span>(<span class="ruby-identifier">options</span>)
+113:       <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">clone</span>
+114:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">relation</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>
+115: 
+116:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">assert_valid_keys</span>(<span class="ruby-constant">VALID_FIND_OPTIONS</span>)
+117:       <span class="ruby-identifier">finders</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">dup</span>
+118:       <span class="ruby-identifier">finders</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span> }
+119: 
+120:       ([<span class="ruby-identifier">:joins</span>, <span class="ruby-identifier">:select</span>, <span class="ruby-identifier">:group</span>, <span class="ruby-identifier">:order</span>, <span class="ruby-identifier">:having</span>, <span class="ruby-identifier">:limit</span>, <span class="ruby-identifier">:offset</span>, <span class="ruby-identifier">:from</span>, <span class="ruby-identifier">:lock</span>, <span class="ruby-identifier">:readonly</span>] <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">finders</span>.<span class="ruby-identifier">keys</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">finder</span><span class="ruby-operator">|</span>
+121:         <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">finder</span>, <span class="ruby-identifier">finders</span>[<span class="ruby-identifier">finder</span>])
+122:       <span class="ruby-keyword kw">end</span>
+123: 
+124:       <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">where</span>(<span class="ruby-identifier">finders</span>[<span class="ruby-identifier">:conditions</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">:conditions</span>)
+125:       <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-identifier">finders</span>[<span class="ruby-identifier">:include</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">:include</span>)
+126:       <span class="ruby-identifier">relation</span> = <span class="ruby-identifier">relation</span>.<span class="ruby-identifier">extending</span>(<span class="ruby-identifier">finders</span>[<span class="ruby-identifier">:extend</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">:extend</span>)
+127: 
+128:       <span class="ruby-identifier">relation</span>
+129:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004827">
+                    
+                    <a name="M004827"></a><b>except</b>(*skips)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004827_source')" id="l_M004827_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b8ff5f0b672a06b040d8078bfdb14f1630913b11/activerecord/lib/active_record/relation/spawn_methods.rb#L75" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004827_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/relation/spawn_methods.rb, line 75</span>
+75:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">except</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">skips</span>)
+76:       <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@klass</span>, <span class="ruby-identifier">table</span>)
+77: 
+78:       ((<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">ASSOCIATION_METHODS</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTI_VALUE_METHODS</span>) <span class="ruby-operator">-</span> <span class="ruby-identifier">skips</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+79:         <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_values=&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_values&quot;</span>))
+80:       <span class="ruby-keyword kw">end</span>
+81: 
+82:       (<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_VALUE_METHODS</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">skips</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+83:         <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_value=&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_value&quot;</span>))
+84:       <span class="ruby-keyword kw">end</span>
+85: 
+86:       <span class="ruby-comment cmt"># Apply scope extension modules</span>
+87:       <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:apply_modules</span>, <span class="ruby-identifier">extensions</span>)
+88: 
+89:       <span class="ruby-identifier">result</span>
+90:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004825">
+                    
+                    <a name="M004825"></a><b>merge</b>(r)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004825_source')" id="l_M004825_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b8ff5f0b672a06b040d8078bfdb14f1630913b11/activerecord/lib/active_record/relation/spawn_methods.rb#L5" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004825_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/relation/spawn_methods.rb, line 5</span>
+ 5:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">merge</span>(<span class="ruby-identifier">r</span>)
+ 6:       <span class="ruby-identifier">merged_relation</span> = <span class="ruby-identifier">clone</span>
+ 7:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">merged_relation</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">r</span>
+ 8:       <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">to_a</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">r</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+ 9: 
+10:       <span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">ASSOCIATION_METHODS</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+11:         <span class="ruby-identifier">value</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_values&quot;</span>)
+12: 
+13:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">empty?</span>
+14:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">method</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:includes</span>
+15:             <span class="ruby-identifier">merged_relation</span> = <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-identifier">value</span>)
+16:           <span class="ruby-keyword kw">else</span>
+17:             <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_values=&quot;</span>, <span class="ruby-identifier">value</span>)
+18:           <span class="ruby-keyword kw">end</span>
+19:         <span class="ruby-keyword kw">end</span>
+20:       <span class="ruby-keyword kw">end</span>
+21: 
+22:       (<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTI_VALUE_METHODS</span> <span class="ruby-operator">-</span> [<span class="ruby-identifier">:joins</span>, <span class="ruby-identifier">:where</span>, <span class="ruby-identifier">:order</span>]).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+23:         <span class="ruby-identifier">value</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_values&quot;</span>)
+24:         <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_values=&quot;</span>, <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_values&quot;</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">value</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">present?</span>
+25:       <span class="ruby-keyword kw">end</span>
+26: 
+27:       <span class="ruby-identifier">order_value</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">order_values</span>
+28:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">order_value</span>.<span class="ruby-identifier">present?</span>
+29:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">reorder_flag</span>
+30:           <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">order_values</span> = <span class="ruby-identifier">order_value</span>
+31:         <span class="ruby-keyword kw">else</span>
+32:           <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">order_values</span> = <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">order_values</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">order_value</span>
+33:         <span class="ruby-keyword kw">end</span>
+34:       <span class="ruby-keyword kw">end</span>
+35: 
+36:       <span class="ruby-identifier">merged_relation</span> = <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">joins</span>(<span class="ruby-identifier">r</span>.<span class="ruby-identifier">joins_values</span>)
+37: 
+38:       <span class="ruby-identifier">merged_wheres</span> = <span class="ruby-ivar">@where_values</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">r</span>.<span class="ruby-identifier">where_values</span>
+39: 
+40:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@where_values</span>.<span class="ruby-identifier">empty?</span>
+41:         <span class="ruby-comment cmt"># Remove duplicates, last one wins.</span>
+42:         <span class="ruby-identifier">seen</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">table</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">table</span>] = {} }
+43:         <span class="ruby-identifier">merged_wheres</span> = <span class="ruby-identifier">merged_wheres</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">w</span><span class="ruby-operator">|</span>
+44:           <span class="ruby-identifier">nuke</span> = <span class="ruby-keyword kw">false</span>
+45:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:operator</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">w</span>.<span class="ruby-identifier">operator</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:==</span>
+46:             <span class="ruby-identifier">name</span>              = <span class="ruby-identifier">w</span>.<span class="ruby-identifier">left</span>.<span class="ruby-identifier">name</span>
+47:             <span class="ruby-identifier">table</span>             = <span class="ruby-identifier">w</span>.<span class="ruby-identifier">left</span>.<span class="ruby-identifier">relation</span>.<span class="ruby-identifier">name</span>
+48:             <span class="ruby-identifier">nuke</span>              = <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">table</span>][<span class="ruby-identifier">name</span>]
+49:             <span class="ruby-identifier">seen</span>[<span class="ruby-identifier">table</span>][<span class="ruby-identifier">name</span>] = <span class="ruby-keyword kw">true</span>
+50:           <span class="ruby-keyword kw">end</span>
+51:           <span class="ruby-identifier">nuke</span>
+52:         }.<span class="ruby-identifier">reverse</span>
+53:       <span class="ruby-keyword kw">end</span>
+54: 
+55:       <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">where_values</span> = <span class="ruby-identifier">merged_wheres</span>
+56: 
+57:       <span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_VALUE_METHODS</span>.<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:lock</span>}.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+58:         <span class="ruby-identifier">value</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_value&quot;</span>)
+59:         <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_value=&quot;</span>, <span class="ruby-identifier">value</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+60:       <span class="ruby-keyword kw">end</span>
+61: 
+62:       <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">lock_value</span> = <span class="ruby-identifier">r</span>.<span class="ruby-identifier">lock_value</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">lock_value</span>
+63: 
+64:       <span class="ruby-comment cmt"># Apply scope extension modules</span>
+65:       <span class="ruby-identifier">merged_relation</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:apply_modules</span>, <span class="ruby-identifier">r</span>.<span class="ruby-identifier">extensions</span>
+66: 
+67:       <span class="ruby-identifier">merged_relation</span>
+68:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004828">
+                    
+                    <a name="M004828"></a><b>only</b>(*onlies)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004828_source')" id="l_M004828_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b8ff5f0b672a06b040d8078bfdb14f1630913b11/activerecord/lib/active_record/relation/spawn_methods.rb#L92" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004828_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/relation/spawn_methods.rb, line 92</span>
+ 92:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">only</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">onlies</span>)
+ 93:       <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@klass</span>, <span class="ruby-identifier">table</span>)
+ 94: 
+ 95:       ((<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">ASSOCIATION_METHODS</span> <span class="ruby-operator">+</span> <span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTI_VALUE_METHODS</span>) <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">onlies</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+ 96:         <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_values=&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_values&quot;</span>))
+ 97:       <span class="ruby-keyword kw">end</span>
+ 98: 
+ 99:       (<span class="ruby-constant">Relation</span><span class="ruby-operator">::</span><span class="ruby-constant">SINGLE_VALUE_METHODS</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">onlies</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">method</span><span class="ruby-operator">|</span>
+100:         <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_value=&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-identifier">:&quot;#{method}_value&quot;</span>))
+101:       <span class="ruby-keyword kw">end</span>
+102: 
+103:       <span class="ruby-comment cmt"># Apply scope extension modules</span>
+104:       <span class="ruby-identifier">result</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:apply_modules</span>, <span class="ruby-identifier">extensions</span>)
+105: 
+106:       <span class="ruby-identifier">result</span>
+107:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Integration::RequestHelpers</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionDispatch::Integration::RequestHelpers 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_dispatch/testing/integration_rb.html">actionpack/lib/action_dispatch/testing/integration.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006100">delete</a>,</li>
+                
+                <li><a href="#M006109">delete_via_redirect</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006104">follow_redirect!</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>G</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006097">get</a>,</li>
+                
+                <li><a href="#M006106">get_via_redirect</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>H</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006101">head</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006098">post</a>,</li>
+                
+                <li><a href="#M006107">post_via_redirect</a>,</li>
+                
+                <li><a href="#M006099">put</a>,</li>
+                
+                <li><a href="#M006108">put_via_redirect</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006105">request_via_redirect</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>X</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006103">xhr</a>,</li>
+                
+                <li><a href="#M006102">xml_http_request</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006100">
+                    
+                    <a name="M006100"></a><b>delete</b>(path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a DELETE request with the given parameters. See get() for more
+details.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006100_source')" id="l_M006100_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L49" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006100_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 49</span>
+49:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+50:         <span class="ruby-identifier">process</span> <span class="ruby-identifier">:delete</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>
+51:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006109">
+                    
+                    <a name="M006109"></a><b>delete_via_redirect</b>(path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a DELETE request, following any subsequent redirect. See <tt><a
+href="RequestHelpers.html#M006105">request_via_redirect</a></tt> for more
+information.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006109_source')" id="l_M006109_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L113" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006109_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 113</span>
+113:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">delete_via_redirect</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+114:         <span class="ruby-identifier">request_via_redirect</span>(<span class="ruby-identifier">:delete</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>)
+115:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006104">
+                    
+                    <a name="M006104"></a><b>follow_redirect!</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Follow a single redirect response. If the last response was not a redirect,
+an exception will be raised. Otherwise, the redirect is performed on the
+location header.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006104_source')" id="l_M006104_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L77" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006104_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 77</span>
+77:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">follow_redirect!</span>
+78:         <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;not a redirect! #{status} #{status_message}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">redirect?</span>
+79:         <span class="ruby-identifier">get</span>(<span class="ruby-identifier">response</span>.<span class="ruby-identifier">location</span>)
+80:         <span class="ruby-identifier">status</span>
+81:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006097">
+                    
+                    <a name="M006097"></a><b>get</b>(path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a GET request with the given parameters.
+</p>
+<ul>
+<li><tt>path</tt>: The URI (as a String) on which you want to perform a GET
+request.
+
+</li>
+<li><tt>parameters</tt>: The HTTP parameters that you want to pass. This may be
+<tt>nil</tt>, a Hash, or a String that is appropriately encoded
+(<tt>application/x-www-form-urlencoded</tt> or
+<tt>multipart/form-data</tt>).
+
+</li>
+<li><tt>headers</tt>: Additional HTTP headers to pass, as a Hash. The keys will
+automatically be upcased, with the prefix &#8216;HTTP_&#8217; added if
+needed.
+
+</li>
+</ul>
+<p>
+This method returns an <a href="../Response.html">Response</a> object,
+which one can use to inspect the details of the response. Furthermore, if
+this method was called from an <a
+href="../IntegrationTest.html">ActionDispatch::IntegrationTest</a> object,
+then that object&#8217;s <tt>@response</tt> instance variable will point to
+the same response object.
+</p>
+<p>
+You can also perform POST, PUT, DELETE, and HEAD requests with
+<tt>post</tt>, <tt>put</tt>, <tt>delete</tt>, and <tt>head</tt>.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006097_source')" id="l_M006097_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L31" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006097_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 31</span>
+31:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+32:         <span class="ruby-identifier">process</span> <span class="ruby-identifier">:get</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>
+33:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006106">
+                    
+                    <a name="M006106"></a><b>get_via_redirect</b>(path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a GET request, following any subsequent redirect. See <tt><a
+href="RequestHelpers.html#M006105">request_via_redirect</a></tt> for more
+information.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006106_source')" id="l_M006106_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L95" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006106_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 95</span>
+95:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_via_redirect</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+96:         <span class="ruby-identifier">request_via_redirect</span>(<span class="ruby-identifier">:get</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>)
+97:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006101">
+                    
+                    <a name="M006101"></a><b>head</b>(path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a HEAD request with the given parameters. See get() for more
+details.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006101_source')" id="l_M006101_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L55" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006101_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 55</span>
+55:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">head</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+56:         <span class="ruby-identifier">process</span> <span class="ruby-identifier">:head</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>
+57:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006098">
+                    
+                    <a name="M006098"></a><b>post</b>(path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a POST request with the given parameters. See get() for more
+details.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006098_source')" id="l_M006098_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L37" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006098_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 37</span>
+37:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+38:         <span class="ruby-identifier">process</span> <span class="ruby-identifier">:post</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>
+39:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006107">
+                    
+                    <a name="M006107"></a><b>post_via_redirect</b>(path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a POST request, following any subsequent redirect. See <tt><a
+href="RequestHelpers.html#M006105">request_via_redirect</a></tt> for more
+information.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006107_source')" id="l_M006107_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L101" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006107_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 101</span>
+101:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">post_via_redirect</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+102:         <span class="ruby-identifier">request_via_redirect</span>(<span class="ruby-identifier">:post</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>)
+103:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006099">
+                    
+                    <a name="M006099"></a><b>put</b>(path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a PUT request with the given parameters. See get() for more
+details.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006099_source')" id="l_M006099_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L43" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006099_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 43</span>
+43:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">put</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+44:         <span class="ruby-identifier">process</span> <span class="ruby-identifier">:put</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>
+45:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006108">
+                    
+                    <a name="M006108"></a><b>put_via_redirect</b>(path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a PUT request, following any subsequent redirect. See <tt><a
+href="RequestHelpers.html#M006105">request_via_redirect</a></tt> for more
+information.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006108_source')" id="l_M006108_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L107" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006108_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 107</span>
+107:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">put_via_redirect</span>(<span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+108:         <span class="ruby-identifier">request_via_redirect</span>(<span class="ruby-identifier">:put</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>)
+109:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006105">
+                    
+                    <a name="M006105"></a><b>request_via_redirect</b>(http_method, path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs a request using the specified method, following any subsequent
+redirect. Note that the redirects are followed until the response is not a
+redirect&#8212;this means you may run into an infinite loop if your
+redirect loops back to itself.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006105_source')" id="l_M006105_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L87" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006105_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 87</span>
+87:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request_via_redirect</span>(<span class="ruby-identifier">http_method</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+88:         <span class="ruby-identifier">process</span>(<span class="ruby-identifier">http_method</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>)
+89:         <span class="ruby-identifier">follow_redirect!</span> <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">redirect?</span>
+90:         <span class="ruby-identifier">status</span>
+91:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006103">
+                    
+                    <a name="M006103"></a><b>xhr</b>(request_method, path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="RequestHelpers.html#M006102">xml_http_request</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006102">
+                    
+                    <a name="M006102"></a><b>xml_http_request</b>(request_method, path, parameters = nil, headers = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Performs an XMLHttpRequest request with the given parameters, mirroring a
+request from the Prototype library.
+</p>
+<p>
+The request_method is :get, :post, :put, :delete or :head; the parameters
+are <tt>nil</tt>, a hash, or a url-encoded or multipart string; the headers
+are a hash. Keys are automatically upcased and prefixed with
+&#8216;HTTP_&#8217; if not already.
+</p>
+
+                </div>
+                
+                
+                <div class="aka">
+                    This method is also aliased as
+                    
+                    <a href="RequestHelpers.html#M006103">xhr</a>
+                    
+                </div>
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006102_source')" id="l_M006102_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L66" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006102_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 66</span>
+66:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">xml_http_request</span>(<span class="ruby-identifier">request_method</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">headers</span> = <span class="ruby-keyword kw">nil</span>)
+67:         <span class="ruby-identifier">headers</span> <span class="ruby-operator">||=</span> {}
+68:         <span class="ruby-identifier">headers</span>[<span class="ruby-value str">'HTTP_X_REQUESTED_WITH'</span>] = <span class="ruby-value str">'XMLHttpRequest'</span>
+69:         <span class="ruby-identifier">headers</span>[<span class="ruby-value str">'HTTP_ACCEPT'</span>] <span class="ruby-operator">||=</span> [<span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">JS</span>, <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">HTML</span>, <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">XML</span>, <span class="ruby-value str">'text/xml'</span>, <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">ALL</span>].<span class="ruby-identifier">join</span>(<span class="ruby-value str">', '</span>)
+70:         <span class="ruby-identifier">process</span>(<span class="ruby-identifier">request_method</span>, <span class="ruby-identifier">path</span>, <span class="ruby-identifier">parameters</span>, <span class="ruby-identifier">headers</span>)
+71:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

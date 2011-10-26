@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Validations::AcceptanceValidator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::Validations::AcceptanceValidator 
+            
+                <span class="parent">&lt; 
+                    
+                    EachValidator
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/validations/acceptance_rb.html">activemodel/lib/active_model/validations/acceptance.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007705">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007707">setup</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>V</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007706">validate_each</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007705">
+                    
+                    <a name="M007705"></a><b>new</b>(options)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007705_source')" id="l_M007705_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activemodel/lib/active_model/validations/acceptance.rb#L6" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007705_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/acceptance.rb, line 6</span>
+6:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span>)
+7:         <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-identifier">:allow_nil</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">:accept</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;1&quot;</span>))
+8:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007707">
+                    
+                    <a name="M007707"></a><b>setup</b>(klass)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007707_source')" id="l_M007707_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activemodel/lib/active_model/validations/acceptance.rb#L16" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007707_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/acceptance.rb, line 16</span>
+16:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>(<span class="ruby-identifier">klass</span>)
+17:         <span class="ruby-comment cmt"># Note: instance_methods.map(&amp;:to_s) is important for 1.9 compatibility</span>
+18:         <span class="ruby-comment cmt"># as instance_methods returns symbols unlike 1.8 which returns strings.</span>
+19:         <span class="ruby-identifier">attr_readers</span> = <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">attribute_method?</span>(<span class="ruby-identifier">name</span>) }
+20:         <span class="ruby-identifier">attr_writers</span> = <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">attribute_method?</span>(<span class="ruby-node">&quot;#{name}=&quot;</span>) }
+21:         <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:attr_reader</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">attr_readers</span>)
+22:         <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:attr_writer</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">attr_writers</span>)
+23:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007706">
+                    
+                    <a name="M007706"></a><b>validate_each</b>(record, attribute, value)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007706_source')" id="l_M007706_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3270c58ebb3143b3ab3b349fe339cdd4587468ee/activemodel/lib/active_model/validations/acceptance.rb#L10" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007706_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/validations/acceptance.rb, line 10</span>
+10:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate_each</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">value</span>)
+11:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:accept</span>]
+12:           <span class="ruby-identifier">record</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">attribute</span>, <span class="ruby-identifier">:accepted</span>, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">except</span>(<span class="ruby-identifier">:accept</span>, <span class="ruby-identifier">:allow_nil</span>))
+13:         <span class="ruby-keyword kw">end</span>
+14:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

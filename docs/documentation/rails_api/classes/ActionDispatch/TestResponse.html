@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::TestResponse</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActionDispatch::TestResponse 
+            
+                <span class="parent">&lt; 
+                    
+                    Response
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_dispatch/testing/test_response_rb.html">actionpack/lib/action_dispatch/testing/test_response.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+Integration test methods such as ActionDispatch::Integration::Session#get
+and ActionDispatch::Integration::Session#post return objects of class <a
+href="TestResponse.html">TestResponse</a>, which represent the HTTP
+response results of the requested controller actions.
+</p>
+<p>
+See <a href="Response.html">Response</a> for more information on controller
+response objects.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006150">client_error?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006148">error?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006129">from_response</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006146">missing?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006147">redirect?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006149">server_error?</a>,</li>
+                
+                <li><a href="#M006145">success?</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <a href="TestResponse/DeprecatedHelpers.html">ActionDispatch::TestResponse::DeprecatedHelpers</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="TestResponse/DeprecatedHelpers.html">ActionDispatch::TestResponse::DeprecatedHelpers</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006129">
+                    
+                    <a name="M006129"></a><b>from_response</b>(response)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006129_source')" id="l_M006129_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ccf9577aee86ce1f766c5e8854e0c285dc38f8ac/actionpack/lib/action_dispatch/testing/test_response.rb#L9" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006129_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/test_response.rb, line 9</span>
+ 9:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">from_response</span>(<span class="ruby-identifier">response</span>)
+10:       <span class="ruby-identifier">new</span>.<span class="ruby-identifier">tap</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">resp</span><span class="ruby-operator">|</span>
+11:         <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">status</span>  = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">status</span>
+12:         <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">headers</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">headers</span>
+13:         <span class="ruby-identifier">resp</span>.<span class="ruby-identifier">body</span>    = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>
+14:       <span class="ruby-keyword kw">end</span>
+15:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006150">
+                    
+                    <a name="M006150"></a><b>client_error?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Was there a client client?
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006150_source')" id="l_M006150_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ccf9577aee86ce1f766c5e8854e0c285dc38f8ac/actionpack/lib/action_dispatch/testing/test_response.rb#L132" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006150_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/test_response.rb, line 132</span>
+132:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">client_error?</span>
+133:       (<span class="ruby-value">400</span><span class="ruby-operator">..</span><span class="ruby-value">499</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">response_code</span>)
+134:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006148">
+                    
+                    <a name="M006148"></a><b>error?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Was there a server-side error?
+</p>
+
+                </div>
+                
+                
+                <div class="aka">
+                    This method is also aliased as
+                    
+                    <a href="TestResponse.html#M006149">server_error?</a>
+                    
+                </div>
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006148_source')" id="l_M006148_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ccf9577aee86ce1f766c5e8854e0c285dc38f8ac/actionpack/lib/action_dispatch/testing/test_response.rb#L126" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006148_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/test_response.rb, line 126</span>
+126:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">error?</span>
+127:       (<span class="ruby-value">500</span><span class="ruby-operator">..</span><span class="ruby-value">599</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">response_code</span>)
+128:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006146">
+                    
+                    <a name="M006146"></a><b>missing?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Was the URL not found?
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006146_source')" id="l_M006146_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ccf9577aee86ce1f766c5e8854e0c285dc38f8ac/actionpack/lib/action_dispatch/testing/test_response.rb#L116" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006146_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/test_response.rb, line 116</span>
+116:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">missing?</span>
+117:       <span class="ruby-identifier">response_code</span> <span class="ruby-operator">==</span> <span class="ruby-value">404</span>
+118:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006147">
+                    
+                    <a name="M006147"></a><b>redirect?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Were we redirected?
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006147_source')" id="l_M006147_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ccf9577aee86ce1f766c5e8854e0c285dc38f8ac/actionpack/lib/action_dispatch/testing/test_response.rb#L121" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006147_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/test_response.rb, line 121</span>
+121:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">redirect?</span>
+122:       (<span class="ruby-value">300</span><span class="ruby-operator">..</span><span class="ruby-value">399</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">response_code</span>)
+123:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006149">
+                    
+                    <a name="M006149"></a><b>server_error?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="TestResponse.html#M006148">error?</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006145">
+                    
+                    <a name="M006145"></a><b>success?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Was the response successful?
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006145_source')" id="l_M006145_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/ccf9577aee86ce1f766c5e8854e0c285dc38f8ac/actionpack/lib/action_dispatch/testing/test_response.rb#L111" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006145_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/test_response.rb, line 111</span>
+111:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">success?</span>
+112:       (<span class="ruby-value">200</span><span class="ruby-operator">..</span><span class="ruby-value">299</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">response_code</span>)
+113:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

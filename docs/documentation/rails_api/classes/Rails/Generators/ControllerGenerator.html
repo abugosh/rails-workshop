@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Rails::Generators::ControllerGenerator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Rails::Generators::ControllerGenerator 
+            
+                <span class="parent">&lt; 
+                    
+                    NamedBase
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/railties/lib/rails/generators/rails/controller/controller_generator_rb.html">railties/lib/rails/generators/rails/controller/controller_generator.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004136">add_routes</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004135">create_controller_files</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004136">
+                    
+                    <a name="M004136"></a><b>add_routes</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004136_source')" id="l_M004136_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b61f6f59805eec4f5bb873a85910c9fe00e839a9/railties/lib/rails/generators/rails/controller/controller_generator.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004136_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File railties/lib/rails/generators/rails/controller/controller_generator.rb, line 11</span>
+11:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_routes</span>
+12:         <span class="ruby-identifier">actions</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">action</span><span class="ruby-operator">|</span>
+13:           <span class="ruby-identifier">route</span> <span class="ruby-node">%{get &quot;#{file_name}/#{action}&quot;}</span>
+14:         <span class="ruby-keyword kw">end</span>
+15:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M004135">
+                    
+                    <a name="M004135"></a><b>create_controller_files</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004135_source')" id="l_M004135_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b61f6f59805eec4f5bb873a85910c9fe00e839a9/railties/lib/rails/generators/rails/controller/controller_generator.rb#L7" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004135_source" class="dyn-source">
+                        <pre>   <span class="ruby-comment cmt"># File railties/lib/rails/generators/rails/controller/controller_generator.rb, line 7</span>
+7:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_controller_files</span>
+8:         <span class="ruby-identifier">template</span> <span class="ruby-value str">'controller.rb'</span>, <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'app/controllers'</span>, <span class="ruby-identifier">class_path</span>, <span class="ruby-node">&quot;#{file_name}_controller.rb&quot;</span>)
+9:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

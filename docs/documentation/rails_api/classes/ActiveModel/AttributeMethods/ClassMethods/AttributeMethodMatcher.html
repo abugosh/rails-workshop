@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::AttributeMethods::ClassMethods::AttributeMethodMatcher</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveModel::AttributeMethods::ClassMethods::AttributeMethodMatcher 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../files/activemodel/lib/active_model/attribute_methods_rb.html">activemodel/lib/active_model/attribute_methods.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007650">match</a>,</li>
+                
+                <li><a href="#M007652">method_missing_target</a>,</li>
+                
+                <li><a href="#M007651">method_name</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007649">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">AttributeMethodMatch</td>
+            <td>=</td>
+            <td class="attr-value">Struct.new(:target, :attr_name)</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>prefix</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>suffix</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007649">
+                    
+                    <a name="M007649"></a><b>new</b>(options = {})
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007649_source')" id="l_M007649_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/afcdf9b86660a261e33b349b174979c404b31bcf/activemodel/lib/active_model/attribute_methods.rb#L353" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007649_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/attribute_methods.rb, line 353</span>
+353:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">options</span> = {})
+354:             <span class="ruby-identifier">options</span>.<span class="ruby-identifier">symbolize_keys!</span>
+355:             <span class="ruby-ivar">@prefix</span>, <span class="ruby-ivar">@suffix</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:prefix</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">''</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:suffix</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">''</span>
+356:             <span class="ruby-ivar">@regex</span> = <span class="ruby-node">/^(#{Regexp.escape(@prefix)})(.+?)(#{Regexp.escape(@suffix)})$/</span>
+357:           <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007650">
+                    
+                    <a name="M007650"></a><b>match</b>(method_name)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007650_source')" id="l_M007650_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/afcdf9b86660a261e33b349b174979c404b31bcf/activemodel/lib/active_model/attribute_methods.rb#L359" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007650_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/attribute_methods.rb, line 359</span>
+359:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">match</span>(<span class="ruby-identifier">method_name</span>)
+360:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matchdata</span> = <span class="ruby-ivar">@regex</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">method_name</span>)
+361:               <span class="ruby-constant">AttributeMethodMatch</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">method_missing_target</span>, <span class="ruby-identifier">matchdata</span>[<span class="ruby-value">2</span>])
+362:             <span class="ruby-keyword kw">else</span>
+363:               <span class="ruby-keyword kw">nil</span>
+364:             <span class="ruby-keyword kw">end</span>
+365:           <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007652">
+                    
+                    <a name="M007652"></a><b>method_missing_target</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007652_source')" id="l_M007652_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/afcdf9b86660a261e33b349b174979c404b31bcf/activemodel/lib/active_model/attribute_methods.rb#L371" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007652_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/attribute_methods.rb, line 371</span>
+371:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing_target</span>
+372:             <span class="ruby-identifier">:&quot;#{prefix}attribute#{suffix}&quot;</span>
+373:           <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007651">
+                    
+                    <a name="M007651"></a><b>method_name</b>(attr_name)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007651_source')" id="l_M007651_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/afcdf9b86660a261e33b349b174979c404b31bcf/activemodel/lib/active_model/attribute_methods.rb#L367" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007651_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/attribute_methods.rb, line 367</span>
+367:           <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_name</span>(<span class="ruby-identifier">attr_name</span>)
+368:             <span class="ruby-node">&quot;#{prefix}#{attr_name}#{suffix}&quot;</span>
+369:           <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

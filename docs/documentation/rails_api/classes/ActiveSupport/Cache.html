@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Cache</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveSupport::Cache 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activesupport/lib/active_support/cache/compressed_mem_cache_store_rb.html">activesupport/lib/active_support/cache/compressed_mem_cache_store.rb</a></li>
+            
+            <li><a href="../../files/activesupport/lib/active_support/cache/strategy/local_cache_rb.html">activesupport/lib/active_support/cache/strategy/local_cache.rb</a></li>
+            
+            <li><a href="../../files/activesupport/lib/active_support/cache/mem_cache_store_rb.html">activesupport/lib/active_support/cache/mem_cache_store.rb</a></li>
+            
+            <li><a href="../../files/activesupport/lib/active_support/cache/memory_store_rb.html">activesupport/lib/active_support/cache/memory_store.rb</a></li>
+            
+            <li><a href="../../files/activesupport/lib/active_support/cache/file_store_rb.html">activesupport/lib/active_support/cache/file_store.rb</a></li>
+            
+            <li><a href="../../files/activesupport/lib/active_support/cache/synchronized_memory_store_rb.html">activesupport/lib/active_support/cache/synchronized_memory_store.rb</a></li>
+            
+            <li><a href="../../files/activesupport/lib/active_support/cache_rb.html">activesupport/lib/active_support/cache.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+See <a href="Cache/Store.html">ActiveSupport::Cache::Store</a> for
+documentation.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007547">expand_cache_key</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>L</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007546">lookup_store</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="Cache/Strategy.html">ActiveSupport::Cache::Strategy</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Cache/CompressedMemCacheStore.html">ActiveSupport::Cache::CompressedMemCacheStore</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Cache/Entry.html">ActiveSupport::Cache::Entry</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Cache/FileStore.html">ActiveSupport::Cache::FileStore</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Cache/MemCacheStore.html">ActiveSupport::Cache::MemCacheStore</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Cache/MemoryStore.html">ActiveSupport::Cache::MemoryStore</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Cache/Store.html">ActiveSupport::Cache::Store</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Cache/SynchronizedMemoryStore.html">ActiveSupport::Cache::SynchronizedMemoryStore</a></li>
+        
+    </ul>
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">UNIVERSAL_OPTIONS</td>
+            <td>=</td>
+            <td class="attr-value">[:namespace, :compress, :compress_threshold, :expires_in, :race_condition_ttl]</td>
+        </tr>
+        
+        <tr valign='top'>
+            <td>&nbsp;</td>
+            <td colspan="2" class="attr-desc"><p>
+These options mean something to all cache implementations. Individual cache
+implementations may support additional options.
+</p>
+</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007547">
+                    
+                    <a name="M007547"></a><b>expand_cache_key</b>(key, namespace = nil)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007547_source')" id="l_M007547_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L77" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007547_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 77</span>
+77:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">expand_cache_key</span>(<span class="ruby-identifier">key</span>, <span class="ruby-identifier">namespace</span> = <span class="ruby-keyword kw">nil</span>)
+78:       <span class="ruby-identifier">expanded_cache_key</span> = <span class="ruby-identifier">namespace</span> <span class="ruby-value">? </span><span class="ruby-node">&quot;#{namespace}/&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+79: 
+80:       <span class="ruby-identifier">prefix</span> = <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;RAILS_CACHE_ID&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;RAILS_APP_VERSION&quot;</span>]
+81:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">prefix</span>
+82:         <span class="ruby-identifier">expanded_cache_key</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{prefix}/&quot;</span>
+83:       <span class="ruby-keyword kw">end</span>
+84: 
+85:       <span class="ruby-identifier">expanded_cache_key</span> <span class="ruby-operator">&lt;&lt;</span>
+86:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:cache_key</span>)
+87:           <span class="ruby-identifier">key</span>.<span class="ruby-identifier">cache_key</span>
+88:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+89:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">key</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+90:             <span class="ruby-identifier">key</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span> <span class="ruby-identifier">expand_cache_key</span>(<span class="ruby-identifier">element</span>) }.<span class="ruby-identifier">to_param</span>
+91:           <span class="ruby-keyword kw">else</span>
+92:             <span class="ruby-identifier">key</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">to_param</span>
+93:           <span class="ruby-keyword kw">end</span>
+94:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">key</span>
+95:           <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_param</span>
+96:         <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">to_s</span>
+97: 
+98:       <span class="ruby-identifier">expanded_cache_key</span>
+99:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007546">
+                    
+                    <a name="M007546"></a><b>lookup_store</b>(*store_option)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Creates a new CacheStore object according to the given options.
+</p>
+<p>
+If no arguments are passed to this method, then a new <a
+href="Cache/MemoryStore.html">ActiveSupport::Cache::MemoryStore</a> object
+will be returned.
+</p>
+<p>
+If you pass a Symbol as the first argument, then a corresponding cache
+store class under the <a href="Cache.html">ActiveSupport::Cache</a>
+namespace will be created. For example:
+</p>
+<pre>
+  ActiveSupport::Cache.lookup_store(:memory_store)
+  # =&gt; returns a new ActiveSupport::Cache::MemoryStore object
+
+  ActiveSupport::Cache.lookup_store(:mem_cache_store)
+  # =&gt; returns a new ActiveSupport::Cache::MemCacheStore object
+</pre>
+<p>
+Any additional arguments will be passed to the corresponding cache store
+class&#8217;s constructor:
+</p>
+<pre>
+  ActiveSupport::Cache.lookup_store(:file_store, &quot;/tmp/cache&quot;)
+  # =&gt; same as: ActiveSupport::Cache::FileStore.new(&quot;/tmp/cache&quot;)
+</pre>
+<p>
+If the first argument is not a Symbol, then it will simply be returned:
+</p>
+<pre>
+  ActiveSupport::Cache.lookup_store(MyOwnCacheStore.new)
+  # =&gt; returns MyOwnCacheStore.new
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007546_source')" id="l_M007546_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b05b8d9aa4bce5a7749b835cf79761b85feaa7d4/activesupport/lib/active_support/cache.rb#L55" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007546_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache.rb, line 55</span>
+55:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">lookup_store</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">store_option</span>)
+56:       <span class="ruby-identifier">store</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">parameters</span> = <span class="ruby-operator">*</span><span class="ruby-constant">Array</span>.<span class="ruby-identifier">wrap</span>(<span class="ruby-identifier">store_option</span>).<span class="ruby-identifier">flatten</span>
+57: 
+58:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">store</span>
+59:       <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>
+60:         <span class="ruby-identifier">store_class_name</span> = <span class="ruby-identifier">store</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>
+61:         <span class="ruby-identifier">store_class</span> =
+62:           <span class="ruby-keyword kw">begin</span>
+63:             <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;active_support/cache/#{store}&quot;</span>
+64:           <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+65:             <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;Could not find cache store adapter for #{store} (#{e})&quot;</span>
+66:           <span class="ruby-keyword kw">else</span>
+67:             <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Cache</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-identifier">store_class_name</span>)
+68:           <span class="ruby-keyword kw">end</span>
+69:         <span class="ruby-identifier">store_class</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">parameters</span>)
+70:       <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+71:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Cache</span><span class="ruby-operator">::</span><span class="ruby-constant">MemoryStore</span>.<span class="ruby-identifier">new</span>
+72:       <span class="ruby-keyword kw">else</span>
+73:         <span class="ruby-identifier">store</span>
+74:       <span class="ruby-keyword kw">end</span>
+75:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

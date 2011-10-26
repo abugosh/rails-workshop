@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::RackDelegation</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::RackDelegation 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_controller/metal/rack_delegation_rb.html">actionpack/lib/action_controller/metal/rack_delegation.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005700">dispatch</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005702">reset_session</a>,</li>
+                
+                <li><a href="#M005701">response_body=</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005700">
+                    
+                    <a name="M005700"></a><b>dispatch</b>(action, request, response = ActionDispatch::Response.new)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005700_source')" id="l_M005700_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/f368b21cb6e45268359c0f0b8beda175e3b40eae/actionpack/lib/action_controller/metal/rack_delegation.rb#L11" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005700_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/rack_delegation.rb, line 11</span>
+11:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span> = <span class="ruby-constant">ActionDispatch</span><span class="ruby-operator">::</span><span class="ruby-constant">Response</span>.<span class="ruby-identifier">new</span>)
+12:       <span class="ruby-ivar">@_response</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">response</span>
+13:       <span class="ruby-ivar">@_response</span>.<span class="ruby-identifier">request</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">request</span>
+14:       <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">action</span>, <span class="ruby-identifier">request</span>)
+15:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005702">
+                    
+                    <a name="M005702"></a><b>reset_session</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005702_source')" id="l_M005702_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/f368b21cb6e45268359c0f0b8beda175e3b40eae/actionpack/lib/action_controller/metal/rack_delegation.rb#L22" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005702_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/rack_delegation.rb, line 22</span>
+22:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset_session</span>
+23:       <span class="ruby-ivar">@_request</span>.<span class="ruby-identifier">reset_session</span>
+24:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005701">
+                    
+                    <a name="M005701"></a><b>response_body=</b>(body)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005701_source')" id="l_M005701_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/f368b21cb6e45268359c0f0b8beda175e3b40eae/actionpack/lib/action_controller/metal/rack_delegation.rb#L17" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005701_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/rack_delegation.rb, line 17</span>
+17:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">response_body=</span>(<span class="ruby-identifier">body</span>)
+18:       <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">body</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span>
+19:       <span class="ruby-keyword kw">super</span>
+20:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

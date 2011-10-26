@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Commands::Remove</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Commands::Remove 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/railties/lib/rails/commands/plugin_rb.html">railties/lib/rails/commands/plugin.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M003949">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>O</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M003950">options</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M003951">parse!</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M003949">
+                    
+                    <a name="M003949"></a><b>new</b>(base_command)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003949_source')" id="l_M003949_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4e5da6bde84d48c8ecd8f1ce4cd36d1193776ed/railties/lib/rails/commands/plugin.rb#L431" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003949_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/commands/plugin.rb, line 431</span>
+431:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">base_command</span>)
+432:       <span class="ruby-ivar">@base_command</span> = <span class="ruby-identifier">base_command</span>
+433:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M003950">
+                    
+                    <a name="M003950"></a><b>options</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003950_source')" id="l_M003950_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4e5da6bde84d48c8ecd8f1ce4cd36d1193776ed/railties/lib/rails/commands/plugin.rb#L435" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003950_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/commands/plugin.rb, line 435</span>
+435:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options</span>
+436:       <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span>
+437:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">set_summary_indent</span>(<span class="ruby-value str">'  '</span>)
+438:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">banner</span> =    <span class="ruby-node">&quot;Usage: #{@base_command.script_name} remove name [name]...&quot;</span>
+439:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">define_head</span> <span class="ruby-value str">&quot;Remove plugins.&quot;</span>
+440:       <span class="ruby-keyword kw">end</span>
+441:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M003951">
+                    
+                    <a name="M003951"></a><b>parse!</b>(args)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M003951_source')" id="l_M003951_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/b4e5da6bde84d48c8ecd8f1ce4cd36d1193776ed/railties/lib/rails/commands/plugin.rb#L443" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M003951_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File railties/lib/rails/commands/plugin.rb, line 443</span>
+443:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse!</span>(<span class="ruby-identifier">args</span>)
+444:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">parse!</span>(<span class="ruby-identifier">args</span>)
+445:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">blank?</span>
+446:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">options</span>
+447:         <span class="ruby-identifier">exit</span> <span class="ruby-value">1</span>
+448:       <span class="ruby-keyword kw">end</span>
+449:       <span class="ruby-identifier">root</span> = <span class="ruby-ivar">@base_command</span>.<span class="ruby-identifier">environment</span>.<span class="ruby-identifier">root</span>
+450:       <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+451:         <span class="ruby-operator">::</span><span class="ruby-constant">Plugin</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>).<span class="ruby-identifier">uninstall</span>
+452:       <span class="ruby-keyword kw">end</span>
+453:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

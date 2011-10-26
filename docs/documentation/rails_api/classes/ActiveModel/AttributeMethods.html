@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::AttributeMethods</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::AttributeMethods 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/activemodel/lib/active_model/attribute_methods_rb.html">activemodel/lib/active_model/attribute_methods.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <h2>Active Model Attribute Methods</h2>
+<p>
+<tt>ActiveModel::AttributeMethods</tt> provides a way to add prefixes and
+suffixes to your methods as well as handling the creation of Active Record
+like class methods such as <tt>table_name</tt>.
+</p>
+<p>
+The requirements to implement <a
+href="AttributeMethods.html">ActiveModel::AttributeMethods</a> are to:
+</p>
+<ul>
+<li><tt>include ActiveModel::AttributeMethods</tt> in your object
+
+</li>
+<li>Call each Attribute Method module method you want to add, such as
+attribute_method_suffix or attribute_method_prefix
+
+</li>
+<li>Call <tt>define_attribute_methods</tt> after the other methods are called.
+
+</li>
+<li>Define the various generic <tt>_attribute</tt> methods that you have
+declared
+
+</li>
+</ul>
+<p>
+A minimal implementation could be:
+</p>
+<pre>
+  class Person
+    include ActiveModel::AttributeMethods
+
+    attribute_method_affix  :prefix =&gt; 'reset_', :suffix =&gt; '_to_default!'
+    attribute_method_suffix '_contrived?'
+    attribute_method_prefix 'clear_'
+    define_attribute_methods ['name']
+
+    attr_accessor :name
+
+    private
+
+    def attribute_contrived?(attr)
+      true
+    end
+
+    def clear_attribute(attr)
+      send(&quot;#{attr}=&quot;, nil)
+    end
+
+    def reset_attribute_to_default!(attr)
+      send(&quot;#{attr}=&quot;, &quot;Default Name&quot;)
+    end
+  end
+</pre>
+<p>
+Note that whenever you include <a
+href="AttributeMethods.html">ActiveModel::AttributeMethods</a> in your
+class, it requires you to implement an <tt>attributes</tt> method which
+returns a hash with each attribute name in your model as hash key and the
+attribute value as hash value.
+</p>
+<p>
+Hash keys must be strings.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007657">attribute_method?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007654">method_missing</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007655">respond_to?</a>,</li>
+                
+                <li><a href="#M007656">respond_to_without_attributes?</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="AttributeMethods/ClassMethods.html">ActiveModel::AttributeMethods::ClassMethods</a></li>
+        
+    </ul>
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">COMPILABLE_REGEXP</td>
+            <td>=</td>
+            <td class="attr-value">/^[a-zA-Z_]\w*[!?=]?$/</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007654">
+                    
+                    <a name="M007654"></a><b>method_missing</b>(method_id, *args, &amp;block)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Allows access to the object attributes, which are held in the
+<tt>@attributes</tt> hash, as though they were first-class methods. So a
+Person class with a name attribute can use Person#name and Person#name= and
+never directly use the attributes hash &#8212; except for multiple assigns
+with ActiveRecord#attributes=. A Milestone class can also ask
+Milestone#completed? to test that the completed attribute is not
+<tt>nil</tt> or 0.
+</p>
+<p>
+It&#8217;s also possible to instantiate related objects, so a Client class
+belonging to the clients table with a <tt>master_id</tt> foreign key can
+instantiate master through Client#master.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007654_source')" id="l_M007654_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/afcdf9b86660a261e33b349b174979c404b31bcf/activemodel/lib/active_model/attribute_methods.rb#L392" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007654_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/attribute_methods.rb, line 392</span>
+392:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">method_id</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+393:       <span class="ruby-identifier">method_name</span> = <span class="ruby-identifier">method_id</span>.<span class="ruby-identifier">to_s</span>
+394:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">match</span> = <span class="ruby-identifier">match_attribute_method?</span>(<span class="ruby-identifier">method_name</span>)
+395:         <span class="ruby-identifier">guard_private_attribute_method!</span>(<span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">args</span>)
+396:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">match</span>.<span class="ruby-identifier">target</span>, <span class="ruby-identifier">match</span>.<span class="ruby-identifier">attr_name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+397:       <span class="ruby-keyword kw">end</span>
+398:       <span class="ruby-keyword kw">super</span>
+399:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007655">
+                    
+                    <a name="M007655"></a><b>respond_to?</b>(method, include_private_methods = false)
+                    
+                </div>
+                
+                
+                <div class="aka">
+                    This method is also aliased as
+                    
+                    <a href="AttributeMethods.html#M007656">respond_to_without_attributes?</a>
+                    
+                </div>
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007655_source')" id="l_M007655_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/afcdf9b86660a261e33b349b174979c404b31bcf/activemodel/lib/active_model/attribute_methods.rb#L405" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007655_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/attribute_methods.rb, line 405</span>
+405:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">include_private_methods</span> = <span class="ruby-keyword kw">false</span>)
+406:       <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">super</span>
+407:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+408:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-operator">!</span><span class="ruby-identifier">include_private_methods</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">method</span>, <span class="ruby-keyword kw">true</span>)
+409:         <span class="ruby-comment cmt"># If we're here then we haven't found among non-private methods</span>
+410:         <span class="ruby-comment cmt"># but found among all methods. Which means that the given method is private.</span>
+411:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+412:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">match_attribute_method?</span>(<span class="ruby-identifier">method</span>.<span class="ruby-identifier">to_s</span>)
+413:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+414:       <span class="ruby-keyword kw">end</span>
+415:       <span class="ruby-keyword kw">super</span>
+416:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007656">
+                    
+                    <a name="M007656"></a><b>respond_to_without_attributes?</b>(method, include_private_methods = false)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="AttributeMethods.html#M007655">respond_to?</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007657">
+                    
+                    <a name="M007657"></a><b>attribute_method?</b>(attr_name)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007657_source')" id="l_M007657_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/afcdf9b86660a261e33b349b174979c404b31bcf/activemodel/lib/active_model/attribute_methods.rb#L419" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007657_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activemodel/lib/active_model/attribute_methods.rb, line 419</span>
+419:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">attribute_method?</span>(<span class="ruby-identifier">attr_name</span>)
+420:         <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">attr_name</span>)
+421:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

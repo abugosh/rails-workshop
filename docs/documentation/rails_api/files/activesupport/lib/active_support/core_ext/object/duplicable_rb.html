@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>duplicable.rb</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            duplicable.rb
+        </h1>
+        <ul class="files">
+            <li>activesupport/lib/active_support/core_ext/object/duplicable.rb</li>
+            <li>Last modified: 2011-05-26 23:43:53 +0000</li>
+        </ul>
+    </div>
+
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+Most objects are cloneable, but not all. For example you can&#8217;t dup
+<tt>nil</tt>:
+</p>
+<pre>
+  nil.dup # =&gt; TypeError: can't dup NilClass
+</pre>
+<p>
+Classes may signal their instances are not duplicable removing
+<tt>dup</tt>/<tt>clone</tt> or raising exceptions from them. So, to dup an
+arbitrary object you normally use an optimistic approach and are ready to
+catch an exception, say:
+</p>
+<pre>
+  arbitrary_object.dup rescue object
+</pre>
+<p>
+<a href="../../../../../../classes/Rails.html">Rails</a> dups objects in a
+few critical spots where they are not that arbitrary. That rescue is very
+expensive (like 40 times slower than a predicate), and it is often
+triggered.
+</p>
+<p>
+That&#8217;s why we hardcode the following cases and check duplicable?
+instead of using that rescue idiom.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">CLASS</span> <a href="../../../../../../classes/Class.html">Class</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="../../../../../../classes/FalseClass.html">FalseClass</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="../../../../../../classes/Module.html">Module</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="../../../../../../classes/NilClass.html">NilClass</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="../../../../../../classes/Numeric.html">Numeric</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="../../../../../../classes/Object.html">Object</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="../../../../../../classes/Symbol.html">Symbol</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="../../../../../../classes/TrueClass.html">TrueClass</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+</div>
+    </div>
+  </body>
+</html>

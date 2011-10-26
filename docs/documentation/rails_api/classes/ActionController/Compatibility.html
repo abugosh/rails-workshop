@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::Compatibility</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActionController::Compatibility 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_controller/metal/compatibility_rb.html">actionpack/lib/action_controller/metal/compatibility.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>#</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005675">_handle_method_missing</a>,</li>
+                
+                <li><a href="#M005673">_normalize_options</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005672">assign_shortcuts</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>I</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005671">initialize_template_class</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005676">method_for_action</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>P</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005677">performed?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005674">render_to_body</a>,</li>
+                
+                <li><a href="#M005670">rescue_action</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="Compatibility/ClassMethods.html">ActionController::Compatibility::ClassMethods</a></li>
+        
+    </ul>
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">UnknownAction</td>
+            <td>=</td>
+            <td class="attr-value">::AbstractController::ActionNotFound</td>
+        </tr>
+        
+        
+        <tr valign='top'>
+            <td class="attr-name">DoubleRenderError</td>
+            <td>=</td>
+            <td class="attr-value">::AbstractController::DoubleRenderError</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005675">
+                    
+                    <a name="M005675"></a><b>_handle_method_missing</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005675_source')" id="l_M005675_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/4163ccec2343ee66e2488f067eab2a15260e1219/actionpack/lib/action_controller/metal/compatibility.rb#L58" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005675_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/compatibility.rb, line 58</span>
+58:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_handle_method_missing</span>
+59:       <span class="ruby-identifier">method_missing</span>(<span class="ruby-ivar">@_action_name</span>.<span class="ruby-identifier">to_sym</span>)
+60:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005673">
+                    
+                    <a name="M005673"></a><b>_normalize_options</b>(options)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005673_source')" id="l_M005673_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/4163ccec2343ee66e2488f067eab2a15260e1219/actionpack/lib/action_controller/metal/compatibility.rb#L41" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005673_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/compatibility.rb, line 41</span>
+41:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">_normalize_options</span>(<span class="ruby-identifier">options</span>)
+42:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:action</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:action</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value">?/</span>)
+43:         <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">Deprecation</span>.<span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;Giving a path to render :action is deprecated. &quot;</span> <span class="ruby-operator">&lt;&lt;</span>
+44:           <span class="ruby-value str">&quot;Please use render :template instead&quot;</span>, <span class="ruby-identifier">caller</span>
+45:         <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:template</span>] = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:action</span>)
+46:       <span class="ruby-keyword kw">end</span>
+47: 
+48:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:text</span>] = <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:nothing</span>) <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span>
+49:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:text</span>] = <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:text</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:text</span>].<span class="ruby-identifier">nil?</span>
+50:       <span class="ruby-keyword kw">super</span>
+51:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005672">
+                    
+                    <a name="M005672"></a><b>assign_shortcuts</b>(*)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005672_source')" id="l_M005672_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/4163ccec2343ee66e2488f067eab2a15260e1219/actionpack/lib/action_controller/metal/compatibility.rb#L39" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005672_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/compatibility.rb, line 39</span>
+39:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assign_shortcuts</span>(<span class="ruby-operator">*</span>) <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005671">
+                    
+                    <a name="M005671"></a><b>initialize_template_class</b>(*)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+For old tests
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005671_source')" id="l_M005671_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/4163ccec2343ee66e2488f067eab2a15260e1219/actionpack/lib/action_controller/metal/compatibility.rb#L38" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005671_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/compatibility.rb, line 38</span>
+38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize_template_class</span>(<span class="ruby-operator">*</span>) <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005676">
+                    
+                    <a name="M005676"></a><b>method_for_action</b>(action_name)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005676_source')" id="l_M005676_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/4163ccec2343ee66e2488f067eab2a15260e1219/actionpack/lib/action_controller/metal/compatibility.rb#L62" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005676_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/compatibility.rb, line 62</span>
+62:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_for_action</span>(<span class="ruby-identifier">action_name</span>)
+63:       <span class="ruby-keyword kw">super</span> <span class="ruby-operator">||</span> (<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:method_missing</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-value str">&quot;_handle_method_missing&quot;</span>)
+64:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005677">
+                    
+                    <a name="M005677"></a><b>performed?</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005677_source')" id="l_M005677_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/4163ccec2343ee66e2488f067eab2a15260e1219/actionpack/lib/action_controller/metal/compatibility.rb#L66" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005677_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/compatibility.rb, line 66</span>
+66:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">performed?</span>
+67:       <span class="ruby-identifier">response_body</span>
+68:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005674">
+                    
+                    <a name="M005674"></a><b>render_to_body</b>(options)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005674_source')" id="l_M005674_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/4163ccec2343ee66e2488f067eab2a15260e1219/actionpack/lib/action_controller/metal/compatibility.rb#L53" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005674_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/compatibility.rb, line 53</span>
+53:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render_to_body</span>(<span class="ruby-identifier">options</span>)
+54:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:template</span>].<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^\//</span>, <span class="ruby-value str">''</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:template</span>)
+55:       <span class="ruby-keyword kw">super</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot; &quot;</span>
+56:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005670">
+                    
+                    <a name="M005670"></a><b>rescue_action</b>(env)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005670_source')" id="l_M005670_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/4163ccec2343ee66e2488f067eab2a15260e1219/actionpack/lib/action_controller/metal/compatibility.rb#L32" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005670_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/compatibility.rb, line 32</span>
+32:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rescue_action</span>(<span class="ruby-identifier">env</span>)
+33:         <span class="ruby-identifier">raise</span> <span class="ruby-identifier">env</span>[<span class="ruby-value str">&quot;action_dispatch.rescue.exception&quot;</span>]
+34:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

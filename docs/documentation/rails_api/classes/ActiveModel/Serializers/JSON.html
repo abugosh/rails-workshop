@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveModel::Serializers::JSON</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveModel::Serializers::JSON 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activemodel/lib/active_model/serializers/json_rb.html">activemodel/lib/active_model/serializers/json.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007619">as_json</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007620">from_json</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <a href="../../Rails.html">Rails</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007619">
+                    
+                    <a name="M007619"></a><b>as_json</b>(options = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns a <a href="JSON.html">JSON</a> string representing the model. Some
+configuration can be passed through <tt>options</tt>.
+</p>
+<p>
+The option <tt>ActiveModel::Base.include_root_in_json</tt> controls the
+top-level behavior of <tt>to_json</tt>. It is <tt>true</tt> by default.
+When it is <tt>true</tt>, <tt>to_json</tt> will emit a single root node
+named after the object&#8217;s type. For example:
+</p>
+<pre>
+  konata = User.find(1)
+  konata.to_json
+  # =&gt; { &quot;user&quot;: {&quot;id&quot;: 1, &quot;name&quot;: &quot;Konata Izumi&quot;, &quot;age&quot;: 16,
+                  &quot;created_at&quot;: &quot;2006/08/01&quot;, &quot;awesome&quot;: true} }
+
+  ActiveRecord::Base.include_root_in_json = false
+  konata.to_json
+  # =&gt; {&quot;id&quot;: 1, &quot;name&quot;: &quot;Konata Izumi&quot;, &quot;age&quot;: 16,
+        &quot;created_at&quot;: &quot;2006/08/01&quot;, &quot;awesome&quot;: true}
+</pre>
+<p>
+The remainder of the examples in this section assume include_root_in_json
+is set to <tt>false</tt>.
+</p>
+<p>
+Without any <tt>options</tt>, the returned <a href="JSON.html">JSON</a>
+string will include all the model&#8217;s attributes. For example:
+</p>
+<pre>
+  konata = User.find(1)
+  konata.to_json
+  # =&gt; {&quot;id&quot;: 1, &quot;name&quot;: &quot;Konata Izumi&quot;, &quot;age&quot;: 16,
+        &quot;created_at&quot;: &quot;2006/08/01&quot;, &quot;awesome&quot;: true}
+</pre>
+<p>
+The <tt>:only</tt> and <tt>:except</tt> options can be used to limit the
+attributes included, and work similar to the <tt>attributes</tt> method.
+For example:
+</p>
+<pre>
+  konata.to_json(:only =&gt; [ :id, :name ])
+  # =&gt; {&quot;id&quot;: 1, &quot;name&quot;: &quot;Konata Izumi&quot;}
+
+  konata.to_json(:except =&gt; [ :id, :created_at, :age ])
+  # =&gt; {&quot;name&quot;: &quot;Konata Izumi&quot;, &quot;awesome&quot;: true}
+</pre>
+<p>
+To include any methods on the model, use <tt>:methods</tt>.
+</p>
+<pre>
+  konata.to_json(:methods =&gt; :permalink)
+  # =&gt; {&quot;id&quot;: 1, &quot;name&quot;: &quot;Konata Izumi&quot;, &quot;age&quot;: 16,
+        &quot;created_at&quot;: &quot;2006/08/01&quot;, &quot;awesome&quot;: true,
+        &quot;permalink&quot;: &quot;1-konata-izumi&quot;}
+</pre>
+<p>
+To include associations, use <tt>:include</tt>.
+</p>
+<pre>
+  konata.to_json(:include =&gt; :posts)
+  # =&gt; {&quot;id&quot;: 1, &quot;name&quot;: &quot;Konata Izumi&quot;, &quot;age&quot;: 16,
+        &quot;created_at&quot;: &quot;2006/08/01&quot;, &quot;awesome&quot;: true,
+        &quot;posts&quot;: [{&quot;id&quot;: 1, &quot;author_id&quot;: 1, &quot;title&quot;: &quot;Welcome to the weblog&quot;},
+                  {&quot;id&quot;: 2, author_id: 1, &quot;title&quot;: &quot;So I was thinking&quot;}]}
+</pre>
+<p>
+2nd level and higher order associations work as well:
+</p>
+<pre>
+  konata.to_json(:include =&gt; { :posts =&gt; {
+                                 :include =&gt; { :comments =&gt; {
+                                               :only =&gt; :body } },
+                                 :only =&gt; :title } })
+  # =&gt; {&quot;id&quot;: 1, &quot;name&quot;: &quot;Konata Izumi&quot;, &quot;age&quot;: 16,
+        &quot;created_at&quot;: &quot;2006/08/01&quot;, &quot;awesome&quot;: true,
+        &quot;posts&quot;: [{&quot;comments&quot;: [{&quot;body&quot;: &quot;1st post!&quot;}, {&quot;body&quot;: &quot;Second!&quot;}],
+                   &quot;title&quot;: &quot;Welcome to the weblog&quot;},
+                  {&quot;comments&quot;: [{&quot;body&quot;: &quot;Don't think too hard&quot;}],
+                   &quot;title&quot;: &quot;So I was thinking&quot;}]}
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007619_source')" id="l_M007619_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/33b954005cd71f1bfba1beca296804ce6c66b0a8/activemodel/lib/active_model/serializers/json.rb#L83" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007619_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/serializers/json.rb, line 83</span>
+83:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">as_json</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>)
+84:         <span class="ruby-identifier">hash</span> = <span class="ruby-identifier">serializable_hash</span>(<span class="ruby-identifier">options</span>)
+85: 
+86:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">include_root_in_json</span>
+87:           <span class="ruby-identifier">custom_root</span> = <span class="ruby-identifier">options</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:root</span>]
+88:           <span class="ruby-identifier">hash</span> = { <span class="ruby-identifier">custom_root</span> <span class="ruby-operator">||</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">model_name</span>.<span class="ruby-identifier">element</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">hash</span> }
+89:         <span class="ruby-keyword kw">end</span>
+90: 
+91:         <span class="ruby-identifier">hash</span>
+92:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007620">
+                    
+                    <a name="M007620"></a><b>from_json</b>(json)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007620_source')" id="l_M007620_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/33b954005cd71f1bfba1beca296804ce6c66b0a8/activemodel/lib/active_model/serializers/json.rb#L94" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007620_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activemodel/lib/active_model/serializers/json.rb, line 94</span>
+94:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">from_json</span>(<span class="ruby-identifier">json</span>)
+95:         <span class="ruby-identifier">hash</span> = <span class="ruby-constant">ActiveSupport</span><span class="ruby-operator">::</span><span class="ruby-constant">JSON</span>.<span class="ruby-identifier">decode</span>(<span class="ruby-identifier">json</span>)
+96:         <span class="ruby-identifier">hash</span> = <span class="ruby-identifier">hash</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">include_root_in_json</span>
+97:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">attributes</span> = <span class="ruby-identifier">hash</span>
+98:         <span class="ruby-keyword kw">self</span>
+99:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

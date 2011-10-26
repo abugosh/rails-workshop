@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::Railties::ControllerRuntime</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Module</span> 
+            ActiveRecord::Railties::ControllerRuntime 
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/railties/controller_runtime_rb.html">activerecord/lib/active_record/railties/controller_runtime.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005318">append_info_to_payload</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005317">cleanup_view_runtime</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="ControllerRuntime/ClassMethods.html">ActiveRecord::Railties::ControllerRuntime::ClassMethods</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005318">
+                    
+                    <a name="M005318"></a><b>append_info_to_payload</b>(payload)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005318_source')" id="l_M005318_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/dd61a817dea85990f13664d74bca15bc5796b76e/activerecord/lib/active_record/railties/controller_runtime.rb#L24" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005318_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/railties/controller_runtime.rb, line 24</span>
+24:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">append_info_to_payload</span>(<span class="ruby-identifier">payload</span>)
+25:         <span class="ruby-keyword kw">super</span>
+26:         <span class="ruby-identifier">payload</span>[<span class="ruby-identifier">:db_runtime</span>] = <span class="ruby-identifier">db_runtime</span>
+27:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005317">
+                    
+                    <a name="M005317"></a><b>cleanup_view_runtime</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005317_source')" id="l_M005317_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/dd61a817dea85990f13664d74bca15bc5796b76e/activerecord/lib/active_record/railties/controller_runtime.rb#L12" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005317_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activerecord/lib/active_record/railties/controller_runtime.rb, line 12</span>
+12:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cleanup_view_runtime</span>
+13:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">connected?</span>
+14:           <span class="ruby-identifier">db_rt_before_render</span> = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">LogSubscriber</span>.<span class="ruby-identifier">reset_runtime</span>
+15:           <span class="ruby-identifier">runtime</span> = <span class="ruby-keyword kw">super</span>
+16:           <span class="ruby-identifier">db_rt_after_render</span> = <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">LogSubscriber</span>.<span class="ruby-identifier">reset_runtime</span>
+17:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">db_runtime</span> = <span class="ruby-identifier">db_rt_before_render</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">db_rt_after_render</span>
+18:           <span class="ruby-identifier">runtime</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">db_rt_after_render</span>
+19:         <span class="ruby-keyword kw">else</span>
+20:           <span class="ruby-keyword kw">super</span>
+21:         <span class="ruby-keyword kw">end</span>
+22:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

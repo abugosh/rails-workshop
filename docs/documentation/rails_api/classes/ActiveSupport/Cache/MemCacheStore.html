@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Cache::MemCacheStore</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::Cache::MemCacheStore 
+            
+                <span class="parent">&lt; 
+                    
+                    Store
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activesupport/lib/active_support/cache/mem_cache_store_rb.html">activesupport/lib/active_support/cache/mem_cache_store.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+A cache store implementation which stores data in Memcached: <a
+href="http://www.danga.com/memcached/">www.danga.com/memcached/</a>
+</p>
+<p>
+This is currently the most popular cache store for production websites.
+</p>
+<p>
+Special features:
+</p>
+<ul>
+<li>Clustering and load balancing. One can specify multiple memcached servers,
+and <a href="MemCacheStore.html">MemCacheStore</a> will load balance
+between all available servers. If a server goes down, then <a
+href="MemCacheStore.html">MemCacheStore</a> will ignore it until it comes
+back up.
+
+</li>
+</ul>
+<p>
+<a href="MemCacheStore.html">MemCacheStore</a> implements the <a
+href="Strategy/LocalCache.html">Strategy::LocalCache</a> strategy which
+implements an in memory cache inside of a block.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>B</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006934">build_mem_cache</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006939">clear</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006935">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006936">read_multi</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>S</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006940">stats</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">MODULE</span> <a href="MemCacheStore/LocalCacheWithRaw.html">ActiveSupport::Cache::MemCacheStore::LocalCacheWithRaw</a></li>
+        
+        <li><span class="type">MODULE</span> <a href="MemCacheStore/Response.html">ActiveSupport::Cache::MemCacheStore::Response</a></li>
+        
+    </ul>
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">ESCAPE_KEY_CHARS</td>
+            <td>=</td>
+            <td class="attr-value">/[\x00-\x20%\x7F-\xFF]/</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006934">
+                    
+                    <a name="M006934"></a><b>build_mem_cache</b>(*addresses)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006934_source')" id="l_M006934_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3a6acb616235349f829236ec04a182d27fe2d397/activesupport/lib/active_support/cache/mem_cache_store.rb#L34" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006934_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache/mem_cache_store.rb, line 34</span>
+34:       <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">build_mem_cache</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">addresses</span>)
+35:         <span class="ruby-identifier">addresses</span> = <span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">flatten</span>
+36:         <span class="ruby-identifier">options</span> = <span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">extract_options!</span>
+37:         <span class="ruby-identifier">addresses</span> = [<span class="ruby-value str">&quot;localhost:11211&quot;</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">empty?</span>
+38:         <span class="ruby-constant">MemCache</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">addresses</span>, <span class="ruby-identifier">options</span>)
+39:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006935">
+                    
+                    <a name="M006935"></a><b>new</b>(*addresses)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Creates a new <a href="MemCacheStore.html">MemCacheStore</a> object, with
+the given memcached server addresses. Each address is either a host name,
+or a host-with-port string in the form of &#8220;host_name:port&#8221;. For
+example:
+</p>
+<pre>
+  ActiveSupport::Cache::MemCacheStore.new(&quot;localhost&quot;, &quot;server-downstairs.localnetwork:8229&quot;)
+</pre>
+<p>
+If no addresses are specified, then <a
+href="MemCacheStore.html">MemCacheStore</a> will connect to localhost port
+11211 (the default memcached port).
+</p>
+<p>
+Instead of addresses one can pass in a MemCache-like object. For example:
+</p>
+<pre>
+  require 'memcached' # gem install memcached; uses C bindings to libmemcached
+  ActiveSupport::Cache::MemCacheStore.new(Memcached::Rails.new(&quot;localhost:11211&quot;))
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006935_source')" id="l_M006935_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3a6acb616235349f829236ec04a182d27fe2d397/activesupport/lib/active_support/cache/mem_cache_store.rb#L54" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006935_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache/mem_cache_store.rb, line 54</span>
+54:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">addresses</span>)
+55:         <span class="ruby-identifier">addresses</span> = <span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">flatten</span>
+56:         <span class="ruby-identifier">options</span> = <span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">extract_options!</span>
+57:         <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">options</span>)
+58: 
+59:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:get</span>)
+60:           <span class="ruby-ivar">@data</span> = <span class="ruby-identifier">addresses</span>.<span class="ruby-identifier">first</span>
+61:         <span class="ruby-keyword kw">else</span>
+62:           <span class="ruby-identifier">mem_cache_options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">dup</span>
+63:           <span class="ruby-constant">UNIVERSAL_OPTIONS</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">mem_cache_options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">name</span>)}
+64:           <span class="ruby-ivar">@data</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">build_mem_cache</span>(<span class="ruby-operator">*</span>(<span class="ruby-identifier">addresses</span> <span class="ruby-operator">+</span> [<span class="ruby-identifier">mem_cache_options</span>]))
+65:         <span class="ruby-keyword kw">end</span>
+66: 
+67:         <span class="ruby-identifier">extend</span> <span class="ruby-constant">Strategy</span><span class="ruby-operator">::</span><span class="ruby-constant">LocalCache</span>
+68:         <span class="ruby-identifier">extend</span> <span class="ruby-constant">LocalCacheWithRaw</span>
+69:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006939">
+                    
+                    <a name="M006939"></a><b>clear</b>(options = nil)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Clear the entire cache on all memcached servers. This method should be used
+with care when shared cache is being used.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006939_source')" id="l_M006939_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3a6acb616235349f829236ec04a182d27fe2d397/activesupport/lib/active_support/cache/mem_cache_store.rb#L116" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006939_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache/mem_cache_store.rb, line 116</span>
+116:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clear</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>)
+117:         <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">flush_all</span>
+118:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006936">
+                    
+                    <a name="M006936"></a><b>read_multi</b>(*names)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Reads multiple values from the cache using a single call to the servers for
+all keys. Options can be passed in the last argument.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006936_source')" id="l_M006936_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3a6acb616235349f829236ec04a182d27fe2d397/activesupport/lib/active_support/cache/mem_cache_store.rb#L73" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006936_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache/mem_cache_store.rb, line 73</span>
+73:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_multi</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">names</span>)
+74:         <span class="ruby-identifier">options</span> = <span class="ruby-identifier">names</span>.<span class="ruby-identifier">extract_options!</span>
+75:         <span class="ruby-identifier">options</span> = <span class="ruby-identifier">merged_options</span>(<span class="ruby-identifier">options</span>)
+76:         <span class="ruby-identifier">keys_to_names</span> = <span class="ruby-identifier">names</span>.<span class="ruby-identifier">inject</span>({}){<span class="ruby-operator">|</span><span class="ruby-identifier">map</span>, <span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">map</span>[<span class="ruby-identifier">escape_key</span>(<span class="ruby-identifier">namespaced_key</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span>))] = <span class="ruby-identifier">name</span>; <span class="ruby-identifier">map</span>}
+77:         <span class="ruby-identifier">raw_values</span> = <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">get_multi</span>(<span class="ruby-identifier">keys_to_names</span>.<span class="ruby-identifier">keys</span>, <span class="ruby-identifier">:raw</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>)
+78:         <span class="ruby-identifier">values</span> = {}
+79:         <span class="ruby-identifier">raw_values</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+80:           <span class="ruby-identifier">entry</span> = <span class="ruby-identifier">deserialize_entry</span>(<span class="ruby-identifier">value</span>)
+81:           <span class="ruby-identifier">values</span>[<span class="ruby-identifier">keys_to_names</span>[<span class="ruby-identifier">key</span>]] = <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">value</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">entry</span>.<span class="ruby-identifier">expired?</span>
+82:         <span class="ruby-keyword kw">end</span>
+83:         <span class="ruby-identifier">values</span>
+84:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006940">
+                    
+                    <a name="M006940"></a><b>stats</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Get the statistics from the memcached servers.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006940_source')" id="l_M006940_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/3a6acb616235349f829236ec04a182d27fe2d397/activesupport/lib/active_support/cache/mem_cache_store.rb#L121" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006940_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/cache/mem_cache_store.rb, line 121</span>
+121:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stats</span>
+122:         <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">stats</span>
+123:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

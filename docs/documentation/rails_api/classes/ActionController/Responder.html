@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionController::Responder</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActionController::Responder 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_controller/metal/responder_rb.html">actionpack/lib/action_controller/metal/responder.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+<a href="Responder.html">Responder</a> is responsible for exposing a
+resource to different mime requests, usually depending on the HTTP verb.
+The responder is triggered when <tt>respond_with</tt> is called. The
+simplest case to study is a GET request:
+</p>
+<pre>
+  class PeopleController &lt; ApplicationController
+    respond_to :html, :xml, :json
+
+    def index
+      @people = Person.find(:all)
+      respond_with(@people)
+    end
+  end
+</pre>
+<p>
+When a request comes in, for example for an XML response, three steps
+happen:
+</p>
+<pre>
+  1) the responder searches for a template at people/index.xml;
+
+  2) if the template is not available, it will invoke &lt;code&gt;#to_xml&lt;/code&gt; on the given resource;
+
+  3) if the responder does not &lt;code&gt;respond_to :to_xml&lt;/code&gt;, call &lt;code&gt;#to_format&lt;/code&gt; on it.
+</pre>
+<h3>Builtin HTTP verb semantics</h3>
+<p>
+The default <a href="../Rails.html">Rails</a> responder holds semantics for
+each HTTP verb. Depending on the content type, verb and the resource
+status, it will behave differently.
+</p>
+<p>
+Using <a href="../Rails.html">Rails</a> default responder, a POST request
+for creating an object could be written as:
+</p>
+<pre>
+  def create
+    @user = User.new(params[:user])
+    flash[:notice] = 'User was successfully created.' if @user.save
+    respond_with(@user)
+  end
+</pre>
+<p>
+Which is exactly the same as:
+</p>
+<pre>
+  def create
+    @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @user.save
+        flash[:notice] = 'User was successfully created.'
+        format.html { redirect_to(@user) }
+        format.xml { render :xml =&gt; @user, :status =&gt; :created, :location =&gt; @user }
+      else
+        format.html { render :action =&gt; &quot;new&quot; }
+        format.xml { render :xml =&gt; @user.errors, :status =&gt; :unprocessable_entity }
+      end
+    end
+  end
+</pre>
+<p>
+The same happens for PUT and DELETE requests.
+</p>
+<h3>Nested resources</h3>
+<p>
+You can supply nested resources as you do in <tt>form_for</tt> and
+<tt>polymorphic_url</tt>. Consider the project has many tasks example. The
+create action for TasksController would be like:
+</p>
+<pre>
+  def create
+    @project = Project.find(params[:project_id])
+    @task = @project.comments.build(params[:task])
+    flash[:notice] = 'Task was successfully created.' if @task.save
+    respond_with(@project, @task)
+  end
+</pre>
+<p>
+Giving an array of resources, you ensure that the responder will redirect
+to <tt>project_task_url</tt> instead of <tt>task_url</tt>.
+</p>
+<p>
+Namespaced and singleton resources require a symbol to be given, as in
+polymorphic urls. If a project has one manager which has many tasks, it
+should be invoked as:
+</p>
+<pre>
+  respond_with(@project, :manager, @task)
+</pre>
+<p>
+Check <tt>polymorphic_url</tt> documentation for more examples.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>A</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005761">api_behavior</a>,</li>
+                
+                <li><a href="#M005765">api_location</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005756">call</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005769">default_action</a>,</li>
+                
+                <li><a href="#M005766">default_render</a>,</li>
+                
+                <li><a href="#M005767">display</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>E</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005772">empty_json_resource</a>,</li>
+                
+                <li><a href="#M005771">empty_resource</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>H</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005770">has_empty_resource_definition?</a>,</li>
+                
+                <li><a href="#M005768">has_errors?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005760">navigation_behavior</a>,</li>
+                
+                <li><a href="#M005764">navigation_location</a>,</li>
+                
+                <li><a href="#M005755">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005763">resource_location</a>,</li>
+                
+                <li><a href="#M005762">resourceful?</a>,</li>
+                
+                <li><a href="#M005757">respond</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>T</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M005759">to_format</a>,</li>
+                
+                <li><a href="#M005758">to_html</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">ACTIONS_FOR_VERBS</td>
+            <td>=</td>
+            <td class="attr-value">{       :post =&gt; :new,       :put =&gt; :edit     }</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>controller</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>request</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>format</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>resource</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>resources</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>options</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005756">
+                    
+                    <a name="M005756"></a><b>call</b>(*args)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Initializes a new responder an invoke the proper format. If the format is
+not defined, call to_format.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005756_source')" id="l_M005756_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L111" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005756_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 111</span>
+111:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">call</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+112:       <span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>).<span class="ruby-identifier">respond</span>
+113:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005755">
+                    
+                    <a name="M005755"></a><b>new</b>(controller, resources, options={})
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005755_source')" id="l_M005755_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L90" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005755_source" class="dyn-source">
+                        <pre>    <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 90</span>
+90:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">controller</span>, <span class="ruby-identifier">resources</span>, <span class="ruby-identifier">options</span>={})
+91:       <span class="ruby-ivar">@controller</span> = <span class="ruby-identifier">controller</span>
+92:       <span class="ruby-ivar">@request</span> = <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">request</span>
+93:       <span class="ruby-ivar">@format</span> = <span class="ruby-ivar">@controller</span>.<span class="ruby-identifier">formats</span>.<span class="ruby-identifier">first</span>
+94:       <span class="ruby-ivar">@resource</span> = <span class="ruby-identifier">resources</span>.<span class="ruby-identifier">last</span>
+95:       <span class="ruby-ivar">@resources</span> = <span class="ruby-identifier">resources</span>
+96:       <span class="ruby-ivar">@options</span> = <span class="ruby-identifier">options</span>
+97:       <span class="ruby-ivar">@action</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:action</span>)
+98:       <span class="ruby-ivar">@default_response</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:default_response</span>)
+99:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005757">
+                    
+                    <a name="M005757"></a><b>respond</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Main entry point for responder responsible to dispatch to the proper
+format.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005757_source')" id="l_M005757_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L117" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005757_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 117</span>
+117:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">respond</span>
+118:       <span class="ruby-identifier">method</span> = <span class="ruby-identifier">:&quot;to_#{format}&quot;</span>
+119:       <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">method</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">method</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">to_format</span>
+120:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005759">
+                    
+                    <a name="M005759"></a><b>to_format</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+All other formats follow the procedure below. First we try to render a
+template, if the template is not available, we verify if the resource
+responds to :<a href="Responder.html#M005759">to_format</a> and display it.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005759_source')" id="l_M005759_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L135" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005759_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 135</span>
+135:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_format</span>
+136:       <span class="ruby-identifier">default_render</span>
+137:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActionView</span><span class="ruby-operator">::</span><span class="ruby-constant">MissingTemplate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+138:       <span class="ruby-identifier">api_behavior</span>(<span class="ruby-identifier">e</span>)
+139:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005758">
+                    
+                    <a name="M005758"></a><b>to_html</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+HTML format does not render the resource, it always attempt to render a
+template.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005758_source')" id="l_M005758_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L125" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005758_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 125</span>
+125:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_html</span>
+126:       <span class="ruby-identifier">default_render</span>
+127:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActionView</span><span class="ruby-operator">::</span><span class="ruby-constant">MissingTemplate</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+128:       <span class="ruby-identifier">navigation_behavior</span>(<span class="ruby-identifier">e</span>)
+129:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Protected methods</div>
+            
+            <div class="method">
+                <div class="title" id="M005761">
+                    
+                    <a name="M005761"></a><b>api_behavior</b>(error)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+This is the common behavior for &#8220;API&#8221; requests, like :xml and
+:json.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005761_source')" id="l_M005761_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L155" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005761_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 155</span>
+155:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">api_behavior</span>(<span class="ruby-identifier">error</span>)
+156:       <span class="ruby-identifier">raise</span> <span class="ruby-identifier">error</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">resourceful?</span>
+157: 
+158:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">get?</span>
+159:         <span class="ruby-identifier">display</span> <span class="ruby-identifier">resource</span>
+160:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">has_errors?</span>
+161:         <span class="ruby-identifier">display</span> <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:unprocessable_entity</span>
+162:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">post?</span>
+163:         <span class="ruby-identifier">display</span> <span class="ruby-identifier">resource</span>, <span class="ruby-identifier">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:created</span>, <span class="ruby-identifier">:location</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">api_location</span>
+164:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">has_empty_resource_definition?</span>
+165:         <span class="ruby-identifier">display</span> <span class="ruby-identifier">empty_resource</span>, <span class="ruby-identifier">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:ok</span>
+166:       <span class="ruby-keyword kw">else</span>
+167:         <span class="ruby-identifier">head</span> <span class="ruby-identifier">:ok</span>
+168:       <span class="ruby-keyword kw">end</span>
+169:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005765">
+                    
+                    <a name="M005765"></a><b>api_location</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="Responder.html#M005763">resource_location</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005769">
+                    
+                    <a name="M005769"></a><b>default_action</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+By default, render the <tt>:edit</tt> action for HTML requests with
+failure, unless the verb is POST.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005769_source')" id="l_M005769_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L223" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005769_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 223</span>
+223:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default_action</span>
+224:       <span class="ruby-ivar">@action</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">ACTIONS_FOR_VERBS</span>[<span class="ruby-identifier">request</span>.<span class="ruby-identifier">request_method_symbol</span>]
+225:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005766">
+                    
+                    <a name="M005766"></a><b>default_render</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+If a given response block was given, use it, otherwise call render on
+controller.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005766_source')" id="l_M005766_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L189" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005766_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 189</span>
+189:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default_render</span>
+190:       <span class="ruby-ivar">@default_response</span>.<span class="ruby-identifier">call</span>
+191:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005767">
+                    
+                    <a name="M005767"></a><b>display</b>(resource, given_options={})
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Display is just a shortcut to render a resource with the current format.
+</p>
+<pre>
+  display @user, :status =&gt; :ok
+</pre>
+<p>
+For XML requests it&#8217;s equivalent to:
+</p>
+<pre>
+  render :xml =&gt; @user, :status =&gt; :ok
+</pre>
+<p>
+Options sent by the user are also used:
+</p>
+<pre>
+  respond_with(@user, :status =&gt; :created)
+  display(@user, :status =&gt; :ok)
+</pre>
+<p>
+Results in:
+</p>
+<pre>
+  render :xml =&gt; @user, :status =&gt; :created
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005767_source')" id="l_M005767_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L210" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005767_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 210</span>
+210:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">display</span>(<span class="ruby-identifier">resource</span>, <span class="ruby-identifier">given_options</span>={})
+211:       <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">render</span> <span class="ruby-identifier">given_options</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>).<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">format</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">resource</span>)
+212:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005772">
+                    
+                    <a name="M005772"></a><b>empty_json_resource</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Return a valid empty JSON resource
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005772_source')" id="l_M005772_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L241" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005772_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 241</span>
+241:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">empty_json_resource</span>
+242:       <span class="ruby-value str">&quot;{}&quot;</span>
+243:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005771">
+                    
+                    <a name="M005771"></a><b>empty_resource</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Delegate to proper empty resource method
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005771_source')" id="l_M005771_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L235" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005771_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 235</span>
+235:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">empty_resource</span>
+236:       <span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;empty_#{format}_resource&quot;</span>)
+237:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005770">
+                    
+                    <a name="M005770"></a><b>has_empty_resource_definition?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Check whether resource needs a specific definition of empty resource to be
+valid
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005770_source')" id="l_M005770_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L229" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005770_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 229</span>
+229:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_empty_resource_definition?</span>
+230:       <span class="ruby-identifier">respond_to?</span>(<span class="ruby-node">&quot;empty_#{format}_resource&quot;</span>)
+231:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005768">
+                    
+                    <a name="M005768"></a><b>has_errors?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Check whether the resource has errors.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005768_source')" id="l_M005768_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L216" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005768_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 216</span>
+216:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_errors?</span>
+217:       <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:errors</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">resource</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">empty?</span>
+218:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005760">
+                    
+                    <a name="M005760"></a><b>navigation_behavior</b>(error)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+This is the common behavior for &#8220;navigation&#8221; requests, like
+:html, :iphone and so forth.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005760_source')" id="l_M005760_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L144" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005760_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 144</span>
+144:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">navigation_behavior</span>(<span class="ruby-identifier">error</span>)
+145:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">get?</span>
+146:         <span class="ruby-identifier">raise</span> <span class="ruby-identifier">error</span>
+147:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">has_errors?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">default_action</span>
+148:         <span class="ruby-identifier">render</span> <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">default_action</span>
+149:       <span class="ruby-keyword kw">else</span>
+150:         <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">navigation_location</span>
+151:       <span class="ruby-keyword kw">end</span>
+152:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005764">
+                    
+                    <a name="M005764"></a><b>navigation_location</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Alias for <a href="Responder.html#M005763">resource_location</a>
+</p>
+
+                </div>
+                
+                
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005763">
+                    
+                    <a name="M005763"></a><b>resource_location</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Returns the resource location by retrieving it from the options or
+returning the resources array.
+</p>
+
+                </div>
+                
+                
+                <div class="aka">
+                    This method is also aliased as
+                    
+                    <a href="Responder.html#M005764">navigation_location</a>
+                    
+                    <a href="Responder.html#M005765">api_location</a>
+                    
+                </div>
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005763_source')" id="l_M005763_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L180" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005763_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 180</span>
+180:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">resource_location</span>
+181:       <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:location</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">resources</span>
+182:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M005762">
+                    
+                    <a name="M005762"></a><b>resourceful?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Checks whether the resource responds to the current format or not.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M005762_source')" id="l_M005762_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/1556e0874dd5c7e160a9bc5091dd60eb4bd5ec97/actionpack/lib/action_controller/metal/responder.rb#L173" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M005762_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_controller/metal/responder.rb, line 173</span>
+173:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">resourceful?</span>
+174:       <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:&quot;to_#{format}&quot;</span>)
+175:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

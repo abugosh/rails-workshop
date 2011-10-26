@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>Class</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen" />
+    <script src="../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            Class 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/class/attribute_accessors_rb.html">activesupport/lib/active_support/core_ext/class/attribute_accessors.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/class/subclasses_rb.html">activesupport/lib/active_support/core_ext/class/subclasses.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/class/delegating_attributes_rb.html">activesupport/lib/active_support/core_ext/class/delegating_attributes.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/class/attribute_rb.html">activesupport/lib/active_support/core_ext/class/attribute.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/class/inheritable_attributes_rb.html">activesupport/lib/active_support/core_ext/class/inheritable_attributes.rb</a></li>
+            
+            <li><a href="../files/activesupport/lib/active_support/core_ext/object/duplicable_rb.html">activesupport/lib/active_support/core_ext/object/duplicable.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+It is recommended to use <tt>class_attribute</tt> over methods defined in
+this file. Please refer to documentation for <tt>class_attribute</tt> for
+more information. Officially it is not deprecated but
+<tt>class_attribute</tt> is faster.
+</p>
+<p>
+Allows attributes to be shared within an inheritance hierarchy. Each
+descendant gets a copy of their parents&#8217; attributes, instead of just
+a pointer to the same. This means that the child can add elements to, for
+example, an array without those additions being shared with either their
+parent, siblings, or children. This is unlike the regular class-level
+attributes that are shared across the entire hierarchy.
+</p>
+<p>
+The copies of inheritable parent attributes are added to subclasses when
+they are created, via the <tt>inherited</tt> hook.
+</p>
+<pre>
+ class Person
+   class_inheritable_accessor :hair_colors
+ end
+
+ Person.hair_colors = [:brown, :black, :blonde, :red]
+ Person.hair_colors     # =&gt; [:brown, :black, :blonde, :red]
+ Person.new.hair_colors # =&gt; [:brown, :black, :blonde, :red]
+</pre>
+<p>
+To opt out of the instance writer method, pass :instance_writer => false.
+To opt out of the instance reader method, pass :instance_reader => false.
+</p>
+<pre>
+  class Person
+    class_inheritable_accessor :hair_colors :instance_writer =&gt; false, :instance_reader =&gt; false
+  end
+
+  Person.new.hair_colors = [:brown]  # =&gt; NoMethodError
+  Person.new.hair_colors             # =&gt; NoMethodError
+</pre>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+    </div>
+  </body>
+</html>    

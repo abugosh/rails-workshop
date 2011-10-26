@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Flash</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen" />
+    <script src="../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActionDispatch::Flash 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../files/actionpack/lib/action_dispatch/middleware/flash_rb.html">actionpack/lib/action_dispatch/middleware/flash.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+The flash provides a way to pass temporary objects between actions.
+Anything you place in the flash will be exposed to the very next action and
+then cleared out. This is a great way of doing notices and alerts, such as
+a create action that sets <tt>flash[:notice] = &quot;Post successfully
+created&quot;</tt> before redirecting to a display action that can then
+expose the flash to its template. Actually, that exposure is automatically
+done. Example:
+</p>
+<pre>
+  class PostsController &lt; ActionController::Base
+    def create
+      # save post
+      flash[:notice] = &quot;Post successfully created&quot;
+      redirect_to posts_path(@post)
+    end
+
+    def show
+      # doesn't need to assign the flash notice to the template, that's done automatically
+    end
+  end
+
+  show.html.erb
+    &lt;% if flash[:notice] %&gt;
+      &lt;div class=&quot;notice&quot;&gt;&lt;%= flash[:notice] %&gt;&lt;/div&gt;
+    &lt;% end %&gt;
+</pre>
+<p>
+Since the <tt>notice</tt> and <tt>alert</tt> keys are a common idiom,
+convenience accessors are available:
+</p>
+<pre>
+  flash.alert = &quot;You must be logged in&quot;
+  flash.notice = &quot;Post successfully created&quot;
+</pre>
+<p>
+This example just places a string in the flash, but you can put any object
+in there. And of course, you can put as many as you like at a time too.
+Just remember: They&#8217;ll be gone by the time the next action has been
+performed.
+</p>
+<p>
+See docs on the <a href="Flash/FlashHash.html">FlashHash</a> class for more
+details about the flash.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006023">call</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006022">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Classes and Modules</div>
+    <ul>
+        
+        <li><span class="type">CLASS</span> <a href="Flash/FlashHash.html">ActionDispatch::Flash::FlashHash</a></li>
+        
+        <li><span class="type">CLASS</span> <a href="Flash/FlashNow.html">ActionDispatch::Flash::FlashNow</a></li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006022">
+                    
+                    <a name="M006022"></a><b>new</b>(app)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006022_source')" id="l_M006022_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0c878734558bde940c4b49b115e6aaee673a2360/actionpack/lib/action_dispatch/middleware/flash.rb#L173" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006022_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/middleware/flash.rb, line 173</span>
+173:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">app</span>)
+174:       <span class="ruby-ivar">@app</span> = <span class="ruby-identifier">app</span>
+175:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006023">
+                    
+                    <a name="M006023"></a><b>call</b>(env)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006023_source')" id="l_M006023_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0c878734558bde940c4b49b115e6aaee673a2360/actionpack/lib/action_dispatch/middleware/flash.rb#L177" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006023_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/middleware/flash.rb, line 177</span>
+177:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+178:       <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">session</span> = <span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.session'</span>]) <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">flash</span> = <span class="ruby-identifier">session</span>[<span class="ruby-value str">'flash'</span>])
+179:         <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">sweep</span>
+180:       <span class="ruby-keyword kw">end</span>
+181: 
+182:       <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+183:     <span class="ruby-keyword kw">ensure</span>
+184:       <span class="ruby-identifier">session</span>    = <span class="ruby-identifier">env</span>[<span class="ruby-value str">'rack.session'</span>] <span class="ruby-operator">||</span> {}
+185:       <span class="ruby-identifier">flash_hash</span> = <span class="ruby-identifier">env</span>[<span class="ruby-value str">'action_dispatch.request.flash_hash'</span>]
+186: 
+187:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">flash_hash</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-operator">!</span><span class="ruby-identifier">flash_hash</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'flash'</span>))
+188:         <span class="ruby-identifier">session</span>[<span class="ruby-value str">&quot;flash&quot;</span>] = <span class="ruby-identifier">flash_hash</span>
+189:       <span class="ruby-keyword kw">end</span>
+190: 
+191:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">'flash'</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>[<span class="ruby-value str">'flash'</span>].<span class="ruby-identifier">empty?</span>
+192:         <span class="ruby-identifier">session</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'flash'</span>)
+193:       <span class="ruby-keyword kw">end</span>
+194:     <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

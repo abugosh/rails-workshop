@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActionDispatch::Integration::Session</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActionDispatch::Integration::Session 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/actionpack/lib/action_dispatch/testing/integration_rb.html">actionpack/lib/action_dispatch/testing/integration.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+    <div class="description">
+        <p>
+An instance of this class represents a set of requests and responses
+performed sequentially by a test process. Because you can instantiate
+multiple sessions and run them side-by-side, you can also mimic (to some
+limited extent) multiple simultaneous users interacting with your system.
+</p>
+<p>
+Typically, you will instantiate a new session using
+IntegrationTest#open_session, rather than instantiating <a
+href="Session.html">Integration::Session</a> directly.
+</p>
+
+    </div>
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006111">cookies</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>D</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006113">default_url_options</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>H</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006110">host</a>,</li>
+                
+                <li><a href="#M006117">host!</a>,</li>
+                
+                <li><a href="#M006115">https!</a>,</li>
+                
+                <li><a href="#M006116">https?</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006112">new</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>R</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M006114">reset!</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+    <div class="sectiontitle">Included Modules</div>
+    <ul>
+        
+        <li>
+            
+            <span>Test::Unit::Assertions</span>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="../../ActionDispatch.html">ActionDispatch</a>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="../Integration.html">ActionDispatch::Integration</a>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="../../ActionDispatch.html">ActionDispatch</a>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="../../Rails.html">Rails</a>
+            
+            START:includes
+        </li>
+        
+        <li>
+            
+            <a href="../../Rails.html">Rails</a>
+            
+            START:includes
+        </li>
+        
+    </ul>
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">DEFAULT_HOST</td>
+            <td>=</td>
+            <td class="attr-value">&quot;www.example.com&quot;</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+    <div class="sectiontitle">Attributes</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [W]
+            </td>
+            <td class='attr-name'>host</td>
+            <td class='attr-desc'></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>remote_addr</td>
+            <td class='attr-desc'><p>
+The <a href="Session.html#remote_addr">remote_addr</a> used in the last
+request.
+</p></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>accept</td>
+            <td class='attr-desc'><p>
+The Accept header to send.
+</p></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>controller</td>
+            <td class='attr-desc'><p>
+A reference to the controller instance used by the last request.
+</p></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>request</td>
+            <td class='attr-desc'><p>
+A reference to the request instance used by the last request.
+</p></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [R]
+            </td>
+            <td class='attr-name'>response</td>
+            <td class='attr-desc'><p>
+A reference to the response instance used by the last request.
+</p></td>
+        </tr>
+        
+        <tr valign='top'>
+            <td class='attr-rw'>
+                [RW]
+            </td>
+            <td class='attr-name'>request_count</td>
+            <td class='attr-desc'><p>
+A running counter of the number of requests processed.
+</p></td>
+        </tr>
+        
+    </table>
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006112">
+                    
+                    <a name="M006112"></a><b>new</b>(app)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Create and initialize a new <a href="Session.html">Session</a> instance.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006112_source')" id="l_M006112_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L173" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006112_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 173</span>
+173:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">app</span>)
+174:         <span class="ruby-ivar">@app</span> = <span class="ruby-identifier">app</span>
+175: 
+176:         <span class="ruby-comment cmt"># If the app is a Rails app, make url_helpers available on the session</span>
+177:         <span class="ruby-comment cmt"># This makes app.url_for and app.foo_path available in the console</span>
+178:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">app</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:routes</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">app</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:url_helpers</span>)
+179:           <span class="ruby-identifier">singleton_class</span>.<span class="ruby-identifier">class_eval</span> { <span class="ruby-identifier">include</span> <span class="ruby-identifier">app</span>.<span class="ruby-identifier">routes</span>.<span class="ruby-identifier">url_helpers</span> }
+180:         <span class="ruby-keyword kw">end</span>
+181: 
+182:         <span class="ruby-identifier">reset!</span>
+183:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M006111">
+                    
+                    <a name="M006111"></a><b>cookies</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+A map of the cookies returned by the last response, and which will be sent
+with the next request.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006111_source')" id="l_M006111_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L154" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006111_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 154</span>
+154:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cookies</span>
+155:         <span class="ruby-identifier">_mock_session</span>.<span class="ruby-identifier">cookie_jar</span>
+156:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006113">
+                    
+                    <a name="M006113"></a><b>default_url_options</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006113_source')" id="l_M006113_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L185" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006113_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 185</span>
+185:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">default_url_options</span>
+186:         { <span class="ruby-identifier">:host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">host</span>, <span class="ruby-identifier">:protocol</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">https?</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;https&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;http&quot;</span> }
+187:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006110">
+                    
+                    <a name="M006110"></a><b>host</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+The hostname used in the last request.
+</p>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006110_source')" id="l_M006110_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L141" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006110_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 141</span>
+141:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">host</span>
+142:         <span class="ruby-ivar">@host</span> <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_HOST</span>
+143:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006117">
+                    
+                    <a name="M006117"></a><b>host!</b>(name)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Set the host name to use in the next request.
+</p>
+<pre>
+  session.host! &quot;www.example.com&quot;
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006117_source')" id="l_M006117_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L236" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006117_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 236</span>
+236:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">host!</span>(<span class="ruby-identifier">name</span>)
+237:         <span class="ruby-ivar">@host</span> = <span class="ruby-identifier">name</span>
+238:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006115">
+                    
+                    <a name="M006115"></a><b>https!</b>(flag = true)
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Specify whether or not the session should mimic a secure HTTPS request.
+</p>
+<pre>
+  session.https!
+  session.https!(false)
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006115_source')" id="l_M006115_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L220" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006115_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 220</span>
+220:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">https!</span>(<span class="ruby-identifier">flag</span> = <span class="ruby-keyword kw">true</span>)
+221:         <span class="ruby-ivar">@https</span> = <span class="ruby-identifier">flag</span>
+222:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006116">
+                    
+                    <a name="M006116"></a><b>https?</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Return <tt>true</tt> if the session is mimicking a secure HTTPS request.
+</p>
+<pre>
+  if session.https?
+    ...
+  end
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006116_source')" id="l_M006116_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L229" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006116_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 229</span>
+229:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">https?</span>
+230:         <span class="ruby-ivar">@https</span>
+231:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M006114">
+                    
+                    <a name="M006114"></a><b>reset!</b>()
+                    
+                </div>
+                
+                <div class="description">
+                  <p>
+Resets the instance. This can be used to reset the state information in an
+existing session instance, so it can be used from a clean-slate condition.
+</p>
+<pre>
+  session.reset!
+</pre>
+
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M006114_source')" id="l_M006114_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/19b71233fe98ef8e2b8c1bc2e6196b4e31b50925/actionpack/lib/action_dispatch/testing/integration.rb#L194" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M006114_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File actionpack/lib/action_dispatch/testing/integration.rb, line 194</span>
+194:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset!</span>
+195:         <span class="ruby-ivar">@https</span> = <span class="ruby-keyword kw">false</span>
+196:         <span class="ruby-ivar">@controller</span> = <span class="ruby-ivar">@request</span> = <span class="ruby-ivar">@response</span> = <span class="ruby-keyword kw">nil</span>
+197:         <span class="ruby-ivar">@_mock_session</span> = <span class="ruby-keyword kw">nil</span>
+198:         <span class="ruby-ivar">@request_count</span> = <span class="ruby-value">0</span>
+199: 
+200:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">host</span>        = <span class="ruby-constant">DEFAULT_HOST</span>
+201:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">remote_addr</span> = <span class="ruby-value str">&quot;127.0.0.1&quot;</span>
+202:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">accept</span>      = <span class="ruby-value str">&quot;text/xml,application/xml,application/xhtml+xml,&quot;</span> <span class="ruby-operator">+</span>
+203:                            <span class="ruby-value str">&quot;text/html;q=0.9,text/plain;q=0.8,image/png,&quot;</span> <span class="ruby-operator">+</span>
+204:                            <span class="ruby-value str">&quot;*/*;q=0.5&quot;</span>
+205: 
+206:         <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-ivar">@named_routes_configured</span>
+207:           <span class="ruby-comment cmt"># install the named routes in this session instance.</span>
+208:           <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">singleton_class</span>
+209: 
+210:           <span class="ruby-comment cmt"># the helpers are made protected by default--we make them public for</span>
+211:           <span class="ruby-comment cmt"># easier access during testing and troubleshooting.</span>
+212:           <span class="ruby-ivar">@named_routes_configured</span> = <span class="ruby-keyword kw">true</span>
+213:         <span class="ruby-keyword kw">end</span>
+214:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveSupport::Testing::Performance::Metrics::GcTime</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveSupport::Testing::Performance::Metrics::GcTime 
+            
+                <span class="parent">&lt; 
+                    
+                    Base
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../../../files/activesupport/lib/active_support/testing/performance_rb.html">activesupport/lib/active_support/testing/performance.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>F</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007535">format</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>M</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M007534">measure</a>,</li>
+                
+                <li><a href="#M007533">measure</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+    <div class="sectiontitle">Constants</div>
+    <table border='0' cellpadding='5'>
+        
+        <tr valign='top'>
+            <td class="attr-name">Mode</td>
+            <td>=</td>
+            <td class="attr-value">RubyProf::GC_TIME if RubyProf.const_defined?(:GC_TIME)</td>
+        </tr>
+        
+        
+    </table>
+    
+
+    
+
+    
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M007535">
+                    
+                    <a name="M007535"></a><b>format</b>(measurement)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007535_source')" id="l_M007535_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0cee3034c4bb26e8b82bda513694b9e650961744/activesupport/lib/active_support/testing/performance.rb#L416" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007535_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/testing/performance.rb, line 416</span>
+416:             <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">format</span>(<span class="ruby-identifier">measurement</span>)
+417:               <span class="ruby-value str">'%.2f ms'</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">measurement</span>
+418:             <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007534">
+                    
+                    <a name="M007534"></a><b>measure</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007534_source')" id="l_M007534_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0cee3034c4bb26e8b82bda513694b9e650961744/activesupport/lib/active_support/testing/performance.rb#L411" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007534_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/testing/performance.rb, line 411</span>
+411:               <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">measure</span>
+412:                 <span class="ruby-constant">RubyProf</span>.<span class="ruby-identifier">measure_gc_time</span> <span class="ruby-operator">/</span> <span class="ruby-value">1000</span>
+413:               <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="method">
+                <div class="title" id="M007533">
+                    
+                    <a name="M007533"></a><b>measure</b>()
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M007533_source')" id="l_M007533_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/0cee3034c4bb26e8b82bda513694b9e650961744/activesupport/lib/active_support/testing/performance.rb#L405" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M007533_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activesupport/lib/active_support/testing/performance.rb, line 405</span>
+405:               <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">measure</span>
+406:                 <span class="ruby-constant">GC</span><span class="ruby-operator">::</span><span class="ruby-constant">Profiler</span>.<span class="ruby-identifier">total_time</span>
+407:               <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    

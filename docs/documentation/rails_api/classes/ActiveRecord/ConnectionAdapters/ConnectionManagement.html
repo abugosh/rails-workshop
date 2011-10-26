@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <title>ActiveRecord::ConnectionAdapters::ConnectionManagement</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../../../css/reset.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="../../../css/main.css" type="text/css" media="screen" />
+    <script src="../../../js/jquery-1.3.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/jquery-effect.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../../../js/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>     
+    <div class="banner">
+        <h1>
+            <span class="type">Class</span> 
+            ActiveRecord::ConnectionAdapters::ConnectionManagement 
+            
+                <span class="parent">&lt; 
+                    
+                    <a href="../../Object.html">Object</a>
+                    
+                </span>
+            
+        </h1>
+        <ul class="files">
+            
+            <li><a href="../../../files/activerecord/lib/active_record/connection_adapters/abstract/connection_pool_rb.html">activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb</a></li>
+            
+        </ul>
+    </div>
+    <div id="bodyContent">
+        <div id="content">
+    
+
+    
+
+    
+    
+
+    
+    
+    <div class="sectiontitle">Methods</div>
+    <dl class="methods">
+    
+        <dt>C</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004662">call</a></li>
+                
+            </ul>
+        </dd>
+    
+        <dt>N</dt>
+        <dd>
+            <ul>
+                
+                <li><a href="#M004661">new</a></li>
+                
+            </ul>
+        </dd>
+    
+    </dl>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+            <div class="sectiontitle">Class Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004661">
+                    
+                    <a name="M004661"></a><b>new</b>(app)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004661_source')" id="l_M004661_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/08e9d0d65b95835a9fa5c477f0c852801a224eff/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb#L349" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004661_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb, line 349</span>
+349:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">app</span>)
+350:         <span class="ruby-ivar">@app</span> = <span class="ruby-identifier">app</span>
+351:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="sectiontitle">Instance Public methods</div>
+            
+            <div class="method">
+                <div class="title" id="M004662">
+                    
+                    <a name="M004662"></a><b>call</b>(env)
+                    
+                </div>
+                
+                
+                
+                
+                <div class="sourcecode">
+                    <p class="source-link">
+                        Source: <a href="javascript:toggleSource('M004662_source')" id="l_M004662_source">show</a>
+                        
+                        | <a href="http://github.com/rails/rails/blob/08e9d0d65b95835a9fa5c477f0c852801a224eff/activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb#L353" target="_blank" class="github_url">on GitHub</a>
+                        
+                    </p>
+                    <div id="M004662_source" class="dyn-source">
+                        <pre>     <span class="ruby-comment cmt"># File activerecord/lib/active_record/connection_adapters/abstract/connection_pool.rb, line 353</span>
+353:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+354:         <span class="ruby-ivar">@app</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">env</span>)
+355:       <span class="ruby-keyword kw">ensure</span>
+356:         <span class="ruby-comment cmt"># Don't return connection (and perform implicit rollback) if</span>
+357:         <span class="ruby-comment cmt"># this request is a part of integration test</span>
+358:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">env</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-value str">&quot;rack.test&quot;</span>)
+359:           <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">clear_active_connections!</span>
+360:         <span class="ruby-keyword kw">end</span>
+361:       <span class="ruby-keyword kw">end</span></pre>
+                    </div>
+                </div>
+                
+            </div>
+            
+</div>
+    </div>
+  </body>
+</html>    
