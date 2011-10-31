@@ -9,3 +9,16 @@ two:
   floor: 1
   room: MyString
   address_id: 1
+# == Schema Information
+#
+# Table name: offices
+#
+#  id         :integer         not null, primary key
+#  floor      :integer
+#  room       :string(255)
+#  address_id :integer
+#  user_id    :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

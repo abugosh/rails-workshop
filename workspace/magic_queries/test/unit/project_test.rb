@@ -5,3 +5,15 @@ class ProjectTest < ActiveSupport::TestCase
   #   assert true
   # end
 end
+# == Schema Information
+#
+# Table name: projects
+#
+#  id         :integer         not null, primary key
+#  name       :string(255)
+#  purpose    :text
+#  value      :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+

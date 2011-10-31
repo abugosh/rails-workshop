@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :age
       t.text :profile
       t.integer :organization_id
+      t.integer :address_id
 
       t.timestamps
     end
