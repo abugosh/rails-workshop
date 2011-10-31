@@ -1,13 +1,31 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  first_name: 
-  last_name: 
-  age: 
-  profile: 
+bob:
+  first_name: Bob
+  last_name: Smith
+  age: 100
+  profile: Bob is a great guy! A bit old though...
 
-two:
-  first_name: 
-  last_name: 
-  age: 
-  profile: 
+jim:
+  first_name: James
+  last_name: Smith
+  age: 55
+  profile: James is James! Much like a tautology...
+
+ned:
+  first_name: Ned
+  last_name: Fnagle
+  age: 62
+  profile: Ned is a nerd.
+
+zed:
+  first_name: Zed
+  last_name: Bblik'op
+  age: 33
+  profile: Zed is dead.
+
+ed:
+  first_name: Ed
+  last_name: Que
+  age: 19
+  profile: Que?
