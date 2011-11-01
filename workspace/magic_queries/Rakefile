@@ -5,3 +5,50 @@
 require File.expand_path('../config/application', __FILE__)
 
 MagicQueries::Application.load_tasks
+
+desc 'Populates the database with some test data'
+task :populate_db => :environment do
+  (1..10).to_a.each do
+    org = Organization.create(:name => rand_string(20), :purpose => rand_string(100))
+    
+    (1..rand_num(25)).to_a.each do
+      org.users.create(:first_name => rand_string, :last_name => rand_string, :age => rand_num(100), :profile => rand_string(1000), :office => create_office, :address => create_address)
+    end
+  end
+  
+  (1..100).to_a.each do 
+    prj = Project.create(:name => rand_string(25), :purpose => rand_string(100), :organizations => (1..rand_num(5)).to_a.map{rand_num(10)}.uniq.map{|num| Organization.all[num]})
+    
+    (1..rand_num).to_a.each do
+      prj.tasks.create(:name => rand_string(20), :description => rand_string(100), :users => (1..rand_num(5)).to_a.map{User.all[rand_num(User.count)]})
+    end
+  end
+  
+  UserTask.all.each do |user_task|
+    user_task.hours = rand_num(15)
+    user_task.save
+  end
+end
+
+def create_office
+  Office.create(:floor => rand_num(25), :room => rand_string(4), :address => create_address)
+end
+
+def create_address
+  if Address.first && rand_num(10) > 4
+    Address.all[rand_num(Address.count)]
+  else
+    Address.create(:address => rand_string(30), :city => rand_string(4), :state => rand_string(2), :zip => rand_num(10))
+  end
+end
+
+def rand_num(max = 50)
+  1 + (rand * (max - 1))
+end
+
+def rand_string(len = nil)
+  alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+  len = rand_num(10) unless len
+
+  (1..len).to_a.map{alpha[rand_num(26)]}.join('')
+end
